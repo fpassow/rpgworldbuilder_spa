@@ -1,0 +1,19 @@
+{
+  "name": "rpgworldbuilder",
+  "version": "1.0.0",
+  "description": "Turn ideas into runnable RPG campaigns",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "start mongod",
+    "start": "node server.js"
+  },
+  "author": "Fritz Passow",
+  "license": "MIT",
+  "dependencies": {
+    "basic-auth": "^1.1.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongodb": "^2.2.26"
+  }
+}
