@@ -1,3 +1,10 @@
+/*
+ * selector    jQuery selector for the container to put this widget into
+ * rwbDef      Object defining the form and its labels, hints, etc.
+ * data        Data to be displayed and edited
+ * changed     Callback called with updated version of the data when it changes
+ */
+
 function RwbWidget(selector, rwbDef, data, changed) {
     var parent = $("#" + selector);
     parent.append('<span class="rwb-title">' + rwbDef.label + '</span>');
