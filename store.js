@@ -44,7 +44,7 @@ function connect(callback) {
 }
 
 /////////////////////////////////////////////////////////////
-/// protect from node injection attacks!!!!!!!!!!!!!!!!!!!!!!
+/// protect from mongo injection attacks!!!!!!!!!!!!!!!!!!!!!!
 /////////////////////////////////////////////////////////////
 
 /*

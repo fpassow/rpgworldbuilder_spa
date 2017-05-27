@@ -60,7 +60,7 @@ function serveSomeWebs(store) {
     //Include HTTP basic auth.
     app.get('/api/user', function(req, res) {
         authCheck(req, res, function(){
-            res.send("User OK");
+            res.json({message:"User OK"});
         });
     });
     

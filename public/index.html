@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>demo</title>
-    <link rel="stylesheet" href="rwb_widget.css">
-  </head>
-  <body>
-Hi!
-   <!-- <div id="rwb-widget"></div> -->
+    <head>
+        <meta charset="utf-8">
+        <title>demo</title>
+        <link rel="stylesheet" href="rwb_widget.css">
+    </head>
+    <body>
+
+    <div id="user-container">
+        <span id="user-state">Not logged in.</span>
+        <span id="user-message">   </span>
+        Username:<input id="user-username">
+        Password:<input id="user-password">
+        <button id="user-loginbutton">Log In</button>
+    </div>
+    
+    <div id="camplist-container">
+    </div>
+    
+    <div id="rwb-widget">
+    </div>
 
     <script src="jquery-3.1.1.min.js" charset="utf-8"></script>
     <!-- <script src="rwb_widget.js" charset="utf-8"></script> -->
-    <!--<script src="main.js" charset="utf-8"></script>-->
+    <script src="user_widget.js" charset="utf-8"></script>
+    <script src="main.js" charset="utf-8"></script>
     <script src="clientlib.js" charset="utf-8"></script>
     
   </body>
 </html>
 
-
-<!--
-    login
-        keep name and pw
-        
-        -->
-  
