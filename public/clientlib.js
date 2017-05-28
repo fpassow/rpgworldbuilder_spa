@@ -1,4 +1,9 @@
-
+//callback(err, campaignDefObject)
+function getCampaignDef(callback) {
+    $.getJSON('/public/campaign_form_def.json', function(campDef) {
+        callback(null, campDef);
+    });
+}
 
 //callback(err)
 function createUser(username, password, callback) {
@@ -86,8 +91,8 @@ function loadCampaign(username, campaignId, callback) {
   $.ajax({
         type: 'GET',
         url: '/api/campaign/' + username + '/' + campaignId,
-        success: function(data) {if (callback) {callback(data);}},
-        error:function(jqXHR ) {if (callback) {callback(jqXHR.responseText);}},
+        success: function(data) {if (callback) {callback(null, data);}},
+        error:function(jqXHR ) {if (callback) {callback(jqXHR.responseText, null);}},
         contentType: "application/json",
         dataType: 'json'
     });

@@ -15,7 +15,7 @@ function UserWidget(changed) {
     this.currentUsername = null;
     this.currentPassword = null;
     this.getUsername = function() {return this.currentUsername;}
-    this.getUsername = function() {return this.currentUsername;}
+    this.getPassword = function() {return this.currentPassword;}
     this.loggedIn = false;
     this.isLoggedIn = function() {return this.loggedIn;}
     $("#user-loginbutton").click(function() {

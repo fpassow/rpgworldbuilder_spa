@@ -1,8 +1,28 @@
 $(document).ready(function(){
-    var userWidget = new UserWidget(function(u,p) {alert(u+" " + p);});
-    var campListWidget = new CampaignListWidget('camplist-container',function(x){alert(JSON.stringify(x));});
-    
+    getCampaignDef(function(err, campDef) {
+        var userWidget = new UserWidget(function(u,p) {alert('New user: ' + u + ' ' + p);});
+        var campWidget = null;
+        var campListWidget = new CampaignListWidget('camplist-container', function(campMeta) {
+            //this is the campaign selected event code...
+            loadCampaign(campMeta.username, campMeta.campaignId, function(err, campData) {
+                if (err) {
+                    alert(JSON.stringify(err));
+                } else {
+                    if (campData.username === userWidget.getUsername()) {
+                        //user owns it, so open in editor
+                        $("#rwb-widget").empty();
+                        campWidget = new RwbWidget('rwb-widget', campDef, campData);
+                    } else {
+                        //user does not own it, so display static view
+                        $("#rwb-widget").html(JSON.stringify(campData));
+                    }
+                }
+            });
+        });
+    });        
 });
+
+
 
 /*
 
