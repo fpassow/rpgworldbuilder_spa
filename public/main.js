@@ -1,6 +1,6 @@
 $(document).ready(function(){
     var userWidget = new UserWidget(function(u,p) {alert(u+" " + p);});
-    
+    var campListWidget = new CampaignListWidget('camplist-container');
     
 });
 
@@ -13,9 +13,10 @@ CampaignWidget
     Events: onChange, onSave
 
 CampaignListWidget
-    Internally displays, sorts, searches, etc. and can create a new campaign
+    Internally displays, sorts, searches, etc. and can clone or create a new campaign
     Model: A collection of Campaign objects
     Event: campaignSelected
+                                          NOT SURE WHO OWNS IMPORT...
 
 CurrentUserWidget
     Model: username, password

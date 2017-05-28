@@ -137,6 +137,16 @@ function findCampaigns(searchCrit, callback) {
 }
 
 /*
+ * Takes a mongodb search object.
+ * callback(err, arrayOfCampaignsMetadata)
+ */
+function findCampaignsMetadata(searchCrit, callback) {   
+    this.campaigns.find(searchCrit,{campaignId:true,title:true,username:true},{sort:['username','title']}).toArray(function(err, campaigns) {
+        callback(err, campaigns);
+    });
+}
+
+/*
  * callback(err)
  */
 function deleteCampaign(username, campaignId, callback) {

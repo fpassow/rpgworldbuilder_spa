@@ -137,6 +137,22 @@ function serveSomeWebs(store) {
         }
     });
     
+    //To search, POST a mongodb search object.
+    //Returns only campaignId, title, and username
+    app.post('/api/search', function(req, res) {
+        if (req.body) {
+            store.findCampaignsMetadata(req.body, function(err, campaignsMeta) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.json(campaignsMeta);
+                }
+            });
+        } else {
+            res.status(400).send("No search criteria.");
+        }
+    });
+    
     //Include HTTP basic auth. Campaign ID is next thing in path. Username is the authorizing user.
     app.delete('/api/campaign/:id', function(req, res) {
         authCheck(req, res, users, function(storedUser) {

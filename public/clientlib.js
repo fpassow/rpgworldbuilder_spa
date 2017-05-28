@@ -93,9 +93,24 @@ function loadCampaign(username, campaignId, callback) {
     });
 }
     
-    //searchCrit is a mongoDb search criteria. TODO: SECURITY!!!!!!!!!!!!!!!!!!!!!11
-    //callback(err, campaignArray)
+//searchCrit is a mongoDb search criteria. TODO: SECURITY!!!!!!!!!!!!!!!!!!!!!11
+//callback(err, campaignArray)
 function findCampaigns(searchCrit, callback) {
+  $.ajax({
+        type: 'POST',
+        url: '/api/search',
+        data: JSON.stringify(searchCrit),
+        success: function(data) {if (callback) {callback(null, data);}},
+        error:function(jqXHR ) {if (callback) {callback(jqXHR.responseText);}},
+        contentType: "application/json",
+        dataType: 'json'
+    });
+}
+
+//searchCrit is a mongoDb search criteria. TODO: SECURITY!!!!!!!!!!!!!!!!!!!!!11
+//callback(err, campaignMetadataArray)
+//CampaignMetadata is campaignId, title, and username
+function findCampaignsMetadata(searchCrit, callback) {
   $.ajax({
         type: 'POST',
         url: '/api/search',
