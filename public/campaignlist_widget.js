@@ -1,6 +1,7 @@
 /*
  * selector    jQuery selector for the container to put this widget into
- * selected    Callback called when a campaign is selected for editing
+ * selected    Callback called with campaign metadata object (campaignId, title, username)
+ *                when a campaign is selected for editing
  *
  * Creating and clonging is handled internally, 
  *   and then a selected event is fired for the new campaign.
@@ -16,9 +17,13 @@ function CampaignListWidget(selector, selected) {
         if (err) {
             alert('Error loading campaign list: ' + JSON.stringify(err));
         } else {
-            for (var i = 0; i < camps.length; i++) {
-                parent.append('<div class="camps-camp"><span class="camps-title">' + camps[i].title + '</span> <span class="camps-username">' + camps[i].username + '</span></div>');
-            }
+            camps.forEach(function(aCamp) {
+                var campy = $('<div class="camps-camp"><span class="camps-username">'
+                + aCamp.username + '</span><span class="camps-title">'
+                + aCamp.title + '</span> </div>');
+                campy.on('click',function() {thisWidget.selected(aCamp);});
+                parent.append(campy);
+            });
         }   
     });
 }

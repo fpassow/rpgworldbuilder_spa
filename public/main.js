@@ -1,6 +1,6 @@
 $(document).ready(function(){
     var userWidget = new UserWidget(function(u,p) {alert(u+" " + p);});
-    var campListWidget = new CampaignListWidget('camplist-container');
+    var campListWidget = new CampaignListWidget('camplist-container',function(x){alert(JSON.stringify(x));});
     
 });
 

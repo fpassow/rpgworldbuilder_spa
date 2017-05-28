@@ -1,0 +1,15 @@
+.camps-camp {
+    margin-bottom:10px;
+    border: 1px solid blue;
+    background-color: #ddf;
+}
+.camps-title {
+    font-size:24px;
+    font-weight:bold;
+}
+.camps-username {
+    display:inline-block;
+    font-size:24px;
+    width: 100px;
+}
+
