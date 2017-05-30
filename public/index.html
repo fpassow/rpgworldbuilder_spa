@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>demo</title>
+        <link rel="stylesheet" href="user_widget.css">
         <link rel="stylesheet" href="rwb_widget.css">
         <link rel="stylesheet" href="campaignlist_widget.css">
         <link rel="stylesheet" href="main.css">
@@ -10,12 +11,26 @@
     <body>
 
     <div id="controls-container">
+    
         <div id="user-container">
             <span id="user-state">Not logged in.</span>
             <span id="user-message">   </span>
             Username:<input id="user-username">
             Password:<input id="user-password">
             <button id="user-loginbutton">Log In</button>
+            <div id="user-dropdown">
+                <div id="user-dropdown-more"> vvv more vvv </div>
+                <div id="user-drowdown-content">
+                    <h3>New User</h3>
+                
+                    <h3>Change Password</h3>
+                
+                    <h3>Delete User</h3>
+                
+                    <div id="user-dropdown-less"> ^^^ less ^^^ </div>
+                </div>
+
+            </div>
         </div>
         
         <div id="camplist-container">

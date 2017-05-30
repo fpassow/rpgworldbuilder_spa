@@ -13,18 +13,23 @@ function CampaignListWidget(selector, selected) {
     this.selected = selected || function(camp) {};
     this.campaigns = [];
     var thisWidget = this;
-    findCampaignsMetadata({}, function(err, camps) {
-        if (err) {
-            alert('Error loading campaign list: ' + JSON.stringify(err));
-        } else {
-            camps.forEach(function(aCamp) {
-                var campy = $('<div class="camps-camp"><span class="camps-username">'
-                + aCamp.username + '</span><span class="camps-title">'
-                + aCamp.title + '</span> </div>');
-                campy.on('click',function() {thisWidget.selected(aCamp);});
-                parent.append(campy);
-            });
-        }   
-    });
+    
+    this.redraw = function() {
+        findCampaignsMetadata({}, function(err, camps) {
+            if (err) {
+                alert('Error loading campaign list: ' + JSON.stringify(err));
+            } else {
+                camps.forEach(function(aCamp) {
+                    var campy = $('<div class="camps-camp"><span class="camps-username">'
+                    + aCamp.username + '</span><span class="camps-title">'
+                    + aCamp.title + '</span> </div>');
+                    campy.on('click',function() {thisWidget.selected(aCamp);});
+                    parent.append(campy);
+                });
+            }   
+        });
+    }
+    
+    this.redraw();
 }
   

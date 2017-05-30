@@ -38,5 +38,14 @@ function UserWidget(changed) {
             }
         })
     });
+    
+    //Open and close dropdown containing extra controls
+    $("#user-drowdown-content").hide();
+    $("#user-dropdown-more").on('click', function() {
+        $("#user-drowdown-content").show();
+    });
+    $("#user-dropdown-less").on('click', function() {
+        $("#user-drowdown-content").hide();
+    });
 }
 
