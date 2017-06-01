@@ -48,7 +48,7 @@ function serveSomeWebs(store) {
                     if (err) {                   
                         res.status(500).json(err);//TODO MAKE BETTER AND SECURE!!!!
                     } else {
-                        res.send('OK');
+                        res.send('{}');
                     }
                 });
             } else {
