@@ -1,11 +1,4 @@
 /*
- *  Uses these IDs:
-        user-state
-        user-message
-        user-username
-        user-password
-        user-loginbutton
-        
     On change, calls changed(username, password), 
     which will be null after a bad login attempt.
  */
@@ -14,76 +7,117 @@ function UserWidget(changed) {
     var thiz = this;
     this.currentUsername = '';
     this.currentPassword = '';
-    this.getUsername = function() {return this.currentUsername;}
-    this.getPassword = function() {return this.currentPassword;}
+    this.getUsername = function() {return this.currentUsername;};
+    this.getPassword = function() {return this.currentPassword;};
     this.loggedIn = false;
-    this.isLoggedIn = function() {return this.loggedIn;}
-    $("#user-loginbutton").click(function() {
+    this.isLoggedIn = function() {return this.loggedIn;};
+    
+    //Buttons that just change the UI
+    $("#user-gotochangepw-button").on('click', showChangingPw);
+    $("#user-changepw-cancel").on('click', showLoggedIn);
+    
+    //Buttons that do stuff
+    
+    $("#user-loginbutton").on('click', userLogin);
+    $("#user-new-button").on('click', userNew);
+    $("#user-logout-button").on('click', userLogout);
+    $("#user-deleteuser").on('click', userDelete);
+    $("#user-changepw-button").on('click', userChangePassword);
+    
+    //Functions to swap what's shown in user area. 
+    //Used by some buttons, and after login, logout, etc.
+    function showNotLoggedIn() {
+        $("#user-state-loggedin").hide();
+        $("#user-state-changingpw").hide();
+        $("#user-state-notloggedin").show();
+    }
+    function showLoggedIn() {
+        $("#user-state-notloggedin").hide();
+        $("#user-state-changingpw").hide();
+        $("#user-state-loggedin").show();
+    }
+    function showChangingPw() {
+        $("#user-state-notloggedin").hide();
+        $("#user-state-loggedin").hide();
+        $("#user-state-changingpw").show();
+    }
+    //start as not logged in.
+    showNotLoggedIn();
+    
+    //Functions that perform actual operations
+    
+    function userLogin() {
         checkUser($("#user-username").val(), $("#user-password").val(), function(err) {
             if (err) {
                 thiz.currentUsername = null;
                 thiz.currentPassword = null;
                 thiz.loggedIn = false;
-                $("#user-state").html("Not logged in.");
-                $("#user-message").html("Login failed:" + JSON.stringify(err));
+                $("#user-notloggedin-message1").html("Not logged in.");
+                $("#user-notloggedin-message2").html("Login failed:" + JSON.stringify(err));
             } else {
                 thiz.currentUsername = $("#user-username").val();
                 thiz.currentPassword = $("#user-password").val();
                 thiz.loggedIn = true;
-                $("#user-state").html("Logged in as " + thiz.currentUsername + ".");
-                $("#user-message").html("");
-            }
-            if (changed) {
-                changed(thiz.currentUsername, thiz.currentPassword);
-            }
-        })
-    });
-    
-    //Open and close dropdown containing extra controls
-    $("#user-drowdown-content").hide();
-    $("#user-dropdown-more").on('click', function() {
-        $("#user-drowdown-content").show();
-    });
-    $("#user-dropdown-less").on('click', function() {
-        $("#user-drowdown-content").hide();
-    });
-    
-   
-    //Create new user
-    //THIS IS STARTING TO WANT A MODEL, A VIEW, AND AN UPDATEVIEW METHOD...
-    $("#user-new-button").on('click', function() {
-        var n = $("#user-new-username").val().trim();
-        var p1 = $("#user-new-password1").val().trim();
-        var p2 = $("#user-new-password2").val().trim();
-        if (n.length && p1.length && p2.length &&  p1 === p2) {
-            createUser(n,p1,function(err) {
-                if (err) {
-                    alert(JSON.stringify(err));
-                } else {
-                    thiz.currentUsername = n;
-                    this.currentPassword = p1;
-                    $("#user-username").val(n);
-                    $("#user-password").val(p1);
-                    thiz.loggedIn = true;
-                    $("#user-new-username").val('');
-                    $("#user-new-password1").val('');
-                    $("#user-new-password2").val('');
+                $("#user-loggedin-message1").html("Logged in as " + thiz.currentUsername);
+                $("#user-loggedin-message2").html("");
+                showLoggedIn();
+                if (changed) {
+                    changed(thiz.currentUsername, thiz.currentPassword);
                 }
-            });
-            
-        } else {
-            alert('All fields are required and passwords must match.');
+            }
+        });
+    }
+    function userNew() {
+        if (!$("#user-username").val().length || !$("#user-password").val().length) {
+            alert("Please enter a username and a password.");
+            return;
         }
-    });
-    
-    $("#user-changepw-button").on('click', function() {
+        createUser($("#user-username").val(), $("#user-password").val(), function(err) {
+            if (err) {
+                alert(JSON.stringify(err));
+            } else {
+                alert("Success!");
+                thiz.currentUsername = $("#user-username").val();
+                thiz.currentPassword = $("#user-password").val();
+                thiz.loggedIn = true;
+                $("#user-loggedin-message1").html("Logged in as " + thiz.currentUsername);
+                $("#user-loggedin-message2").html("");
+                showLoggedIn();
+                if (changed) {
+                    changed(thiz.currentUsername, thiz.currentPassword);
+                }
+            }
+        });
+    }
+    function  userLogout() {
+        thiz.currentUsername = '';
+        thiz.currentPassword = '';
+        thiz.loggedIn = false;
+        $("#user-notloggedin-message1").html("Not logged in.");
+        $("#user-notloggedin-message2").html("");
+        showNotLoggedIn();
+        if (changed) {
+            changed();
+        }
+    }
+    function  userDelete() {
+        alert('FUNCTION NOT WRITTEN YET');
+        //call delete
+        //show err
+        
+        //clear fields, 
+        //set logged out. 
+        //go to login page
+        //changed
+    }
+    function  userChangePassword() {
         if (!thiz.currentUsername.trim().length) {
             alert('Please log in.');
             return;
         }
-        var oldPw = $("user-changepw-old").val().trim();
-        var newPw1 = $("user-changepw-new1").val().trim();
-        var newPw2 = $("user-changepw-new2").val().trim();
+        var oldPw = $("#user-changepw-old").val().trim();
+        var newPw1 = $("#user-changepw-new1").val().trim();
+        var newPw2 = $("#user-changepw-new2").val().trim();
         if (!(oldPw.length && newPw1.length && newPw2.length)) {
             alert('All three fields are required.');
             return;
@@ -94,12 +128,13 @@ function UserWidget(changed) {
         }
         changePassword(thiz.currentUsername, oldPw, newPw1, function(err) {
             if (err) {
-                alert(JONS.stringify(err));
+                alert(JSON.stringify(err));
             } else {
                 alert('Password changed.');
+                showLoggedIn();
             }
         });            
-    });
+    }
 
 }
 

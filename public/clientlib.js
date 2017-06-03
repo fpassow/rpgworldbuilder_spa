@@ -25,7 +25,7 @@ function checkUser(username, password, callback) {
   $.ajax({
         type: 'GET',
         url: '/api/user',
-        success: function(data) {alert('success');if (callback) {callback(null);}},
+        success: function(data) {if (callback) {callback(null);}},
         error:function(jqXHR ) {console.log(JSON.stringify(jqXHR));if (callback) {callback(jqXHR.responseText);}},
         contentType: "application/json",
         dataType: 'json',

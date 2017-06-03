@@ -13,36 +13,30 @@
     <div id="controls-container">
     
         <div id="user-container">
-            <span id="user-state">Not logged in.</span>
-            <span id="user-message">   </span>
-            Username:<input id="user-username">
-            Password:<input id="user-password">
-            <button id="user-loginbutton">Log In</button>
-            <div id="user-dropdown">
-                <div id="user-dropdown-more"> vvv more vvv </div>
-                <div id="user-drowdown-content">
-                
-                    <h3>New User</h3>
-                    New username:<input id="user-new-username">
-                    New password:<input id="user-new-password1">
-                    New password, again <input id="user-new-password2">
-                    <button id="user-new-button">Create</button>
-                    
-                    <h3>Change Password</h3>
-                    Old pssword:<input id="user-changepw-old">
-                    New password:<input id="user-changepw-new1">
-                    New password, again <input id="user-changepw-new2">
-                    <button id="user-changepw-button">Change</button>
-                    
-                    <h3>Delete User</h3>
-                    Confirm password:<input id="user-delete-password">
-                    <button id="user-delete-button">Delete</button>
-                    
-                    
-                    <div id="user-dropdown-less"> ^^^ less ^^^ </div>
-                </div>
-
+            <div id="user-state-notloggedin">
+                <div id="user-notloggedin-message1">Login:</div>
+                <div id="user-notloggedin-message2">   </div>
+                Username:<input id="user-username">
+                Password:<input id="user-password">
+                <button id="user-loginbutton" class="user-button-primary">Log In</button>
+                <button id="user-new-button">Create new user</button>
             </div>
+            <div id="user-state-loggedin">
+                <div id="user-loggedin-message1">Logged in as:</div>
+                <div id="user-loggedin-message2"></div>
+                <button id="user-logout-button">Logout</button>
+                <button id="user-gotochangepw-button">Change password</button>
+                <a href="#" id="user-deleteuser">delete user</a>
+            </div>
+            <div id="user-state-changingpw">
+                <div id="user-changeingpw-message1">Changing password:</div>
+                Old pssword:<input id="user-changepw-old">
+                New password:<input id="user-changepw-new1">
+                Confirm password: <input id="user-changepw-new2">
+                <button id="user-changepw-button">Change password</button>
+                <button id="user-changepw-cancel">Cancel</button>
+            </div>
+
         </div>
         
         <div id="camplist-container">

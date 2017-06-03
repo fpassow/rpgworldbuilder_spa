@@ -1,0 +1,16 @@
+TODO
+----
+
+* Mongodb security
+* Review security of returning err objects to browser
+
+
+WANTTHIS
+--------
+
+* Game-ish visual style
+* Adjustable darkness
+* Import from
+    http://realm-of-fantasy.deviantart.com/
+    https://commons.wikimedia.org/wiki/Main_Page
+* Image searches based on seed text and title

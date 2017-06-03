@@ -1,6 +1,6 @@
 $(document).ready(function(){
     getCampaignDef(function(err, campDef) {
-        var userWidget = new UserWidget(function(u,p) {alert('New user: ' + u + ' ' + p);});
+        var userWidget = new UserWidget(function(u,p) {alert('Changed user: ' + u + ' ' + p);});
         var campWidget = null;
         var campListWidget = new CampaignListWidget('camplist-container', function(campMeta) {
             //this is the campaign selected event code...
