@@ -1,24 +1,17 @@
 $(document).ready(function(){
     getCampaignDef(function(err, campDef) {
         var userWidget = new UserWidget(function(u,p) {alert('Changed user: ' + u + ' ' + p);});
-        var campWidget = null;
+        
         var campListWidget = new CampaignListWidget('camplist-container', function(campMeta) {
             //this is the campaign selected event code...
-            loadCampaign(campMeta.username, campMeta.campaignId, function(err, campData) {
-                if (err) {
-                    alert(JSON.stringify(err));
-                } else {
-                    if (campData.username === userWidget.getUsername()) {
-                        //user owns it, so open in editor
-                        $("#rwb-widget").empty();
-                        campWidget = new RwbWidget('rwb-widget', campDef, campData);
-                    } else {
-                        //user does not own it, so display static view
-                        $("#rwb-widget").html(JSON.stringify(campData));
-                    }
-                }
-            });
+            campWidget.displayCampaign(campMeta.username, campMeta.campaignId);
         });
+        
+        var campWidget = new CampaignWidget("campaign-container", userWidget, 'no camp yet', campDef, function() {
+            //redraw because a campagin was deleted (,etc.?)
+            campListWidget.redraw();
+        });
+        
     });        
 });
 

@@ -3,6 +3,8 @@
  * selected    Callback called with campaign metadata object (campaignId, title, username)
  *                when a campaign is selected for editing
  *
+ * redraw()    method causes a it to redraw from the database. 
+ *
  * Creating and clonging is handled internally, 
  *   and then a selected event is fired for the new campaign.
  */
