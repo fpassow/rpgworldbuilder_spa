@@ -11,12 +11,14 @@
 
 function CampaignListWidget(selector, selected) {
     var parent = $("#" + selector);
-    parent.append('<h2>Campaigns</h2>');
+    
     this.selected = selected || function(camp) {};
     this.campaigns = [];
     var thisWidget = this;
     
     this.redraw = function() {
+    parent.empty();
+    parent.append('<h2>Campaigns</h2>');
         findCampaignsMetadata({}, function(err, camps) {
             if (err) {
                 alert('Error loading campaign list: ' + JSON.stringify(err));

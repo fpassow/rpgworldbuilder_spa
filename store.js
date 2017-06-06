@@ -99,19 +99,16 @@ function listUsers(callback) {
 }
 
 /*
- * campaignId + username is the key. A username is required. A campaignId will be added if necessary.
+ * campaignId + username is the key. Both are required.
  *
  * callback(err, campaign)
  */
 function storeCampaign(campaign, callback) {
-    if (!campaign.username || !campaign.username.length) {
-        callback("Missing username on campaign", campaign);
+    if (!campaign.username || !campaign.username.length || !campaign.campaignId || !campaign.campaignId.length) {
+        callback("Missing username or campaignId on campaign", null);
     } else {
-        if (!campaign.campaignId) {
-            campaign.campaignId = mongodb.ObjectID().toString();
-        }
         this.campaigns.update({username:campaign.username, campaignId:campaign.campaignId}, campaign, {upsert:true}, function(err, count, status) {
-            callback(err, campaign);
+            callback(err, campaign);console.log('FROM STORING CAMPAIGN:' + JSON.stringify(campaign));
         });
     }
 }

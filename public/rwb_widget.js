@@ -35,11 +35,7 @@ function RwbWidget(selector, rwbDef, data, changed) {
         }
         this.fieldArray.push(field);
     }
-    this.saveButt = $('<button/>', {'text':'Save'});
-    this.saveButt.click(function() {thisWidget.changed(thisWidget.getState());});
-    parent.append(this.saveButt);
-    
-    
+
     
     
     function RwbField(parentElement, def, data, listener) {

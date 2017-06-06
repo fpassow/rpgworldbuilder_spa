@@ -74,29 +74,15 @@ function serveSomeWebs(store) {
         });
     });
     
-    //Include HTTP basic auth. Campaign is json body. Create or update. 
-    //Automcaticallly uses name of authorizing user.
-    //Return campaign with campagignId and username.
+    /*
+     * Include HTTP basic auth. Campaign is json body. Create or update. 
+     * The campaign must already include a username and a campaignId unquire for that username.
+     *
+     */
     app.post('/api/campaign', function(req, res) {
-        authCheck(req, res, function(storedUser) {
+        authCheck(req, res, function(authUser) {
             var postedCampaign = req.body;
-            delete postedCampaign._id;
-            postedCampaign.username = storedUser.username;
-            if (postedCampaign.campaignId) {
-                store.loadCampaign(storedUser.username, postedCampaign.campaignId, function(err, storedCampaign) {
-                    if (storedUser.username != storedCampaign.username) {
-                        //Copying someone else's campaign.
-                        delete postedCampaign.campaignId;
-                    }
-                    store.storeCampaign(postedCampaign, function(err, camp) {
-                        if (err) {
-                            res.status(500).json(err);//SECURITY????????
-                        } else {
-                            res.json(camp);
-                        }
-                    });
-                });
-            } else {
+            if (postedCampaign && postedCampaign.username === authUser.username) {
                 store.storeCampaign(postedCampaign, function(err, camp) {
                     if (err) {
                         res.status(500).json(err);//SECURITY????????
@@ -104,6 +90,8 @@ function serveSomeWebs(store) {
                         res.json(camp);
                     }
                 });
+            } else {
+                res.status(403).send("Failed to authenticate with campaign's username");
             }
         });
     });
@@ -155,9 +143,9 @@ function serveSomeWebs(store) {
     
     //Include HTTP basic auth. Campaign ID is next thing in path. Username is the authorizing user.
     app.delete('/api/campaign/:id', function(req, res) {
-        authCheck(req, res, users, function(storedUser) {
+        authCheck(req, res, function(authUser) {
             if (req.params.id) {
-                store.deleteCampaign({campaignId:req.params.id, username:storedUser.username}, function(err, storedCampaign) {
+                store.deleteCampaign(authUser.username, req.params.id, function(err) {
                     if (err) {
                         res.status(500).json(err);//TODO  MAKE BETTER AND SAFER!!!!
                     } else {

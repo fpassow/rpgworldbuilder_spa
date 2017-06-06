@@ -16,6 +16,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     this.externalChange = externalChange || function() {};
     this.campaign = aCampaign;
     this.userWidget = userWidget;
+    this.editor = null;
     var thiz = this;
     
     //Checks user vs current user and displays static view or editing view.
@@ -37,7 +38,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     
     function _showEditor() {
         $("#campaign-thecampaign").empty();
-        new RwbWidget("campaign-thecampaign", def, thiz.campaign, function(campy){
+        thiz.editor = new RwbWidget("campaign-thecampaign", def, thiz.campaign, function(campy){
             alert('wire up the save button');
         });
         $("#campaign-delete").show();
@@ -47,15 +48,50 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
         $("#campaign-thecampaign").text(JSON.stringify(thiz.campaign));
         $("#campaign-delete").hide();
     }
+    function _showEmpty() {
+        $("#campaign-thecampaign").empty();
+        $("#campaign-delete").hide();
+    }
+    
+    $("#campaign-new").on('click', createNewCampaign);
+    function createNewCampaign() {
+        thiz.campaign = {};
+        thiz.campaign.username = userWidget.getUsername();
+        thiz.campaign.campaignId = "ID" + Math.random();
+        storeCampaign(thiz.userWidget.getUsername(), thiz.userWidget.getPassword(), thiz.campaign, function(err, camp) {
+            if (err) {
+                alert(JSON.stringify(err));
+            } else {
+                thiz.displayCampaign(thiz.userWidget.getUsername(), thiz.campaign.campaignId);
+                thiz.externalChange();
+                _showEditor();
+            }
+        });
+    }
+    
+    $("#campaign-save").on('click', saveCampaign);
+    function saveCampaign() {
+        thiz.campaign = thiz.editor.getState();
+        thiz.campaign.username = thiz.userWidget.getUsername();
+        storeCampaign(thiz.userWidget.getUsername(), userWidget.getPassword(), thiz.campaign, function(err) {
+            if (err) {
+                alert(JSON.stringify(err));
+            } else {
+                alert("Saved");
+            }                
+        });
+    }
     
     $("#campaign-clone").on('click', clone);
     function clone() {
         if (thiz.campaign) {
-            storeCampaign(username, password, campaign, function(err, camp) {
+            thiz.campaign.username = userWidget.getUsename();
+            thiz.campaign.campaignId = "ID" + Math.random();
+            storeCampaign(thiz.userWidget.getUsername(), thiz.userWidget.getPassword(), thiz.campaign, function(err, camp) {
                 if (err) {
                     alert(JSON.stringify(err));
                 } else {
-                    thiz.displayCampaign(thiz.userWidget.getUsername(), camp.campaignId);
+                    thiz.displayCampaign(thiz.userWidget.getUsername(), thiz.campaign.campaignId);
                     thiz.externalChange();
                 }
             });
@@ -66,7 +102,17 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     
     $("#campaign-delete").on('click', deleteThisCampaign);
     function deleteThisCampaign() {
-        alert('TODO');
+        if (confirm('Delete this campaign?')) {
+            deleteCampaign(thiz.userWidget.getUsername(), thiz.userWidget.getPassword(), thiz.campaign.campaignId, function(err) {
+                if (err) {
+                    alert(JSON.stringify(err));
+                } else {
+                    _showEmpty();
+                    externalChange();
+                }
+            });
+            
+        }
     }
 
 }

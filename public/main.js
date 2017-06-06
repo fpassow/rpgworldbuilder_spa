@@ -8,7 +8,6 @@ $(document).ready(function(){
         });
         
         var campWidget = new CampaignWidget("campaign-container", userWidget, 'no camp yet', campDef, function() {
-            //redraw because a campagin was deleted (,etc.?)
             campListWidget.redraw();
         });
         
