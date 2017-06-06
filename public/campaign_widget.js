@@ -17,6 +17,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     this.campaign = aCampaign;
     this.userWidget = userWidget;
     this.editor = null;
+    this.isEditing = false;
     var thiz = this;
     
     //Checks user vs current user and displays static view or editing view.
@@ -37,6 +38,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     }
     
     function _showEditor() {
+        thiz.isEditing = true;
         $("#campaign-thecampaign").empty();
         thiz.editor = new RwbWidget("campaign-thecampaign", def, thiz.campaign, function(campy){
             alert('wire up the save button');
@@ -44,11 +46,13 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
         $("#campaign-delete").show();
     }
     function _showStatic() {
+        thiz.isEditing = false;
         $("#campaign-thecampaign").empty();
         $("#campaign-thecampaign").text(JSON.stringify(thiz.campaign));
         $("#campaign-delete").hide();
     }
     function _showEmpty() {
+        thiz.isEditing = false;
         $("#campaign-thecampaign").empty();
         $("#campaign-delete").hide();
     }
@@ -71,13 +75,16 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     
     $("#campaign-save").on('click', saveCampaign);
     function saveCampaign() {
-        thiz.campaign = thiz.editor.getState();
-        thiz.campaign.username = thiz.userWidget.getUsername();
+        var camp = thiz.editor.getState();
+        camp.username = thiz.userWidget.getUsername();
+        camp.campaignId = thiz.campaign.campaignId;
+        thiz.campaign = camp;
         storeCampaign(thiz.userWidget.getUsername(), userWidget.getPassword(), thiz.campaign, function(err) {
             if (err) {
                 alert(JSON.stringify(err));
             } else {
                 alert("Saved");
+                thiz.externalChange();
             }                
         });
     }
