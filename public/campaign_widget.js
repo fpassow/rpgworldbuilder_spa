@@ -92,7 +92,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     $("#campaign-clone").on('click', clone);
     function clone() {
         if (thiz.campaign) {
-            thiz.campaign.username = userWidget.getUsename();
+            thiz.campaign.username = userWidget.getUsername();
             thiz.campaign.campaignId = "ID" + Math.random();
             storeCampaign(thiz.userWidget.getUsername(), thiz.userWidget.getPassword(), thiz.campaign, function(err, camp) {
                 if (err) {
