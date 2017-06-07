@@ -26,6 +26,12 @@ function UserWidget(changed) {
     $("#user-deleteuser").on('click', userDelete);
     $("#user-changepw-button").on('click', userChangePassword);
     
+    $("#user-password").on('keyup', function(e) {
+        if (e.keyCode === 13) {
+            userLogin();
+        }
+    });
+    
     //Functions to swap what's shown in user area. 
     //Used by some buttons, and after login, logout, etc.
     function showNotLoggedIn() {
