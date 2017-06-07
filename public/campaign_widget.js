@@ -20,6 +20,10 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     this.isEditing = false;
     var thiz = this;
     
+    this.showMessage = function(message) {
+        $("#campaign-message").html(message);
+    }
+    
     //Checks user vs current user and displays static view or editing view.
     //Also displays or hides delete button.
     this.displayCampaign = function(username, campaignId) {
@@ -75,15 +79,17 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     
     $("#campaign-save").on('click', saveCampaign);
     function saveCampaign() {
+        thiz.showMessage("Saving.....");
         var camp = thiz.editor.getState();
         camp.username = thiz.userWidget.getUsername();
         camp.campaignId = thiz.campaign.campaignId;
         thiz.campaign = camp;
         storeCampaign(thiz.userWidget.getUsername(), userWidget.getPassword(), thiz.campaign, function(err) {
+            //Clear "Saving..." message. But make sure it lasts at least half a second.
+            setTimeout(function(){thiz.showMessage("");}, 500);
             if (err) {
                 alert(JSON.stringify(err));
             } else {
-                alert("Saved");
                 thiz.externalChange();
             }                
         });
