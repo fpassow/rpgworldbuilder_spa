@@ -48,7 +48,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     function _showStatic() {
         thiz.isEditing = false;
         $("#campaign-thecampaign").empty();
-        $("#campaign-thecampaign").text(JSON.stringify(thiz.campaign));
+        drawStatic("campaign-thecampaign", def, thiz.campaign)
         $("#campaign-delete").hide();
     }
     function _showEmpty() {
@@ -119,6 +119,29 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
                 }
             });
             
+        }
+    }
+    
+    
+    function drawStatic(selector, rwbDef, data) {
+        var parent = $("#" + selector);
+        parent.append('<h2>' + data['title'] + '</h2>');
+    
+        //def.fields[0]  is the title
+        var field, i;
+        for (i = 1; i < rwbDef.fields.length; i++) {
+            if (rwbDef.fields[i].isarrayfield) {
+                parent.append('<h3>' + rwbDef.fields[i].label + '</h3>');
+                var arr = data[rwbDef.fields[i].name];
+                if (arr.length) {
+                    arr.forEach(function(x, index) {
+                        parent.append('<div>' + x + '</div>')
+                    });
+                }
+            } else {
+                parent.append('<h3>' + rwbDef.fields[i].label + '</h3>');
+                parent.append('<div>' + data[rwbDef.fields[i].name] + '</div>');
+            }
         }
     }
 
