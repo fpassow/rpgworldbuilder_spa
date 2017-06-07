@@ -1,6 +1,11 @@
 TODO
 ----
 
+* Remove old alert's and console.log's
+* Clear fields on logout
+* Clear fields on password change
+* Save when switching campaigns
+* Redisplay campaign on login and logout
 * Mongodb security
 * Review security of returning err objects to browser
 

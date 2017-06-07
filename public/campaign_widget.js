@@ -41,7 +41,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
         thiz.isEditing = true;
         $("#campaign-thecampaign").empty();
         thiz.editor = new RwbWidget("campaign-thecampaign", def, thiz.campaign, function(campy){
-            alert('wire up the save button');
+            //Save triggered by Save button, or by logging out out or switching campaigns
         });
         $("#campaign-delete").show();
     }
