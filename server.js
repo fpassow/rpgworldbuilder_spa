@@ -18,10 +18,8 @@ function serveSomeWebs(store) {
      */
     function authCheck(req, res, ifAuth) {
         var authUser = basicAuth(req);//has name and pass 
-        console.log("authUser:" + JSON.stringify(authUser));
         if (authUser && authUser.name && authUser.pass) {
             store.loadUser(authUser.name, function (err, storedUser) {
-                console.log("stored:" + JSON.stringify(storedUser));
                 if (storedUser && (authUser.pass === storedUser.password)) {
                     ifAuth(storedUser);
                 } else {

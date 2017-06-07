@@ -87,7 +87,6 @@ function UserWidget(changed) {
             if (err) {
                 alert(JSON.stringify(err));
             } else {
-                alert("Success!");
                 thiz.currentUsername = $("#user-createnew-username").val();
                 thiz.currentPassword = $("#user-createnew-password1").val();
                 thiz.loggedIn = true;

@@ -66,8 +66,6 @@ function storeUser(user, callback) {
 function loadUser(username, callback) {
     var crit = {username:username};
     this.users.findOne(crit, function (err, storedUser) {
-        console.log('store.loadUser err: ' + JSON.stringify(err));
-        console.log('store.loadUser storedUser: ' + JSON.stringify(storedUser));
         callback(err, storedUser);
     });
 }
@@ -108,7 +106,7 @@ function storeCampaign(campaign, callback) {
         callback("Missing username or campaignId on campaign", null);
     } else {
         this.campaigns.update({username:campaign.username, campaignId:campaign.campaignId}, campaign, {upsert:true}, function(err, count, status) {
-            callback(err, campaign);console.log('FROM STORING CAMPAIGN:' + JSON.stringify(campaign));
+            callback(err, campaign);
         });
     }
 }

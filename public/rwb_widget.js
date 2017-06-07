@@ -176,7 +176,6 @@ function RwbArrayField(parentElement, def, arr, listener) {
                       description.click(function() {this.remove();table[0].scrollIntoView()});
                       element.append(description);
                       description[0].scrollIntoView();
-                      //alert(hints[hintIndex].description);
                   });
               })();
               td.append(hintLink);

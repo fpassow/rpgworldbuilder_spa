@@ -8,7 +8,6 @@ function getCampaignDef(callback) {
 //callback(err)
 function createUser(username, password, callback) {
     var data = JSON.stringify({username: username, password:password});
-    console.log("Posting: " + data);
     $.ajax({
         type: 'POST',
         url: '/api/user',
