@@ -7,7 +7,8 @@
 
 function RwbWidget(selector, rwbDef, data, changed) {
     var parent = $("#" + selector);
-    parent.append('<span class="rwb-title">' + rwbDef.label + '</span>');
+    parent.append('<h2 class="rwb-title">' + rwbDef.label + '</h2>');
+    parent.append('<div class="rwb-top-instructions">' + rwbDef.instructions + '</div>');
     
     this.changed = changed || function() {};
     this.fieldArray = [];

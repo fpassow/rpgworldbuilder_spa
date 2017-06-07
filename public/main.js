@@ -1,6 +1,8 @@
 $(document).ready(function(){
     getCampaignDef(function(err, campDef) {
-        var userWidget = new UserWidget(function(u,p) {alert('Changed user: ' + u + ' ' + p);});
+        var userWidget = new UserWidget(function(u,p) {
+            //TODO: Redraw list and campaign to show new ownership effeccts
+        });
         
         var campListWidget = new CampaignListWidget('camplist-container', function(campMeta) {
             //this is the campaign selected event code...

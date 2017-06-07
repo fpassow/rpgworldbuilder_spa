@@ -1,8 +1,8 @@
 TODO
 ----
 
-* Add a visual cute for unsaved campaign. Clear it on save.
-* Remove old alert's and console.log's
+* Add a visual cue for unsaved campaign. Clear it on save.
+* Login when user hits return key in password field on login screen
 * Clear fields on logout
 * Clear fields on password change
 * Save when switching campaigns
