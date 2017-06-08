@@ -1,7 +1,6 @@
 TODO
 ----
 
-* Login when user hits return key in password field on login screen
 * Clear fields on logout
 * Clear fields on password change
 * Save when switching campaigns

@@ -77,6 +77,7 @@ function UserWidget(changed) {
                 thiz.loggedIn = true;
                 $("#user-loggedin-message1").html("Logged in as " + thiz.currentUsername);
                 $("#user-loggedin-message2").html("");
+                $("#user-password").val("");//Rempve correct password
                 showLoggedIn();
                 if (changed) {
                     changed(thiz.currentUsername, thiz.currentPassword);
@@ -146,6 +147,9 @@ function UserWidget(changed) {
             if (err) {
                 alert(JSON.stringify(err));
             } else {
+                $("#user-changepw-old").val("");
+                $("#user-changepw-new1").val("");
+                $("#user-changepw-new2").val("");
                 alert('Password changed.');
                 showLoggedIn();
             }
