@@ -20,12 +20,13 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     this.isEditing = false;
     var thiz = this;
     
-    this.showMessage = function(message) {
-        $("#campaign-message").html(message);
-    }
     
-    //Checks user vs current user and displays static view or editing view.
-    //Also displays or hides delete button.
+   /*
+    * Public API: 
+    *    displayCampaign(username, campaignId)   Load the specified campaign from the server
+    *    refresh()  Save and update yourself. Used when another widget has changed.
+    */
+
     this.displayCampaign = function(username, campaignId) {
         loadCampaign(username, campaignId, function(err, campaign) {
             if (err) {
@@ -39,6 +40,20 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
                 }
             }
         });
+    }
+    
+    this.refresh = function() {
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    this.showMessage = function(message) {
+        $("#campaign-message").html(message);
     }
     
     function _showEditor() {

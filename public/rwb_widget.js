@@ -1,8 +1,12 @@
 /*
+ * Widget for editing campaigns based on a definition object and starting data
+ *
  * selector    jQuery selector for the container to put this widget into
  * rwbDef      Object defining the form and its labels, hints, etc.
  * data        Data to be displayed and edited
  * changed     Callback called with updated version of the data when it changes
+ *
+ * Call getState() to get the current state of the campaign being edited.
  */
 
 function RwbWidget(selector, rwbDef, data, changed) {

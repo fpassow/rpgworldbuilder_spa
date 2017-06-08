@@ -1,10 +1,8 @@
 TODO
 ----
 
-* Clear fields on logout
-* Clear fields on password change
-* Save when switching campaigns
-* Redisplay campaign on login and logout
+* Add refresh method to Campaign to make itself consistent again when another widget changes (includes saving)
+* Wire all the refresh methods
 * Links to display drivers
 * Add real logging
 * Mongodb security

@@ -7,10 +7,16 @@ function UserWidget(changed) {
     var thiz = this;
     this.currentUsername = '';
     this.currentPassword = '';
+    this.loggedIn = false;
+    
+    /*
+     * Public API
+     */
     this.getUsername = function() {return this.currentUsername;};
     this.getPassword = function() {return this.currentPassword;};
-    this.loggedIn = false;
     this.isLoggedIn = function() {return this.loggedIn;};
+    
+    
     
     //Buttons that just change the UI
     $("#user-gotochangepw-button").on('click', showChangingPw);

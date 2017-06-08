@@ -1,9 +1,9 @@
 /*
- * selector    jQuery selector for the container to put this widget into
+ * selector    ID attribute of the container to put this widget into
  * selected    Callback called with campaign metadata object (campaignId, title, username)
  *                when a campaign is selected for editing
  *
- * redraw()    method causes a it to redraw from the database. 
+ * refresh()    method causes a it to redraw from the database. 
  *
  * Creating and clonging is handled internally, 
  *   and then a selected event is fired for the new campaign.
@@ -16,7 +16,7 @@ function CampaignListWidget(selector, selected) {
     this.campaigns = [];
     var thisWidget = this;
     
-    this.redraw = function() {
+    this.refresh = function() {
     parent.empty();
     parent.append('<h2>Campaigns</h2>');
         findCampaignsMetadata({}, function(err, camps) {
@@ -34,6 +34,6 @@ function CampaignListWidget(selector, selected) {
         });
     }
     
-    this.redraw();
+    this.refresh();
 }
   

@@ -10,7 +10,7 @@ $(document).ready(function(){
         });
         
         var campWidget = new CampaignWidget("campaign-container", userWidget, 'no camp yet', campDef, function() {
-            campListWidget.redraw();
+            campListWidget.refresh();
         });
         
     });        
