@@ -5,31 +5,33 @@ $(document).ready(function(){
         var campListWidget = null;
         
         var userWidget = new UserWidget(
-            function(readyForChange) {
+            function(readyForChange) {                            console.log('before');
                 //This code runs just before we change users. (Login, logout, etc.)
                 //We save any campaign we were working on,
                 //and then clear out the other two widgets.
-                if (campWidget) {
+                if (campWidget) {                                 console.log('saving');
                     campWidget.saveCampaign(function() {
                         campWidget = null;
                         campListWidget = null;
                         $("#camplist-container").empty();
-                        $("#camplist-container").empty();
+                        $("#campaign-thecampaign").empty();
+                                                                  console.log('saved');
                         readyForChange();
                     });
-                } else {
+                } else {                                          console.log('before, no camp');
                     campWidget = null;
                     campListWidget = null;
                     $("#camplist-container").empty();
-                    $("#camplist-container").empty();
+                    $("#campaign-thecampaign").empty();
                     readyForChange();
                 }
             },
-            function() {
+            function() {                                          console.log('after');
                 //This code runs after the user has changed.
                 //We set everything up for them.
                 campListWidget = new CampaignListWidget('camplist-container', function(campMeta) {
-                    //this is the campaign selected event code...
+                    //this is the campaign selected event code...   
+    console.log('camp seleted' + campWidget + ", " + JSON.stringify(campMeta));
                     campWidget.displayCampaign(campMeta.username, campMeta.campaignId);
                 });
         

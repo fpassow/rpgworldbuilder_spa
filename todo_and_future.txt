@@ -1,7 +1,7 @@
 TODO
 ----
 
-* Two callbacks on UserWidget, beforeChange(done) and afterChange()
+* Campaign no longer appears on selection. (selected event is firing and we have a campaign object)
 * Links to display drivers
 * Add real logging
 * Mongodb security

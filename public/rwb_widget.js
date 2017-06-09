@@ -9,7 +9,7 @@
  * Call getState() to get the current state of the campaign being edited.
  */
 
-function RwbWidget(selector, rwbDef, data, changed) {
+function RwbWidget(selector, rwbDef, data, changed) { console.log('RwbWidget showing on selector: ' + selector);
     var parent = $("#" + selector);
     parent.append('<h2 class="rwb-title">' + rwbDef.label + '</h2>');
     parent.append('<div class="rwb-top-instructions">' + rwbDef.instructions + '</div>');

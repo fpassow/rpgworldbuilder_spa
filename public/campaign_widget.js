@@ -28,10 +28,11 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     *    saveCampaign() Tell the widget to save now.
     */
 
-    this.displayCampaign = function(username, campaignId) {
+    this.displayCampaign = function(username, campaignId) { console.log('displayCampaign '+username+', '+campaignId);
         if (!username || !campaignId) {
             return;
         }
+  console.log('loading...');
         loadCampaign(username, campaignId, function(err, campaign) {
             if (err) {
                 alert(JSON.stringify(err));
@@ -82,7 +83,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
         $("#campaign-message").html(message);
     }
     
-    function _showEditor() {
+    function _showEditor() {  console.log('show editor');
         thiz.isEditing = true;
         $("#campaign-thecampaign").empty();
         thiz.editor = new RwbWidget("campaign-thecampaign", def, thiz.campaign, function(campy){
