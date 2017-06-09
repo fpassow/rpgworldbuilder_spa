@@ -1,13 +1,18 @@
 /*
-    On change, calls changed(username, password), 
-    which will be null after a bad login attempt.
+ * beforeChange(callback)  is called before the user changes from a login or logout.
+ *                         The callback must be called by the outside world to allow to
+ *                              allow the change to continue.
+ *
+ * afterChange() will be called when the new user (or a state of no-logged-in-user) is stable.
  */
 
-function UserWidget(changed) {
+function UserWidget(beforeChange, afterChange) {
     var thiz = this;
     this.currentUsername = '';
     this.currentPassword = '';
     this.loggedIn = false;
+    this.beforeChange = beforeChange || function(done) {done();};
+    this.afterChange = afterChange || function() {};
     
     /*
      * Public API
@@ -15,8 +20,6 @@ function UserWidget(changed) {
     this.getUsername = function() {return this.currentUsername;};
     this.getPassword = function() {return this.currentPassword;};
     this.isLoggedIn = function() {return this.loggedIn;};
-    
-    
     
     //Buttons that just change the UI
     $("#user-gotochangepw-button").on('click', showChangingPw);
@@ -70,25 +73,25 @@ function UserWidget(changed) {
     //Functions that perform actual operations
     
     function userLogin() {
-        checkUser($("#user-username").val(), $("#user-password").val(), function(err) {
-            if (err) {
-                thiz.currentUsername = null;
-                thiz.currentPassword = null;
-                thiz.loggedIn = false;
-                $("#user-notloggedin-message1").html("Not logged in.");
-                $("#user-notloggedin-message2").html("Login failed:" + JSON.stringify(err));
-            } else {
-                thiz.currentUsername = $("#user-username").val();
-                thiz.currentPassword = $("#user-password").val();
-                thiz.loggedIn = true;
-                $("#user-loggedin-message1").html("Logged in as " + thiz.currentUsername);
-                $("#user-loggedin-message2").html("");
-                $("#user-password").val("");//Rempve correct password
-                showLoggedIn();
-                if (changed) {
-                    changed(thiz.currentUsername, thiz.currentPassword);
+        thiz.beforeChange(function() {
+            checkUser($("#user-username").val(), $("#user-password").val(), function(err) {
+                if (err) {
+                    thiz.currentUsername = null;
+                    thiz.currentPassword = null;
+                    thiz.loggedIn = false;
+                    $("#user-notloggedin-message1").html("Not logged in.");
+                    $("#user-notloggedin-message2").html("Login failed:" + JSON.stringify(err));
+                } else {
+                    thiz.currentUsername = $("#user-username").val();
+                    thiz.currentPassword = $("#user-password").val();
+                    thiz.loggedIn = true;
+                    $("#user-loggedin-message1").html("Logged in as " + thiz.currentUsername);
+                    $("#user-loggedin-message2").html("");
+                    $("#user-password").val("");//Rempve correct password
+                    showLoggedIn();
                 }
-            }
+                thiz.afterChange();
+            });
         });
     }
     function userNew() {
@@ -96,32 +99,32 @@ function UserWidget(changed) {
             alert("Please enter a username and a password. And passwords must match.");
             return;
         }
-        createUser($("#user-createnew-username").val(), $("#user-createnew-password1").val(), function(err) {
-            if (err) {
-                alert(JSON.stringify(err));
-            } else {
-                thiz.currentUsername = $("#user-createnew-username").val();
-                thiz.currentPassword = $("#user-createnew-password1").val();
-                thiz.loggedIn = true;
-                $("#user-loggedin-message1").html("Logged in as " + thiz.currentUsername);
-                $("#user-loggedin-message2").html("");
-                showLoggedIn();
-                if (changed) {
-                    changed(thiz.currentUsername, thiz.currentPassword);
+        thiz.beforeChange(function() {
+            createUser($("#user-createnew-username").val(), $("#user-createnew-password1").val(), function(err) {
+                if (err) {
+                    alert(JSON.stringify(err));
+                } else {
+                    thiz.currentUsername = $("#user-createnew-username").val();
+                    thiz.currentPassword = $("#user-createnew-password1").val();
+                    thiz.loggedIn = true;
+                    $("#user-loggedin-message1").html("Logged in as " + thiz.currentUsername);
+                    $("#user-loggedin-message2").html("");
+                    showLoggedIn();
                 }
-            }
+                thiz.afterChange();
+            });
         });
     }
     function  userLogout() {
-        thiz.currentUsername = '';
-        thiz.currentPassword = '';
-        thiz.loggedIn = false;
-        $("#user-notloggedin-message1").html("Not logged in.");
-        $("#user-notloggedin-message2").html("");
-        showNotLoggedIn();
-        if (changed) {
-            changed();
-        }
+        thiz.beforeChange(function() {
+            thiz.currentUsername = '';
+            thiz.currentPassword = '';
+            thiz.loggedIn = false;
+            $("#user-notloggedin-message1").html("Not logged in.");
+            $("#user-notloggedin-message2").html("");
+            showNotLoggedIn();
+            thiz.afterChange();
+        });
     }
     function  userDelete() {
         alert('FUNCTION NOT WRITTEN YET');

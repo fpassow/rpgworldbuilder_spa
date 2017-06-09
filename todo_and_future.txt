@@ -1,8 +1,7 @@
 TODO
 ----
 
-* Add refresh method to Campaign to make itself consistent again when another widget changes (includes saving)
-* Wire all the refresh methods
+* Two callbacks on UserWidget, beforeChange(done) and afterChange()
 * Links to display drivers
 * Add real logging
 * Mongodb security
