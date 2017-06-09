@@ -25,9 +25,13 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     * Public API: 
     *    displayCampaign(username, campaignId)   Load the specified campaign from the server
     *    refresh()  Save and update yourself. Used when another widget has changed.
+    *    saveCampaign() Tell the widget to save now.
     */
 
     this.displayCampaign = function(username, campaignId) {
+        if (!username || !campaignId) {
+            return;
+        }
         loadCampaign(username, campaignId, function(err, campaign) {
             if (err) {
                 alert(JSON.stringify(err));
@@ -43,10 +47,32 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     }
     
     this.refresh = function() {
-        
+        thiz.saveCampaign(function() {
+            //restart from where we check if it's ours.
+            thiz.displayCampaign(thiz.campaign.username, thiz.campaign.campaignId);
+        });
     }
     
-    
+    //fires callback when done.
+    this.saveCampaign = function(done) {
+        if (!thiz.isEditing) {
+            done();
+            return;
+        }
+        thiz.showMessage("Saving.....");
+        var camp = thiz.editor.getState();
+        camp.username = thiz.userWidget.getUsername();
+        camp.campaignId = thiz.campaign.campaignId;
+        thiz.campaign = camp;
+        storeCampaign(thiz.userWidget.getUsername(), userWidget.getPassword(), thiz.campaign, function(err) {
+            //Clear "Saving..." message. But make sure it lasts at least half a second.
+            setTimeout(function(){thiz.showMessage("");}, 500);
+            if (err) {
+                alert(JSON.stringify(err));
+            }
+            done();            
+        });
+    }    
     
     
     
@@ -66,6 +92,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     }
     function _showStatic() {
         thiz.isEditing = false;
+        thiz.editor = null;
         $("#campaign-thecampaign").empty();
         drawStatic("campaign-thecampaign", def, thiz.campaign)
         $("#campaign-delete").hide();
@@ -92,23 +119,12 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
         });
     }
     
-    $("#campaign-save").on('click', saveCampaign);
-    function saveCampaign() {
-        thiz.showMessage("Saving.....");
-        var camp = thiz.editor.getState();
-        camp.username = thiz.userWidget.getUsername();
-        camp.campaignId = thiz.campaign.campaignId;
-        thiz.campaign = camp;
-        storeCampaign(thiz.userWidget.getUsername(), userWidget.getPassword(), thiz.campaign, function(err) {
-            //Clear "Saving..." message. But make sure it lasts at least half a second.
-            setTimeout(function(){thiz.showMessage("");}, 500);
-            if (err) {
-                alert(JSON.stringify(err));
-            } else {
-                thiz.externalChange();
-            }                
-        });
-    }
+    $("#campaign-save").on('click', function(){
+        thiz.saveCampaign();
+        //Changed started here. So tell the world.
+        thiz.externalChange();
+    });
+
     
     $("#campaign-clone").on('click', clone);
     function clone() {

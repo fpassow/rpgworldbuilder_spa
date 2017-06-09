@@ -1,7 +1,9 @@
 $(document).ready(function(){
     getCampaignDef(function(err, campDef) {
         var userWidget = new UserWidget(function(u,p) {
-            //TODO: Redraw list and campaign to show new ownership effeccts
+            //Redraw list and campaign to show new ownership effeccts
+            campListWidget.refresh();
+            campWidget.refresh();
         });
         
         var campListWidget = new CampaignListWidget('camplist-container', function(campMeta) {
@@ -10,6 +12,7 @@ $(document).ready(function(){
         });
         
         var campWidget = new CampaignWidget("campaign-container", userWidget, 'no camp yet', campDef, function() {
+            //Runs when the campaign saves, because a title change, etc, might be visible.
             campListWidget.refresh();
         });
         
