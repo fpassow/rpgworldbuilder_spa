@@ -5,20 +5,19 @@ $(document).ready(function(){
         var campListWidget = null;
         
         var userWidget = new UserWidget(
-            function(readyForChange) {                            console.log('before');
+            function(readyForChange) {
                 //This code runs just before we change users. (Login, logout, etc.)
                 //We save any campaign we were working on,
                 //and then clear out the other two widgets.
-                if (campWidget) {                                 console.log('saving');
+                if (campWidget) {
                     campWidget.saveCampaign(function() {
                         campWidget = null;
                         campListWidget = null;
                         $("#camplist-container").empty();
                         $("#campaign-thecampaign").empty();
-                                                                  console.log('saved');
                         readyForChange();
                     });
-                } else {                                          console.log('before, no camp');
+                } else {
                     campWidget = null;
                     campListWidget = null;
                     $("#camplist-container").empty();
@@ -26,12 +25,11 @@ $(document).ready(function(){
                     readyForChange();
                 }
             },
-            function() {                                          console.log('after');
+            function() {
                 //This code runs after the user has changed.
                 //We set everything up for them.
                 campListWidget = new CampaignListWidget('camplist-container', function(campMeta) {
                     //this is the campaign selected event code...   
-    console.log('camp seleted' + campWidget + ", " + JSON.stringify(campMeta));
                     campWidget.displayCampaign(campMeta.username, campMeta.campaignId);
                 });
         
