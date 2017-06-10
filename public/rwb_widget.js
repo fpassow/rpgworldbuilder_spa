@@ -184,7 +184,7 @@ function RwbWidget(selector, rwbDef, data, changed) {
         for (var i = 0; i < hints.length; i++) {
             td = $('<td></td>');
             if (hints[i].description && hints[i].description.length) {
-                hintLink = $('<a>' + hints[i].label + '</a>');
+                hintLink = $('<a class="hintlink">' + hints[i].label + '</a>');
                 (function() {
                     var hintIndex = i;
                     hintLink.on('click', function() {

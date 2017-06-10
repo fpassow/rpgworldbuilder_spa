@@ -22,6 +22,9 @@
 .rwb-field-data-arrayitem {
     margin: 0px 0px 20px 0px;
 }
+.hintlink {
+    color: blue;
+}
 input {
     width: 100%;
 }
