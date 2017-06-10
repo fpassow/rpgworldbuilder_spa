@@ -45,7 +45,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
             }
         });
     }
-    
+    //Save, reload, redraw
     this.refresh = function() {
         thiz.saveCampaign(function() {
             //restart from where we check if it's ours.
@@ -120,9 +120,10 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     }
     
     $("#campaign-save").on('click', function(){
-        thiz.saveCampaign();
-        //Changed started here. So tell the world.
-        thiz.externalChange();
+        thiz.saveCampaign(function() {
+            //After saving, tell the world.
+            thiz.externalChange();
+        });
     });
 
     

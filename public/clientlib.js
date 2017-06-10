@@ -66,7 +66,6 @@ function listUsers(callback) {
     });
 }
 
-
 //callback(err, camp)
 function storeCampaign(username, password, campaign, callback) {
      $.ajax({

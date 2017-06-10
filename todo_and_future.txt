@@ -2,6 +2,7 @@ TODO
 ----
 
 * Links to display drivers
+* Make deleting array items harder
 * Add real logging
 * Mongodb security
 * Review security of returning err objects to browser

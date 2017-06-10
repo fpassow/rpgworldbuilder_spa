@@ -12,3 +12,12 @@
     margin-left: 260px;
 }
 
+#hintbox {
+    z-index:10;
+    background:white;
+    position:absolute;
+    left:100px;
+    top:100px;
+    display:none;
+}
+
