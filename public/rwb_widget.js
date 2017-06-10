@@ -184,11 +184,12 @@ function RwbWidget(selector, rwbDef, data, changed) {
         for (var i = 0; i < hints.length; i++) {
             td = $('<td></td>');
             if (hints[i].description && hints[i].description.length) {
-                hintLink = $('<a >' + hints[i].label + '</a>');
+                hintLink = $('<a>' + hints[i].label + '</a>');
                 (function() {
                     var hintIndex = i;
                     hintLink.on('click', function() {
                         var description = $('<div class="description"></div>');
+                        description.css('border', '2px solid blue');
                         description.html(hints[hintIndex].description+'<div style="text-align:right">[X]</div>');
                         description.click(function() {this.remove();table[0].scrollIntoView()});
                         element.append(description);
@@ -211,7 +212,17 @@ function RwbWidget(selector, rwbDef, data, changed) {
         }
         return element;
     }
-
+    
+    function showHint(hintlabel, hintcontent) {
+        $("#hintbox-label").text(hintlabel);
+        $("#hintbox-content").html(hintcontent);
+        $("#hintbox").css("display", "block");
+    }
+    function hideHint() {
+        $("#hintbox").css("display", "none");
+    }
+    $("#hintbox-close").on('click', hideHint);
+    
 } //Close RwbWidget
 
 

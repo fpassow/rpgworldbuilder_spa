@@ -13,6 +13,9 @@
 }
 
 #hintbox {
+    border:3px solid blue;
+    width:50%;
+    padding: 20px;
     z-index:10;
     background:white;
     position:absolute;
