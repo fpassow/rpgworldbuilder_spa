@@ -1,7 +1,7 @@
 TODO
 ----
 
-* Links to display drivers
+* Separate users in Campaign List
 * Make deleting array items harder
 * Add real logging
 * Mongodb security
