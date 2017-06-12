@@ -3,6 +3,9 @@ TODO
 
 * Use it, and make some notes
 * Make deleting array items harder
+      [x]
+      Confirm dialog
+* Improve text all over def
 * Use *** password fields
 * Show more on startup. (Splash screen in Campaign space?)
 * Add real logging

@@ -114,9 +114,12 @@ function RwbWidget(selector, rwbDef, data, changed) {
             if (arr.length) {
                 arr.forEach(function(x, index) {
                     var item = $('<div></div>').addClass('rwb-field-data-arrayitem').html(x);
-                    item.click(function() {
+                    var deleteItem = $("<span></span>");
+                    deleteItem.addClass('rwb-field-data-arrayitem-delete').html('[x]');
+                    deleteItem.on('click',function() {
                         thisField.removeItem(index);
                     });
+                    item.append(deleteItem);
                     dataDiv.append(item);
                 });
             }
