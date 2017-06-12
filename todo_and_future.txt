@@ -1,7 +1,8 @@
 TODO
 ----
 
-* Nicer format for array items and delete link
+* Return key in array field text input saves it and puts focus in an empty text field.
+* Nicer format for array items and delete link (Make each a visual unit... with its delete link)
 * Clear division between CampaignList and Campaign on screen
 * Use it, and make some notes
 * Improve text all over def

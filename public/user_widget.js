@@ -35,6 +35,7 @@ function UserWidget(beforeChange, afterChange) {
     $("#user-deleteuser").on('click', userDelete);
     $("#user-changepw-button").on('click', userChangePassword);
     
+    //Login when I hit return key in the password field
     $("#user-password").on('keyup', function(e) {
         if (e.keyCode === 13) {
             userLogin();

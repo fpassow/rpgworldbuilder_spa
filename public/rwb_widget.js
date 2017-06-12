@@ -8,20 +8,6 @@
  *
  * Call getState() to get the current state of the campaign being edited.
  */
- 
- /*
-     function showHint(hintlabel, hintcontent) {
-        $("#hintbox-label").text(hintlabel);
-        $("#hintbox-content").html(hintcontent);
-        $("#hintbox").css("display", "block");
-    }
-    showHint("LLLLLLL", "CCCCCCCCCCCCCCCCCc"); console.log('hi');
-    function hideHint() {
-        $("#hintbox").css("display", "none");
-    }
-    $("#hintbox-close").on('click', hideHint);
-    */
-
 function RwbWidget(selector, rwbDef, data, changed) {
     var parent = $("#" + selector);
     parent.append('<h2 class="rwb-title">' + rwbDef.label + '</h2>');
@@ -129,8 +115,16 @@ function RwbWidget(selector, rwbDef, data, changed) {
             butt.on('click', function() {
                 thisField.addItem(field.val());
             });
+            //You can add an item by hitting return in the input.
+            field.on('keyup', function(e) {
+                if (e.keyCode === 13) {
+                    thisField.addItem(field.val());
+                }
+            });
             dataDiv.append(butt);
             target.append(dataDiv);
+            //Set focus after the input is visible.
+            field.focus();
         };
 
         RwbArrayField.prototype.redraw = function() {
