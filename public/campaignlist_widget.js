@@ -23,7 +23,13 @@ function CampaignListWidget(selector, selected) {
             if (err) {
                 alert('Error loading campaign list: ' + JSON.stringify(err));
             } else {
+                var currentUsername = null;
                 camps.forEach(function(aCamp) {
+                    //Insert header before each user's campaigns
+                    if (aCamp.username != currentUsername) {
+                        parent.append('<h3 class="camps-userhead">' + aCamp.username + '</h3');
+                        currentUsername = aCamp.username;
+                    }
                     var campy = $('<div class="camps-camp"><span class="camps-username">'
                     + aCamp.username + '</span><span class="camps-title">'
                     + aCamp.title + '</span> </div>');
