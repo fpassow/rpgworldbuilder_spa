@@ -1,10 +1,9 @@
 TODO
 ----
 
+* Nicer format for array items and delete link
+* Clear division between CampaignList and Campaign on screen
 * Use it, and make some notes
-* Make deleting array items harder
-      [x]
-      Confirm dialog
 * Improve text all over def
 * Use *** password fields
 * Show more on startup. (Splash screen in Campaign space?)

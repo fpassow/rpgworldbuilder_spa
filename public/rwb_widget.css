@@ -21,10 +21,13 @@
 }
 .rwb-field-data-arrayitem {
     margin: 0px 0px 20px 0px;
+    width: 100%
 }
 .rwb-field-data-arrayitem-delete {
     text-align: right;
     color:red;
+    display:inline-block;
+    float:right;
 }
 .hintlink {
     color: blue;
