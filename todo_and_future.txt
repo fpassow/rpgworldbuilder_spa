@@ -1,10 +1,7 @@
 TODO
 ----
 
-* Put focus on first field when Campaign/Rwb widget is first drawn
-* Return key in array field text input saves it and puts focus in an empty text field.
-* Nicer format for array items and delete link (Make each a visual unit... with its delete link)
-* Clear division between CampaignList and Campaign on screen
+* Nicer format for Array Field Items
 * Use it, and make some notes
 * Improve text all over def
 * Use *** password fields
@@ -12,6 +9,7 @@ TODO
 * Add real logging
 * Mongodb security
 * Review security of returning err objects to browser
+* Add focus method to ArrayField (it's only on plain field now).
 
 
 WANTTHIS
