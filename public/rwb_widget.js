@@ -40,6 +40,7 @@ function RwbWidget(selector, rwbDef, data, changed) {
         }
         this.fieldArray.push(field);
     }
+    this.fieldArray[0].focus();
 
     //Constructor for non-array field objects
     function RwbField(parentElement, def, data, listener) {
@@ -78,6 +79,9 @@ function RwbWidget(selector, rwbDef, data, changed) {
         
         RwbField.prototype.getName = function() {
             return this.name;
+        }
+        RwbField.prototype.focus = function() {
+            this.item.focus();
         }
         //And draw myself.
         this.draw();
