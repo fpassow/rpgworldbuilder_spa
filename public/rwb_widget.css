@@ -3,7 +3,7 @@
     font-weight:bold;
 }
 .rwb-field {
-    margin: 20px 0px 20px 0px;
+
 }
 .rwb-field-label {
     font-size:16px;
@@ -17,11 +17,12 @@
 }
 
 .rwb-field-data {
-    margin-left: 50px;
+    
 }
 .rwb-field-data-arrayitem {
-    margin: 0px 0px 20px 0px;
-    width: 100%
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #555;
 }
 .rwb-field-data-arrayitem-delete {
     text-align: right;

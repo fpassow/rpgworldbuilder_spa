@@ -39,7 +39,16 @@ $(document).ready(function(){
                 });
                     
             }
-        );    
+        );
+        //And display everything on startup, too
+        campWidget = new CampaignWidget("campaign-container", userWidget, 'no camp yet', campDef, function() {
+            //Runs when the campaign saves, because a title change, etc, might be visible.
+            campListWidget.refresh();
+        });
+        campListWidget = new CampaignListWidget('camplist-container', function(campMeta) {
+            //this is the campaign selected event code...   
+            campWidget.displayCampaign(campMeta.username, campMeta.campaignId);
+        });        
     });        
 });
 
