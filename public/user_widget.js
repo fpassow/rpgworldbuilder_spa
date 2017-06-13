@@ -1,7 +1,8 @@
 /*
  * beforeChange(callback)  is called before the user changes from a login or logout.
  *                         The callback must be called by the outside world to allow to
- *                              allow the change to continue.
+ *                
+ allow the change to continue.
  *
  * afterChange() will be called when the new user (or a state of no-logged-in-user) is stable.
  */
@@ -80,7 +81,6 @@ function UserWidget(beforeChange, afterChange) {
                     thiz.currentUsername = null;
                     thiz.currentPassword = null;
                     thiz.loggedIn = false;
-                    $("#user-notloggedin-message1").html("Not logged in.");
                     $("#user-notloggedin-message2").html("Login failed:" + JSON.stringify(err));
                 } else {
                     thiz.currentUsername = $("#user-username").val();
@@ -121,7 +121,6 @@ function UserWidget(beforeChange, afterChange) {
             thiz.currentUsername = '';
             thiz.currentPassword = '';
             thiz.loggedIn = false;
-            $("#user-notloggedin-message1").html("Not logged in.");
             $("#user-notloggedin-message2").html("");
             showNotLoggedIn();
             thiz.afterChange();

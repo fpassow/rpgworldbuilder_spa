@@ -1,4 +1,9 @@
-
+body {
+    font-family: sans-serif;
+}
+h2 {
+    margin: 0px;
+}
 #controls-container {
     width:230px;
     float:left;
