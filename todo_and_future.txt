@@ -1,6 +1,7 @@
 TODO
 ----
 
+* Remove all traces of message1 and rename message2 in User Widget
 * Allow New-Campaign, then New User, then Save (IF SAVE AND NO USER, CREATE A GUEST ACCOUNT)
 * Tighten up the Campaign List
 * Nicer format for Array Field Items

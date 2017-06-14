@@ -81,13 +81,12 @@ function UserWidget(beforeChange, afterChange) {
                     thiz.currentUsername = null;
                     thiz.currentPassword = null;
                     thiz.loggedIn = false;
-                    $("#user-notloggedin-message2").html("Login failed:" + JSON.stringify(err));
+                    $("#user-notloggedin-message").html("Login failed:" + JSON.stringify(err));
                 } else {
                     thiz.currentUsername = $("#user-username").val();
                     thiz.currentPassword = $("#user-password").val();
                     thiz.loggedIn = true;
-                    $("#user-loggedin-message1").html("Logged in as " + thiz.currentUsername);
-                    $("#user-loggedin-message2").html("");
+                    $("#user-loggedin-message").html("Logged in as <b>" + thiz.currentUsername + "</b>");
                     $("#user-password").val("");//Rempve correct password
                     showLoggedIn();
                 }
@@ -108,8 +107,7 @@ function UserWidget(beforeChange, afterChange) {
                     thiz.currentUsername = $("#user-createnew-username").val();
                     thiz.currentPassword = $("#user-createnew-password1").val();
                     thiz.loggedIn = true;
-                    $("#user-loggedin-message1").html("Logged in as " + thiz.currentUsername);
-                    $("#user-loggedin-message2").html("");
+                    $("#user-loggedin-message").html("Logged in as <b>" + thiz.currentUsername + "</b>");
                     showLoggedIn();
                 }
                 thiz.afterChange();
@@ -121,7 +119,6 @@ function UserWidget(beforeChange, afterChange) {
             thiz.currentUsername = '';
             thiz.currentPassword = '';
             thiz.loggedIn = false;
-            $("#user-notloggedin-message2").html("");
             showNotLoggedIn();
             thiz.afterChange();
         });
