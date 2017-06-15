@@ -127,20 +127,18 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
                 thiz.externalChange();
             });
         } else {
-            _showSaveWindow('Not logged in. Please copy text below to save.', 
-                          _textDump(def, thiz.campaign) );
-            $("#savebox-content").select();
+            _showSaveWindow();
         }
     });
     
-    function _showSaveWindow(label, content) {
-        $("#savebox-label").text(label);
-        $("#savebox-content").text(content);
+    function _showSaveWindow() {
+        drawStatic("savebox-content", def, thiz.campaign);
         $("#savebox").css("display", "block");
     }
     function _hideSaveWindow() {
         $("#savebox").css("display", "none");
     }
+    $("#savebox-print").on('click', function() {window.print();});
     $("#savebox-close").on('click', _hideSaveWindow);
 
     

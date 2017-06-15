@@ -31,7 +31,7 @@ h2 {
 #hintbox {
     border:3px solid blue;
     width:50%;
-    padding: 20px;
+    padding: 5%px;
     z-index:10;
     background:white;
     position:fixed;
@@ -41,21 +41,20 @@ h2 {
 }
 
 #savebox {
-    border:3px solid black;
-    padding: 20px;
     z-index:10;
-    background:white;
     position:fixed;
-    left:20px;
-    top:20px;
+    left:0px;
+    top:0px;
+    width:95%;
+    margin: 0px;
+    padding: 30px;
+    background:white;
     display:none;
 }
+#savebox-controls {
+    text-align: right;
+}
 #savebox-content {
-    height: 200px;
-    width: 300px;
 }
-#savebox-label {
-    border: 1px solid black;
-    background: #ddd;
-}
+
 
