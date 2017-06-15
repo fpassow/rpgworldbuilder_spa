@@ -74,10 +74,6 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
         });
     }    
     
-    
-    
-    
-    
     this.showMessage = function(message) {
         $("#campaign-message").html(message);
     }
@@ -106,8 +102,12 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     $("#campaign-new").on('click', createNewCampaign);
     function createNewCampaign() {
         thiz.campaign = {};
-        thiz.campaign.username = userWidget.getUsername();
         thiz.campaign.campaignId = "ID" + Math.random();
+        thiz.campaign.username = userWidget.getUsername();
+        if (!thiz.campaign.username) {
+            _showEditor();
+            return;
+        }
         storeCampaign(thiz.userWidget.getUsername(), thiz.userWidget.getPassword(), thiz.campaign, function(err, camp) {
             if (err) {
                 alert(JSON.stringify(err));
@@ -120,11 +120,28 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     }
     
     $("#campaign-save").on('click', function(){
-        thiz.saveCampaign(function() {
-            //After saving, tell the world.
-            thiz.externalChange();
-        });
+        thiz.campaign = thiz.editor.getState();
+        if (thiz.userWidget.isLoggedIn()) {
+            thiz.saveCampaign(function() {
+                //After saving, tell the world.
+                thiz.externalChange();
+            });
+        } else {
+            _showSaveWindow('Not logged in. Please copy text below to save.', 
+                          _textDump(def, thiz.campaign) );
+            $("#savebox-content").select();
+        }
     });
+    
+    function _showSaveWindow(label, content) {
+        $("#savebox-label").text(label);
+        $("#savebox-content").text(content);
+        $("#savebox").css("display", "block");
+    }
+    function _hideSaveWindow() {
+        $("#savebox").css("display", "none");
+    }
+    $("#savebox-close").on('click', _hideSaveWindow);
 
     
     $("#campaign-clone").on('click', clone);
@@ -181,6 +198,27 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
                 parent.append('<div>' + data[rwbDef.fields[i].name] + '</div>');
             }
         }
+    }
+    
+    function _textDump(rwbDef, data) {
+        var s = "";
+        var field, i;
+        for (i = 0; i < rwbDef.fields.length; i++) {
+            if (rwbDef.fields[i].isarrayfield) {
+                s += rwbDef.fields[i].label.toUpperCase() + "\r\n\r\n";
+                var arr = data[rwbDef.fields[i].name];
+                if (arr.length) {
+                    arr.forEach(function(x, index) {
+                        s += '* ' + x + + "\r\n";
+                    });
+                    s += + "\r\n";
+                }
+            } else {
+                s += rwbDef.fields[i].label.toUpperCase() + "\r\n\r\n";
+                s += data[rwbDef.fields[i].name] + "\r\n\r\n";
+            }
+        }
+        return s;
     }
 
 }
