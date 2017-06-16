@@ -1,10 +1,7 @@
 TODO
 ----
 
-* NICER LOOKING SAVE BOX
-
-* Save button pops up big text window if not logged in.
-* Allow New-Campaign, then New User, then Save (IF SAVE AND NO USER, CREATE A GUEST ACCOUNT)
+* Don't clear campaign on login. TAKE it!
 * Tighten up the Campaign List
 * Nicer format for Array Field Items
 * Use it, and make some notes

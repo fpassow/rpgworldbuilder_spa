@@ -103,7 +103,7 @@ function listUsers(callback) {
  */
 function storeCampaign(campaign, callback) {
     if (!campaign.username || !campaign.username.length || !campaign.campaignId || !campaign.campaignId.length) {
-        callback("Missing username or campaignId on campaign", null);
+        callback("store.storeCampaign: Missing username or campaignId on campaign", null);
     } else {
         this.campaigns.update({username:campaign.username, campaignId:campaign.campaignId}, campaign, {upsert:true}, function(err, count, status) {
             callback(err, campaign);

@@ -9,6 +9,10 @@
  *
  * displayCampaign(username, campaignId) causes this widget to load
  *          and display a new campaign.
+ *
+ * newOwner(username)  Change username on any existing campaign object in CampaignWidget and/or
+ *                     its RwbWidget. Also generate a new campaignId, because that might help us later.
+ *                     Be just return if things don't exist.
  */
 
 function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
@@ -20,6 +24,15 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     this.isEditing = false;
     var thiz = this;
     
+    /* 
+     * Public API
+     */
+    this.newOwner = function(newUserName) {
+        if (thiz.campaign) {
+            thiz.campaign.username = newUserName;
+            thiz.campaign.campaignId = "ID" + Math.random();
+        }   
+    }
     
    /*
     * Public API: 
@@ -55,7 +68,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     
     //fires callback when done.
     this.saveCampaign = function(done) {
-        if (!thiz.isEditing) {
+        if (!thiz.isEditing || !thiz.userWidget.isLoggedIn()) {
             done();
             return;
         }
@@ -120,7 +133,6 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     }
     
     $("#campaign-save").on('click', function(){
-        thiz.campaign = thiz.editor.getState();
         if (thiz.userWidget.isLoggedIn()) {
             thiz.saveCampaign(function() {
                 //After saving, tell the world.

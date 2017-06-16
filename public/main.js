@@ -8,35 +8,35 @@ $(document).ready(function(){
             function(readyForChange) {
                 //This code runs just before we change users. (Login, logout, etc.)
                 //We save any campaign we were working on,
-                //and then clear out the other two widgets.
+                // but we do NOT clear the campaign widget, so the new user can save a clone
                 if (campWidget) {
                     campWidget.saveCampaign(function() {
-                        campWidget = null;
                         campListWidget = null;
                         $("#camplist-container").empty();
-                        $("#campaign-thecampaign").empty();
                         readyForChange();
                     });
                 } else {
-                    campWidget = null;
                     campListWidget = null;
                     $("#camplist-container").empty();
-                    $("#campaign-thecampaign").empty();
                     readyForChange();
                 }
             },
             function() {
                 //This code runs after the user has changed.
-                //We set everything up for them.
+                //Let campaign list do special formating of the current user's stuff
                 campListWidget = new CampaignListWidget('camplist-container', function(campMeta) {
                     //this is the campaign selected event code...   
                     campWidget.displayCampaign(campMeta.username, campMeta.campaignId);
                 });
-        
-                campWidget = new CampaignWidget("campaign-container", userWidget, 'no camp yet', campDef, function() {
-                    //Runs when the campaign saves, because a title change, etc, might be visible.
-                    campListWidget.refresh();
+                if (campWidget) {
+                    //New user takes ownership of what's there, and can create a clone by saving it.
+                    campWidget.newOwner(userWidget.getUsername());
+                } else {
+                    campWidget = new CampaignWidget("campaign-container", userWidget, 'no camp yet', campDef, function() {
+                        //Runs when the campaign saves, because a title change, etc, might be visible.
+                        campListWidget.refresh();
                 });
+                }
                     
             }
         );
