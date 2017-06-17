@@ -6,9 +6,14 @@ require('./store')(function(store) {
 function serveSomeWebs(store) {
     var express = require("express");
     var app = express();
+
     var bodyParser = require('body-parser')
     app.use(bodyParser.json());
+
     var basicAuth = require('basic-auth');
+
+    var morgan = require('morgan');
+    app.use(morgan('dev'));
 
     app.use('/public', express.static('public'));
     
