@@ -1,6 +1,13 @@
+var log = require('winston');
+log.level = 'debug';
 
-require('./store')(function(store) {
-    serveSomeWebs(store);
+require('./store')(function(err, store) {
+	if (err) {
+		log.error('', err);
+	} else {
+		log.info('Connected to database');
+		serveSomeWebs(store);
+	}
 });
 
 function serveSomeWebs(store) {
@@ -15,6 +22,8 @@ function serveSomeWebs(store) {
     var morgan = require('morgan');
     app.use(morgan('dev'));
 
+
+    //Serve all the static files
     app.use('/public', express.static('public'));
     
     /* Utility function.
@@ -118,7 +127,7 @@ function serveSomeWebs(store) {
         if (req.body) {
             store.findCampaigns(req.body, function(err, campaigns) {
                 if (err) {
-                    console.log(err);
+                    log.error('err from findCampaigns', err);
                 } else {
                     res.json(campaigns);
                 }
@@ -134,7 +143,7 @@ function serveSomeWebs(store) {
         if (req.body) {
             store.findCampaignsMetadata(req.body, function(err, campaignsMeta) {
                 if (err) {
-                    console.log(err);
+                    log.error('error from findCampaignsMetadata', err);
                 } else {
                     res.json(campaignsMeta);
                 }

@@ -3,7 +3,7 @@ var MongoClient = mongodb.MongoClient;
 var mongoUrl = 'mongodb://127.0.0.1:27017/rpgworldbuilder';
 
 /*
- * callback(storeObjectWithConnectionsAndMethods)
+ * callback(err, storeObjectWithConnectionsAndMethods)
  */
 function connect(callback) {
     
@@ -11,16 +11,15 @@ function connect(callback) {
     
     MongoClient.connect(mongoUrl, function (err, db) {
         if (err) {
-          console.log('Unable to connect to the mongoDB server. Error:', err);
+          callback(err, null);
         } else {
-            console.log('Connection established to', mongoUrl);
             db.createCollection("users", function(err, users){
                 if (err) {
-                    console.log('Error accessing users collection. Error:', err);
+                    callback(err, null);
                 } else {
                     db.createCollection("campaigns", function(err, campaigns) {
                         if (err) {
-                            console.log('Error accessing campaigns collection. Error:', err);
+                            callback(err, null);
                         } else {
                             //collections
                             store.users = users;
@@ -34,7 +33,7 @@ function connect(callback) {
                             store.storeCampaign = storeCampaign;
                             store.deleteCampaign = deleteCampaign;
                             store.findCampaigns = findCampaigns;
-                            callback(store);
+                            callback(null, store);
                         }
                     });
                 }
