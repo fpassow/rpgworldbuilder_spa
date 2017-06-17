@@ -1,7 +1,11 @@
 TODO
 ----
 
-* Sanitize text input before displaying
+* Escape text input before displaying
+    * Everything in static view
+    * Usernames in CampaignList
+    * Titles in CampaignList
+    * List items in editor
 * Include interesting request bits in logs
 * Tighten up the Campaign List
 * Nicer format for Array Field Items

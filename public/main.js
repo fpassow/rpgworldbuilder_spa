@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     getCampaignDef(function(err, campDef) {
         

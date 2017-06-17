@@ -29,7 +29,6 @@ function UserWidget(beforeChange, afterChange) {
     $("#user-createnew-cancel").on('click', function() {if (thiz.loggedIn) {showLoggedIn();}else{showNotLoggedIn();}});
     
     //Buttons that do stuff
-    
     $("#user-loginbutton").on('click', userLogin);
     $("#user-createnew-button").on('click', userNew);
     $("#user-logout-button").on('click', userLogout);
@@ -86,7 +85,10 @@ function UserWidget(beforeChange, afterChange) {
                     thiz.currentUsername = $("#user-username").val();
                     thiz.currentPassword = $("#user-password").val();
                     thiz.loggedIn = true;
-                    $("#user-loggedin-message").html("Logged in as <b>" + thiz.currentUsername + "</b>");
+                    $("#user-loggedin-message").append("Logged in as ")
+                    var userNameElement = $("<b></b>")
+                    userNameElement.html(escapeHtml(thiz.currentUsername));
+                    $("#user-loggedin-message").append(userNameElement);
                     $("#user-password").val("");//Rempve correct password
                     showLoggedIn();
                 }
