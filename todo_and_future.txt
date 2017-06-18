@@ -2,10 +2,8 @@ TODO
 ----
 
 * Escape text input before displaying
-    * Everything in static view
-    * Usernames in CampaignList
-    * Titles in CampaignList
     * List items in editor
+* Login on existing campaign creates a new user section in camplist
 * Include interesting request bits in logs
 * Tighten up the Campaign List
 * Nicer format for Array Field Items

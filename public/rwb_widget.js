@@ -103,7 +103,7 @@ function RwbWidget(selector, rwbDef, data, changed) {
             var dataDiv = $('<div class="rwb-field-data"></div>');
             if (arr.length) {
                 arr.forEach(function(x, index) {
-                    var item = $('<div></div>').addClass('rwb-field-data-arrayitem').html(x);
+                    var item = $('<div></div>').addClass('rwb-field-data-arrayitem').html(escapeHtml(x));
                     var deleteItem = $("<span></span>");
                     deleteItem.addClass('rwb-field-data-arrayitem-delete').html('[x]');
                     deleteItem.on('click',function() {

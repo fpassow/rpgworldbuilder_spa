@@ -27,12 +27,16 @@ function CampaignListWidget(selector, selected) {
                 camps.forEach(function(aCamp) {
                     //Insert header before each user's campaigns
                     if (aCamp.username != currentUsername) {
-                        parent.append('<h3 class="camps-userhead">' + aCamp.username + '</h3');
+                        var userHead = $('<h3 class="camps-userhead"></h3>');
+                        userHead.html(escapeHtml(aCamp.username));
+                        parent.append(userHead);
                         currentUsername = aCamp.username;
                     }
-                    var campy = $('<div class="camps-camp">'
-                    + '<span class="camps-title">'
-                    + aCamp.title + '</span> </div>');
+                    var campy = $('<div class="camps-camp"></div>');
+                    if (!aCamp.title) {
+                        aCamp.title = '[nameless]';
+                    }
+                    campy.html(escapeHtml(aCamp.title));
                     campy.on('click',function() {thisWidget.selected(aCamp);});
                     parent.append(campy);
                 });

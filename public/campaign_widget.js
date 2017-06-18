@@ -190,45 +190,30 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
     
     function drawStatic(selector, rwbDef, data) {
         var parent = $("#" + selector);
-        parent.append('<h2>' + data['title'] + '</h2>');
+        var titleElement = $("<h2></h2>");
+        titleElement.html(escapeHtml(data['title']));
+        parent.append(titleElement);
     
         //def.fields[0]  is the title
         var field, i;
+        var div;
         for (i = 1; i < rwbDef.fields.length; i++) {
+            parent.append('<h3>' + rwbDef.fields[i].label + '</h3>');
             if (rwbDef.fields[i].isarrayfield) {
-                parent.append('<h3>' + rwbDef.fields[i].label + '</h3>');
                 var arr = data[rwbDef.fields[i].name];
                 if (arr.length) {
                     arr.forEach(function(x, index) {
-                        parent.append('<div>' + x + '</div>')
+                        div = $("<div></div>");
+                        div.html(escapeHtml(x));
+                        parent.append(div)
                     });
                 }
             } else {
-                parent.append('<h3>' + rwbDef.fields[i].label + '</h3>');
-                parent.append('<div>' + data[rwbDef.fields[i].name] + '</div>');
+                div = $("<div></div>");
+                div.html(escapeHtml(data[rwbDef.fields[i].name]));
+                parent.append(div);
             }
         }
-    }
-    
-    function _textDump(rwbDef, data) {
-        var s = "";
-        var field, i;
-        for (i = 0; i < rwbDef.fields.length; i++) {
-            if (rwbDef.fields[i].isarrayfield) {
-                s += rwbDef.fields[i].label.toUpperCase() + "\r\n\r\n";
-                var arr = data[rwbDef.fields[i].name];
-                if (arr.length) {
-                    arr.forEach(function(x, index) {
-                        s += '* ' + x + + "\r\n";
-                    });
-                    s += + "\r\n";
-                }
-            } else {
-                s += rwbDef.fields[i].label.toUpperCase() + "\r\n\r\n";
-                s += data[rwbDef.fields[i].name] + "\r\n\r\n";
-            }
-        }
-        return s;
     }
 
 }
