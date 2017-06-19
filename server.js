@@ -1,3 +1,4 @@
+
 var log = require('winston');
 log.level = 'debug';
 
@@ -123,7 +124,7 @@ function serveSomeWebs(store) {
     });
     
     //To search, POST a mongodb search object.
-    app.post('/api/search', function(req, res) {
+/*    app.post('/api/search', function(req, res) {
         if (req.body) {
             store.findCampaigns(req.body, function(err, campaigns) {
                 if (err) {
@@ -136,6 +137,7 @@ function serveSomeWebs(store) {
             res.status(400).send("No search criteria.");
         }
     });
+    */
     
     //To search, POST a mongodb search object.
     //Returns only campaignId, title, and username

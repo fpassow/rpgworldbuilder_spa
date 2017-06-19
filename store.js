@@ -33,6 +33,7 @@ function connect(callback) {
                             store.storeCampaign = storeCampaign;
                             store.deleteCampaign = deleteCampaign;
                             store.findCampaigns = findCampaigns;
+                            store.findCampaignsMetadata = findCampaignsMetadata;
                             callback(null, store);
                         }
                     });
@@ -135,7 +136,7 @@ function findCampaigns(searchCrit, callback) {
  * callback(err, arrayOfCampaignsMetadata)
  */
 function findCampaignsMetadata(searchCrit, callback) {   
-    this.campaigns.find(searchCrit,{campaignId:true,title:true,username:true},{sort:['username','title']}).toArray(function(err, campaigns) {
+    this.campaigns.find(searchCrit,{campaignId:true,title:true,username:true}).sort({username:1,title:1}).toArray(function(err, campaigns) {
         callback(err, campaigns);
     });
 }

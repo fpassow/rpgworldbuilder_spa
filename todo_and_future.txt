@@ -1,9 +1,7 @@
 TODO
 ----
 
-* Escape text input before displaying
-    * List items in editor
-* Login on existing campaign creates a new user section in camplist
+* Sort not working in CampList
 * Include interesting request bits in logs
 * Tighten up the Campaign List
 * Nicer format for Array Field Items

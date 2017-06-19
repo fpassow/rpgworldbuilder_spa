@@ -80,7 +80,8 @@
                 {"label": "Expel", "description": ""},
                 {"label": "Liberate", "description": ""},
                 {"label": "Build", "description": ""},
-                {"label": "Destroy", "description": ""}
+                {"label": "Destroy", "description": ""},
+                {"label": "Rescue", "description": ""}
             ] 
         },
         {
@@ -111,7 +112,7 @@
                 {"label": "Quest for a New Home", "description": "<p>Another kind of Quest. It’s a standard quest if they know where they’re going. If they don’t know where they’re going, I recommend mixing in another driver."},
                 {"label": "Defenders of…", "description": "<p>…the world, their own group, their species, anyone weaker than them, normal people who don’t know The Secret, normal people without special powers, an oppressed/hated/hunted group, The King, the nation, the nation and it’s allies, an outpost, a castle, a nomadic band, etc…"},
                 {"label": "Defenders Against…", "description": "<p>…a supernatural threat, a sinister conspiracy, the other side of any of the above.</p>"},
-                {"label": "Resistance", "description": "…to invaders and oppressors.</p>"},
+                {"label": "Resistance", "description": "<p>…to invaders and oppressors.</p>"},
                 {"label": "Revolution", "description": "<p>…against invaders and oppressors.</p>"},
                 {"label": "Personal Mission", "description": "<p>Or &quot;personal quest&quot;. The PCs are doing something because they just really want to do it, or because they deeply believe it should be done.</p><p>They are driven to become the worlds greatest swordsman, to advance science, prove the Hollow Earth is real, or bring back Atalntis.</p><p>A PC with a personal quest and a personal fortune could employ like-minded PCs in Jobs With Missions.</p>"},
                 {"label": "World-Changing Disaster", "description": "<p>War, plague, asteroid, invasion, bacteria that eats plastic or computer chips, sudden climate change, AI take-over, etc. Best when combined with another driver.</p>"},
@@ -124,7 +125,8 @@
                 {"label": "Smugglers", "description": "<p>Independent smugglers, who buy low on one side of a border and sell high on the other are a classic kind of merchant adventurers. Smugglers might also work for a gang or a rich buyer (or seller) who sends them on missions. Either way, it’s a model with a built in opposition.</p><p>However, smugglers are trying their hardest to avoid excitement and conflict. So maybe mix this one with another driver, either by adding some smuggling within another driver, or by making the smugglers open to other kinds of jobs. (They have a fast ship…)</p>"},
                 {"label": "Build Power and Resources", "description": "<p>A core component of many successful RPGs. And it works great with all the other drivers.</p><p>Note that I didn’t say “build wealth”. That by itself leads to the treasure hunter’s dilemma. Either it goes slowly and is too much like a normal job, or it goes quickly and the PCs retire.</p><p>But players’ appetite for power seems to be endless. And it’s extra-motivating when the resources are needed for some other driver’s goal.</p>"},
                 {"label": "Keys Quest", "description": "<p>A classic… The Great Magic Thing was divided into parts. The parts were scattered and hidden in dangerous places. And the PCs have a reason to find them.</p><p>Like all quests, it has a final end. But it has a bunch of intermediate ends, too. Twelve parts automatically gives you twelve adventures. Stretch it to a few adventures per part and you can get a whole year of play.</p><p>It’s over-used. But it’s over-used because it works.</p>"},
-                {"label": "Keys Quest", "description": "<p>The PCs are some of the most powerful and important people in their world. So the world's problems become their problems."}
+                {"label": "Keys Quest", "description": "<p>The PCs are some of the most powerful and important people in their world. So the world's problems become their problems."},
+                {"label": "Wandering Heros", "description": "<p>PCs have explicitly signed up to fight evil and help those in need. Examples: Knights of the Round Table, Dr. Who, The A-Team.</p><p>This is popular and a classic. But you should make sure the players explicitly agree to it, because it requires the PCs to do dangerous things without any other rational motivation."}
             ]            
         },
         {
