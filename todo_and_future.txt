@@ -1,7 +1,8 @@
 TODO
 ----
 
-* Import button, but only if logged in and editing
+* show/hide buttons on logout
+* Import button event handler
 * Import window pop up
 * Import window cancel button
 * Import window instructions

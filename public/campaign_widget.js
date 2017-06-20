@@ -34,10 +34,12 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
             
             if (thiz.isEditing) {
                 $("#campaign-save").show();
+                $("#campaign-import").show();
                 $("#campaign-clone").show();
                 $("#campaign-delete").show();
             } else {
                 $("#campaign-save").hide();
+                $("#campaign-import").hide();
                 $("#campaign-clone").show();
                 $("#campaign-delete").hide();
             }
@@ -108,6 +110,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
             //Save triggered by Save button, or by logging out out or switching campaigns
         });
         $("#campaign-save").show();
+        $("#campaign-import").show();
         $("#campaign-clone").show();
         $("#campaign-delete").show();
     }
@@ -117,6 +120,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
         $("#campaign-thecampaign").empty();
         drawStatic("campaign-thecampaign", def, thiz.campaign);
         $("#campaign-save").hide();
+        $("#campaign-import").hide();
         if (userWidget.isLoggedIn()) {
             $("#campaign-clone").show();
         } else {
@@ -129,6 +133,7 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
         $("#campaign-thecampaign").empty();
         $("#campaign-delete").hide();
         $("#campaign-save").hide();
+        $("#campaign-import").hide();
         $("#campaign-clone").hide();
     }
     
