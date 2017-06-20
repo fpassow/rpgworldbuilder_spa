@@ -1,12 +1,23 @@
 TODO
 ----
 
-* Sort not working in CampList
-* Include interesting request bits in logs
+* Import button, but only if logged in and editing
+* Import window pop up
+* Import window cancel button
+* Import window instructions
+* Import window list of my campaigns
+* Import method on CampaignWidget
+*    Get imported, 
+*    getState(),
+*    state+imported, 
+*    save, 
+*    refresh
+
 * Tighten up the Campaign List
 * Nicer format for Array Field Items
 * Use it, and make some notes
 * Improve text all over def
+* Include interesting request bits in logs
 * Mongodb security
 * Review security of returning err objects to browser
 * Add "focus()" method to ArrayField.
@@ -16,6 +27,7 @@ WANTTHIS
 
 * Game-ish visual style
 * Adjustable darkness
+* Sort case-insensitive in CampaignList
 * Import from
     http://realm-of-fantasy.deviantart.com/
     https://commons.wikimedia.org/wiki/Main_Page

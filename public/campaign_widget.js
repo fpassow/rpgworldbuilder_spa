@@ -31,6 +31,16 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
         if (thiz.campaign) {
             thiz.campaign.username = newUserName;
             thiz.campaign.campaignId = "ID" + Math.random();
+            
+            if (thiz.isEditing) {
+                $("#campaign-save").show();
+                $("#campaign-clone").show();
+                $("#campaign-delete").show();
+            } else {
+                $("#campaign-save").hide();
+                $("#campaign-clone").show();
+                $("#campaign-delete").hide();
+            }
         }   
     }
     
@@ -97,19 +107,29 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
         thiz.editor = new RwbWidget("campaign-thecampaign", def, thiz.campaign, function(campy){
             //Save triggered by Save button, or by logging out out or switching campaigns
         });
+        $("#campaign-save").show();
+        $("#campaign-clone").show();
         $("#campaign-delete").show();
     }
     function _showStatic() {
         thiz.isEditing = false;
         thiz.editor = null;
         $("#campaign-thecampaign").empty();
-        drawStatic("campaign-thecampaign", def, thiz.campaign)
+        drawStatic("campaign-thecampaign", def, thiz.campaign);
+        $("#campaign-save").hide();
+        if (userWidget.isLoggedIn()) {
+            $("#campaign-clone").show();
+        } else {
+        	$("#campaign-clone").hide();
+        }
         $("#campaign-delete").hide();
     }
     function _showEmpty() {
         thiz.isEditing = false;
         $("#campaign-thecampaign").empty();
         $("#campaign-delete").hide();
+        $("#campaign-save").hide();
+        $("#campaign-clone").hide();
     }
     
     $("#campaign-new").on('click', createNewCampaign);
@@ -215,6 +235,9 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
             }
         }
     }
+
+    //Empty when created
+    _showEmpty();
 
 }
   
