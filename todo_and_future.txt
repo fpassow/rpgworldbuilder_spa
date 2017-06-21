@@ -2,12 +2,14 @@ TODO
 ----
 
 * show/hide buttons on logout
-* Import button event handler
-* Import window pop up
-* Import window cancel button
-* Import window instructions
-* Import window list of my campaigns
-* Import method on CampaignWidget
+
+* Always show AddTo if I'm logged in.
+* AddTo window html
+* AddTo window pop up
+* AddTo window cancel button
+* AddTo window instructions
+* AddTo window list of my campaigns
+* AddTo method on CampaignWidget
 *    Get imported, 
 *    getState(),
 *    state+imported, 

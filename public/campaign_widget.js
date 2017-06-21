@@ -241,6 +241,12 @@ function CampaignWidget(selector, userWidget, aCampaign, def, externalChange) {
         }
     }
 
+    $("#campaign-import").on('click', showImportWindow);
+    function showImportWindow() {
+
+
+    }
+
     //Empty when created
     _showEmpty();
 
