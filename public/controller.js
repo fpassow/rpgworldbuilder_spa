@@ -60,10 +60,35 @@ function Controller(model, views) {
         }
     };
 
+    this.deleteUser function() {alert('FUNCTION NOT WRITTEN YET');};
 
-    this.deleteUser
-    this.changePassword
-    this.selectCampaign
+    this.changePassword = function(oldPw, newPw1, newPw2) {
+        if (!(oldPw && newPw1 && newPw2 && oldPw.length && newPw1.length && newPw2.length)) {
+            alert('All three fields are required.');
+            return;//no need to redraw
+        }
+        if (newPw1 !== newPw2) {
+            alert('New password fields must match.');
+            return;//no need to redraw
+        }
+        changePassword(thiz.model.user.username, oldPw, newPw1, function(err) {
+            if (err) {
+                alert(JSON.stringify(err));
+                //No need to redraw
+            } else {
+                thiz.model.user.password = newPw1;
+                alert('Password changed.');
+                thiz.views.standardView(thiz.model, thiz);
+            }
+        });
+    };
+
+    this.selectCampaign = function(campMeta) {
+        //load it
+        //set as thiz.model.campaign
+
+    };
+
     this.saveCampaign
     this.cloneCampaign
     this.newCampaign
