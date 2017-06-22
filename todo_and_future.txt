@@ -1,8 +1,11 @@
 TODO
 ----
 
-* show/hide buttons on logout
+* Start main.js as if I had all the parts
+* Controller in its own file
+* View-stuff in a file
 
+* show/hide buttons on logout
 * Always show AddTo if I'm logged in.
 * AddTo window html
 * AddTo window pop up
