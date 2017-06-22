@@ -1,4 +1,11 @@
-/*  API:
+/*
+  This controller has references to the model and the views, but keeps no other state of its own,
+  and the model is just data. (And server access details are hidden in clientlib.sj.)
+
+  If these controller functions start getting large, look for code that would also make sense
+  as part of a smarter model.
+
+  API:
     login
     logout
     newUser
@@ -35,6 +42,7 @@ function Controller(model, views) {
     };
 
     this.logout = function() {
+    	//The server has no concept of "logged in". So we're just dropping local state.
     	thiz.model.user.username = null;
         thiz.model.user.password = null;
         thiz.model.user.loggedIn = false;
@@ -55,7 +63,7 @@ function Controller(model, views) {
                 }
             });
         } else {
-        	alert("Please enter a username and a password. And passwords must match.");
+        	alert("Please enter a username and a password. And the passwords must match.");
         	//No need to redraw
         }
     };
@@ -84,12 +92,36 @@ function Controller(model, views) {
     };
 
     this.selectCampaign = function(campMeta) {
-        //load it
-        //set as thiz.model.campaign
+        loadCampaign(campMeta.username, campMeta.campaignId, function(err, camp) {
+            if (err) {
+                alert(JSON.stringify(err));
+            } else {
+                thiz.model.campaign = camp;
+                thiz.views.standardView(thiz.model, thiz);
+            }
+        });
+    };
+
+    this.saveCampaign = function(newCampaignState) {
+    	thiz.model.campaign = newCampaignState;
+    	if (!thiz.model.user.loggedIn) {
+    		thiz.views.printView(thiz.model, thiz);
+    	} else {
+            thiz.model.campaignMessage = "Saving.....";
+            newCampaignState.username = thiz.model.user.username;
+            newCampaignState.campaignId = thiz.model.campaign.campaignId;
+            thiz.campaign = newCampaignState;
+            storeCampaign(thiz.model.user.username, thiz.model.user.password, thiz.campaign, function(err) {
+                //Clear "Saving..." message. But make sure it lasts at least half a second.
+                setTimeout(function(){thiz.showMessage("");}, 500);
+                if (err) {
+                    alert(JSON.stringify(err));
+            }
+            done();            
+        });
 
     };
 
-    this.saveCampaign
     this.cloneCampaign
     this.newCampaign
     this.importCampaign

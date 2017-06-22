@@ -8,7 +8,7 @@
 
 function Views() {
 
-    this.standardView(model, controller) {
+    this.standardView = function(model, controller) {
 
 
 
@@ -16,8 +16,11 @@ function Views() {
     }
 
 
+    this.printView = function(model, controller) {
 
-    this.importView(model, controller) {
+    }
+
+    this.importView = function(model, controller) {
 
 
     }
