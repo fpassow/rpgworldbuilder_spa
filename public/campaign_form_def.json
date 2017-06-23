@@ -93,6 +93,14 @@
             "hints": []            
         },
         {
+            "name": "end",
+            "label": "End",
+            "instructions": "Does this scenario have an end? Can the war be won, the quest completed, or the journey done? (Of course, the PCs might stil have further adventures together after that...)",
+            "longtext": false,
+            "isarrayfield": false,
+            "hints": []            
+        },
+        {
             "name": "driver",
             "label": "Drivers",
             "instructions": "These are pattens for writing playable adventures. Pick some and describe their parts and how they work in this case.",

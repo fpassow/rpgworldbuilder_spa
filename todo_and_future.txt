@@ -1,12 +1,6 @@
 TODO
 ----
 
-* deletecampaign
-* Refresh CampList on
-*    login
-*    logout
-*    save
-*    delete
 * View-stuff in a file
 * Save before new, iff logged and and editing.
 * IMPORT
