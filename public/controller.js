@@ -113,18 +113,54 @@ function Controller(model, views) {
             thiz.campaign = newCampaignState;
             storeCampaign(thiz.model.user.username, thiz.model.user.password, thiz.campaign, function(err) {
                 //Clear "Saving..." message. But make sure it lasts at least half a second.
-                setTimeout(function(){thiz.showMessage("");}, 500);
                 if (err) {
                     alert(JSON.stringify(err));
-            }
-            done();            
-        });
+                    thiz.views.standardView(thiz.model, thiz);
+                } else {
+                    setTimeout(function() {
+                	    thiz.model.campaignMessage = "";
+                	    thiz.views.standardView(thiz.model, thiz);
+                    }, 500);
+                }
+                
+            });            
+        }
+    };
+
+    this.cloneCampaign = function() {
+        if (thiz.model.campaign) {
+            thiz.model.campaign.username = thiz.model.user.username;
+            thiz.model.campaign.campaignId = "ID" + Math.random();
+            //No new data here. Don't save until told to.
+        } else {
+            alert('Nothing to clone');
+            thiz.views.standardView(thiz.model, thiz);
+        }
 
     };
 
-    this.cloneCampaign
-    this.newCampaign
-    this.importCampaign
-    this.deleteCampaign
+    this.newCampaign = function() {
+        thiz.model.campaign = {};
+        thiz.model.campaign.campaignId = "ID" + Math.random();
+        thiz.model.campaign.username = thiz.model.user.username;
+        //No point in saving an empty campaign
+        thiz.views.standardView(thiz.model, thiz);
+    };
+    
+    this.deleteCampaign = function() {
+        if (confirm('Delete this campaign?')) {
+            deleteCampaign(thiz.model.user.username, thiz.model.user.password, thiz.model.campaign.campaignId, function(err) {
+                if (err) {
+                    alert(JSON.stringify(err));
+                } else {
+                    thiz.views.standardView(thiz.model, thiz);
+                }
+            });
+        }
+
+    };
+
+
+    this.importCampaign = 'TODO';
 
 }

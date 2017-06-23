@@ -1,23 +1,15 @@
 TODO
 ----
 
-* Start main.js as if I had all the parts
-* Controller in its own file
+* deletecampaign
+* Refresh CampList on
+*    login
+*    logout
+*    save
+*    delete
 * View-stuff in a file
-
-* show/hide buttons on logout
-* Always show AddTo if I'm logged in.
-* AddTo window html
-* AddTo window pop up
-* AddTo window cancel button
-* AddTo window instructions
-* AddTo window list of my campaigns
-* AddTo method on CampaignWidget
-*    Get imported, 
-*    getState(),
-*    state+imported, 
-*    save, 
-*    refresh
+* Save before new, iff logged and and editing.
+* IMPORT
 
 * Tighten up the Campaign List
 * Nicer format for Array Field Items
