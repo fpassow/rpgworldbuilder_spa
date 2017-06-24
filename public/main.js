@@ -19,7 +19,7 @@ $(document).ready(function(){    getCampaignDef(function(err, campDef) {
                     //Model has user, currentCampaign, campaigList, campaignsCache. But only init with data for a campaignList
                     model = new Model(campsMeta);
                     controller = new Controller(model, views);
-                    views.mainView(model, controller);
+                    controller.initUI();
                 }
             });
         }

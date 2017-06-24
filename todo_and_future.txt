@@ -1,7 +1,11 @@
 TODO
 ----
 
-* View-stuff in a file
+* initui()
+* standard()
+* newuser()
+* changepw()
+
 * Save before new, iff logged and and editing.
 * IMPORT
 

@@ -6,6 +6,10 @@
   as part of a smarter model.
 
   API:
+    initUI
+    showLogin
+    showChangePassword
+    showNewUser
     login
     logout
     newUser
@@ -23,6 +27,27 @@ function Controller(model, views) {
 	this.model = model;
 	this.views = views
 	thiz = this;
+
+	thiz.initUI = function initUI() {
+		thiz.views.initUI(thiz.model, thiz);
+	};
+
+    //These just request a channge in the UI.
+	thiz.showLogin = function() {
+
+	};
+    thiz.showChangePassword = function() {
+
+	};
+	thiz.cancelChangePassword = function() {
+
+	};
+    thiz.showNewUser = function() {
+
+	};
+	thiz.cancelNewUser = function() {
+
+	};
 
     this.login = function(n, p) {
         checkUser($(n, p, function(err) {
@@ -176,7 +201,6 @@ function Controller(model, views) {
             });
         }
     };
-
 
     this.importCampaign = 'TODO';
 
