@@ -9,4 +9,6 @@ function Model(campaignList) {
 	this.user = {username:null, password:null, loggedIn:false}
 	this.userMessage = null;
 	this.campaignMessage = null;
+	this.changingPassword = false;
+	this.creatingUser = false;
 }

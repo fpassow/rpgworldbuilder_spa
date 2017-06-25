@@ -59,10 +59,7 @@ function Views() {
         _showNotLoggedIn();
 
         //Init the campaign list
-        new CampList????????????
-        THIS CURRENT WIDGET DOESN'T FIT THIS MODEL. IT IS A SELF CONTAINED SYTEM.
-        !!!--->>> IT CAN REFRESH ITSELF FROM THE SERVER. WRONG! WRONG! WRONG (FOR A VIEW).
-
+        _drawCampaignList(model, controller);
         //Init the campaign area
 
         thiz.standardView(model, controller);
@@ -114,5 +111,35 @@ function Views() {
         $("#user-state-loggedin").hide();
         $("#user-state-changingpw").hide();
     }
+
+
+
+    function _drawCampaignList(model, controller) {
+        var parent = $("#camplist-container");
+	    var camps = model.campaigns;
+	    parent.empty();
+	    parent.append('<h2>Campaigns</h2>');
+	    var currentUsername = null;
+	    camps.forEach(function(aCamp) {
+	        //Insert header before each user's campaigns
+	        if (aCamp.username != currentUsername) {
+	            var userHead = $('<h3 class="camps-userhead"></h3>');
+	            userHead.html(escapeHtml(aCamp.username));
+	            parent.append(userHead);
+	            currentUsername = aCamp.username;
+	        }
+	        var campy = $('<div class="camps-camp"></div>');
+	        if (!aCamp.title) {
+	            aCamp.title = '[nameless]';
+	        }
+	        campy.html(escapeHtml(aCamp.title));
+	        campy.on('click',function() {
+	        	controller.selectCampaign(aCamp);
+	        });
+	        parent.append(campy); 
+	    });
+    }
+
+    
 
 }
