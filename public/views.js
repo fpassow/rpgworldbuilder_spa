@@ -15,13 +15,13 @@ function Views() {
     // and gives everything else it's initial form.
     this.initUI = function(model, controller) {
 
-        //Wire up the buttons that just change the UI
+        //Wire up the buttons that just change the user UI
         $("#user-gotochangepw-button").on('click', function() {controller.showChangePassword();});
         $("#user-changepw-cancel").on('click', function() {controller.cancelChangePassword();});
         $("#user-new-button").on('click', function() {controller.showNewUser();});
         $("#user-createnew-cancel").on('click', function() {controller.cancelNewUser();});
     
-        //Wire up the buttons that do stuff
+        //Wire up the buttons that do user stuff
 
         $("#user-loginbutton").on('click', function() {
         	controller.login($("#user-username").val(), $("#user-password").val( ));
@@ -54,21 +54,70 @@ function Views() {
         		$("#user-changepw-new2").val()
         	);
         });
-	    
-	    //After wiring up user buttons, show the ones the user should see first.
-        _showNotLoggedIn();
 
-        //Init the campaign list
-        _drawCampaignList(model, controller);
-        //Init the campaign area
+        //CampaignList is drawn by standardView(...)
+        //Nothing to do for it here.
+	    
+	    //Set up buttons in the campaign area
+        $("#campaign-save").on('click', function() {
+            controller.saveCampaign(GET THE STATE?????);
+        });
+        $("#campaign-new").on('click', function() {
+            controller.newCampaign();
+        });
+        $("#campaign-import").on('click', function() {
+        	controller.importCampaign();
+        });
+        $("#campaign-clone").on('click', function() {
+        	controller.cloneCampaign();
+        });
+        $("#campaign-delete").on('click', function() {
+        	controller.deleteCampaign();
+        });
+        $("#campaign-new").show();
+        $("#campaign-save").hide();
+        $("#campaign-import").hide();
+        $("#campaign-clone").hide();
+        $("#campaign-delete").hide();
+    
+        //No campaign displayed at init. 
+        //  So nothing to do about that.
 
         thiz.standardView(model, controller);
-
     };
 
 
     this.standardView = function(model, controller) {
+    	if (model.creatingUser) {
+    		_showCreateNew();
+        } else if (model.changingPassword) {
+            _showChangingPw();
+        } else if (modle.loggedIn) {
+            _showLoggedIn(); 
+        } else {
+ 	        _showNotLoggedIn() {
+        }
 
+        _drawCampaignList(model, controller);
+
+        // SHOW CORRECT BUTTONS
+        ??????????????????????
+ NEXT::  ??? Write out the logic <<<===========<<<<
+        if (model.campaign) {
+        	$("#campaign-save").hide();
+            $("#campaign-clone").hide();
+        } else {
+
+
+        }
+
+        // IF CAMPAIGN AND USER CAN EDIT IT
+
+            // SHOW EDITOR
+
+        // ELSE
+
+            _drawStaticCampaignView(model);
 
 
 
@@ -140,6 +189,36 @@ function Views() {
 	    });
     }
 
+    function _drawStaticCampaignView(model) {
+    	var data = model.campaign;
+    	rwbDef = model.def;
+        var parent = $("#campaign-thecampaign");
+        var titleElement = $("<h2></h2>");
+        titleElement.html(escapeHtml(data['title']));
+        parent.append(titleElement);
     
+        var field, i;
+        var div;
+        //rwbDef.fields[0]  was the title
+        for (i = 1; i < rwbDef.fields.length; i++) {
+            parent.append('<h3>' + rwbDef.fields[i].label + '</h3>');
+            if (rwbDef.fields[i].isarrayfield) {
+                var arr = data[rwbDef.fields[i].name];
+                if (arr.length) {
+                    arr.forEach(function(x, index) {
+                        div = $("<div></div>");
+                        div.html(escapeHtml(x));
+                        parent.append(div)
+                    });
+                }
+            } else {
+                div = $("<div></div>");
+                div.html(escapeHtml(data[rwbDef.fields[i].name]));
+                parent.append(div);
+            }
+        }
+    }
+
+
 
 }

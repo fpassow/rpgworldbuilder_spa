@@ -1,9 +1,12 @@
 TODO
 ----
 
+* VIEWS.JS 103 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
 * Convert camp list widget code into a function that draws it from data in the model
 * Convert campaign widget code into functions that builds UI based on data from the model
-
+* Get campaign state for save button event
 * initui()
 * standard()
 * newuser()

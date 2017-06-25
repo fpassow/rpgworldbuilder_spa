@@ -17,7 +17,7 @@ $(document).ready(function(){    getCampaignDef(function(err, campDef) {
                     alert(JSON>stringify(err));
                 } else {
                     //Model has user, currentCampaign, campaigList, campaignsCache. But only init with data for a campaignList
-                    model = new Model(campsMeta);
+                    model = new Model(campsMeta, def);
                     controller = new Controller(model, views);
                     controller.initUI();
                 }
