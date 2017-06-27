@@ -16,6 +16,7 @@ function Views() {
     this.initUI = function(model, controller) {
 
         //Wire up the buttons that just change the user UI
+
         $("#user-gotochangepw-button").on('click', function() {controller.showChangePassword();});
         $("#user-changepw-cancel").on('click', function() {controller.cancelChangePassword();});
         $("#user-new-button").on('click', function() {controller.showNewUser();});
@@ -55,12 +56,11 @@ function Views() {
         	);
         });
 
-        //CampaignList is drawn by standardView(...)
-        //Nothing to do for it here.
+        _drawCampaignList(model, controller);
 	    
 	    //Set up buttons in the campaign area
         $("#campaign-save").on('click', function() {
-            controller.saveCampaign(GET THE STATE?????);
+            controller.saveInputs(_collectInputs());
         });
         $("#campaign-new").on('click', function() {
             controller.newCampaign();
@@ -82,8 +82,6 @@ function Views() {
     
         //No campaign displayed at init. 
         //  So nothing to do about that.
-
-        thiz.standardView(model, controller);
     };
 
 
@@ -219,6 +217,15 @@ function Views() {
         }
     }
 
-
+    function _collectInputs() {
+        //INPUT fields have ID's campedit-<name>-input
+        inputs = {};
+        var name;
+        for (var i = 0; i < rwbDef.fields.length; i++) {
+            name = rwbDef.fields[i].name;
+            inputs[name] = $("#campedit-" + name + "-input").val();
+        }
+        return inputs;
+    }
 
 }

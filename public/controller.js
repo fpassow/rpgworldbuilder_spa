@@ -10,6 +10,8 @@
     showLogin
     showChangePassword
     showNewUser
+    saveInputs
+    deleteArrayFieldItem
     login
     logout
     newUser
@@ -47,6 +49,21 @@ function Controller(model, views) {
 	};
 	thiz.cancelNewUser = function() {
 
+	};
+
+	thiz.saveInputs = function(inputValues) {
+        //for each field in the def
+           //look for name as key in inputValues
+           //if there's an interesting string
+               //if this is a simple field, set it on model.campaign.name
+               //if this is an array field, append it to model.comapaign.name
+        //save to server
+        //redraw without waiting
+	};
+	thiz.deleteArrayFieldItem = function(fieldName, arrayIndex, inputValues) {
+        //delete the given array item
+        //call savveInputs(inputValues)
+        //redraw without waiting
 	};
 
     this.login = function(n, p) {
@@ -127,7 +144,11 @@ function Controller(model, views) {
         });
     };
 
-    this.saveCampaign = function(newCampaignState) {
+    this.saveCampaign = function(inputElementVaues) {
+
+        // UPDATE THE MODEL WITH inputElementVaues
+        // THESE ARE THE VALUES OF SIMPLE FIELDS, AND POTENTIAL LAST ADDITIONS TO ARRAY FIELDS
+
     	thiz.model.campaign = newCampaignState;
     	if (!thiz.model.user.loggedIn) {
     		thiz.views.printView(thiz.model, thiz);

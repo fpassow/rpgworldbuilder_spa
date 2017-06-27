@@ -1,16 +1,19 @@
 TODO
 ----
 
-* VIEWS.JS 103 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+SHOULD THE CONTROLLER BE ABLE TO JUST READ STUFF WITH JQUERY?????
 
 
-* Convert camp list widget code into a function that draws it from data in the model
-* Convert campaign widget code into functions that builds UI based on data from the model
-* Get campaign state for save button event
+* Use collectInputs in [Save]
+
+
+* Function to draw campaign editor WHICH SENDS ALL USER ACTIONS TO THE CONTROLLER
 * initui()
 * standard()
 * newuser()
 * changepw()
+
+* Make changes of focus friendly
 
 * Save before new, iff logged and and editing.
 * IMPORT
