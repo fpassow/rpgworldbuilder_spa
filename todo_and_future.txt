@@ -3,12 +3,8 @@ TODO
 
 SHOULD THE CONTROLLER BE ABLE TO JUST READ STUFF WITH JQUERY?????
 
+* NEXT: VIEW.JS LINE 105. DOC THE CASES OUTSIDE OF CODE!
 
-* Use collectInputs in [Save]
-
-
-* Function to draw campaign editor WHICH SENDS ALL USER ACTIONS TO THE CONTROLLER
-* initui()
 * standard()
 * newuser()
 * changepw()
