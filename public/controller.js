@@ -2,28 +2,78 @@
   This controller has references to the model and the views, but keeps no other state of its own,
   and the model is just data. (And server access details are hidden in clientlib.sj.)
 
-  If these controller functions start getting large, look for code that would also make sense
-  as part of a smarter model.
+  The controller receives very simple UI events, basically just clicks. The event processing code
+  has utility methods to pull user inputs from the UI, and clientlib.js functions to talk to the server.
+*/
 
-  API:
-    initUI
-    showLogin
-    showChangePassword
-    showNewUser
-    saveInputs
-    deleteArrayFieldItem
-    login
-    logout
-    newUser
-    deleteUser
-    changePassword
-    selectCampaign
-    saveCampaign
-    cloneCampaign
-    newCampaign
-    importCampaign
-    deleteCampaign
- */
+	MOVE ALL THIS WIRING INTO THE CONTROLLER SO EVENT PROCESSOR FUNCTIONS ARE IN SCOPE
+
+    //Wire events from the static html
+
+    $("#user-loginbutton").on('click',eventUserLogin);
+	$("#user-password").on('keyup', function(e) {
+	    if (e.keyCode === 13) {//return key
+	        eventUserLogin();
+	    }
+	});
+    $("#user-new-button").on('click', eventUserNew);
+    $("#user-logout-button").on('click',eventUserLogout);
+    $("#user-gotochangepw-button").on('click',eventUserGotochangepw);
+	$("#user-deleteuser").on('click', eventUserDeleteuser);
+	$("#user-changepw-button").on('click', eventUserChangepw);
+	$("#user-changepw-cancel").on('click', eventUserChangepwCancel);
+	$("#user-createnew-button").on('click', eventUserCreatenew);
+	$("#user-createnew-cancel").on('click', eventUserCreatnew);
+	$("#campaign-new").on('click', eventCampaignNew);
+	$("#campaign-save").on('click', eventCampaignSave);
+	$("#campaign-import").on('click', eventCampaignImport);
+	$("#campaign-clone").on('click', eventCampaignClone);
+	$("#campaign-delete").on('click', eventCampaignDelete);
+	$("#savebox-print").on('click', eventSaveboxPrint);
+	$("#savebox-close").on('click', eventSaveboxClose);
+	$("#hintbox-close").on('click', eventHintboxClose);
+
+    //Events from dynamically generated HTML:
+    //  Clicking delete on an array field item callscontroller.deleteArrayFieldItem(fieldName, arrayIndex)
+    //  Clicking [Add] or hitting return on the input for an array field calls controller.saveInputs();
+    //  Clicking a campaign in the CamplaignList calls controller.selectCampaign(campMeta);
+
+
+    //Utility function to pull data from the user section INPUT elements
+    function _readUserInputs() {
+    	var ui = {};
+        uin.login.username = $("#user-username").val();
+        uin.login.password = $("#user-password").val( );
+    	
+    	uin.create.username = $("#user-createnew-username").val();
+        uin.create.password1 = $("#user-createnew-password1").val();
+        uin.create.password2 = $("#user-createnew-password2").val();
+
+        uin.changepw.old = $("#user-changepw-old").val();
+        uin.changepw.new1 = $("#user-changepw-new1").val();
+        uin.changepw.new2 = $("#user-changepw-new2").val()
+
+        return uin;
+    }
+
+    //Utility function to pull data from the user section INPUT elements
+    function _readCampaignInputs() {
+        //INPUT fields have ID's campedit-<name>-input
+        inputs = {};
+        var name;
+        for (var i = 0; i < rwbDef.fields.length; i++) {
+            name = rwbDef.fields[i].name;
+            inputs[name] = $("#campedit-" + name + "-input").val();
+        }
+        return inputs;
+    }
+
+
+    //END OF UI INTERCONNECTION CODE.
+
+
+
+
 function Controller(model, views) {
 
 	this.model = model;
