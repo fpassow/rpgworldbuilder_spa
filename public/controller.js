@@ -6,11 +6,15 @@
   has utility methods to pull user inputs from the UI, and clientlib.js functions to talk to the server.
 */
 
-	MOVE ALL THIS WIRING INTO THE CONTROLLER SO EVENT PROCESSOR FUNCTIONS ARE IN SCOPE
+function Controller(model, views) {
+
+	this.model = model;
+	this.views = views
+	thiz = this;
 
     //Wire events from the static html
 
-    $("#user-loginbutton").on('click',eventUserLogin);
+    $("#user-loginbutton").on('click',eventUserLogin); //  <<<<<<==============
 	$("#user-password").on('keyup', function(e) {
 	    if (e.keyCode === 13) {//return key
 	        eventUserLogin();
@@ -23,15 +27,15 @@
 	$("#user-changepw-button").on('click', eventUserChangepw);
 	$("#user-changepw-cancel").on('click', eventUserChangepwCancel);
 	$("#user-createnew-button").on('click', eventUserCreatenew);
-	$("#user-createnew-cancel").on('click', eventUserCreatnew);
+	$("#user-createnew-cancel").on('click', eventUserCreatenewCancel);
 	$("#campaign-new").on('click', eventCampaignNew);
 	$("#campaign-save").on('click', eventCampaignSave);
-	$("#campaign-import").on('click', eventCampaignImport);
-	$("#campaign-clone").on('click', eventCampaignClone);
-	$("#campaign-delete").on('click', eventCampaignDelete);
-	$("#savebox-print").on('click', eventSaveboxPrint);
-	$("#savebox-close").on('click', eventSaveboxClose);
-	$("#hintbox-close").on('click', eventHintboxClose);
+	$("#campaign-import").on('click', eventCampaignImport);//
+	$("#campaign-clone").on('click', eventCampaignClone);//
+	$("#campaign-delete").on('click', eventCampaignDelete);//
+	$("#savebox-print").on('click', eventSaveboxPrint);//
+	$("#savebox-close").on('click', eventSaveboxClose);//
+	$("#hintbox-close").on('click', eventHintboxClose);//
 
     //Events from dynamically generated HTML:
     //  Clicking delete on an array field item callscontroller.deleteArrayFieldItem(fieldName, arrayIndex)
@@ -57,64 +61,44 @@
     }
 
     //Utility function to pull data from the user section INPUT elements
+    //  **and** add them to model.campaign, because we always want to.
     function _readCampaignInputs() {
         //INPUT fields have ID's campedit-<name>-input
-        inputs = {};
-        var name;
-        for (var i = 0; i < rwbDef.fields.length; i++) {
-            name = rwbDef.fields[i].name;
-            inputs[name] = $("#campedit-" + name + "-input").val();
+        var fields = model.def.fields;
+        var field, val;
+        for (var i = 0; i < fields.length; i++) {
+            field = fields[i];
+            val = $("#campedit-" + name + "-input").val();
+            if (val && val.trim().length) {
+            	if (field.isarrayfield) {
+                    if (!model.campaign[field.name[]) {
+                    	model.campaign[field.name] = [];
+                    }
+                    model.campaign[field.name].push(val);
+            	} else {
+            		model.campaign[field.name] = val;
+            	}
+            }
         }
-        return inputs;
     }
-
 
     //END OF UI INTERCONNECTION CODE.
 
 
+/* USEFUL FOR CAMAPIGN AREA BUTTON CONTROL
+        $("#campaign-new").show();
+        $("#campaign-save").hide();
+        $("#campaign-import").hide();
+        $("#campaign-clone").hide();
+        $("#campaign-delete").hide();
+        */
 
-
-function Controller(model, views) {
-
-	this.model = model;
-	this.views = views
-	thiz = this;
-
-	thiz.initUI = function initUI() {
-		thiz.views.initUI(thiz.model, thiz);
-	};
-
-    //These just request a channge in the UI.
-	thiz.showLogin = function() {
-
-	};
-    thiz.showChangePassword = function() {
-
-	};
-	thiz.cancelChangePassword = function() {
-
-	};
-    thiz.showNewUser = function() {
-
-	};
-	thiz.cancelNewUser = function() {
-
-	};
-
-	thiz.saveInputs = function(inputValues) {
-        //for each field in the def
-           //look for name as key in inputValues
-           //if there's an interesting string
-               //if this is a simple field, set it on model.campaign.name
-               //if this is an array field, append it to model.comapaign.name
-        //save to server
-        //redraw without waiting
-	};
-	thiz.deleteArrayFieldItem = function(fieldName, arrayIndex, inputValues) {
-        //delete the given array item
-        //call savveInputs(inputValues)
-        //redraw without waiting
-	};
+    this.eventUserGotochangepw = function() {
+        $("#user-state-notloggedin").hide();
+        $("#user-state-loggedin").hide();
+        $("#user-state-changingpw").show();
+        $("#user-state-createnew").hide();
+    };
 
     this.login = function(n, p) {
         checkUser($(n, p, function(err) {
@@ -133,7 +117,7 @@ function Controller(model, views) {
         });
     };
 
-    this.logout = function() {
+    this.eventUserLogout = function() {
     	//The server has no concept of "logged in". So we're just dropping local state.
     	thiz.model.user.username = null;
         thiz.model.user.password = null;
@@ -141,7 +125,11 @@ function Controller(model, views) {
         thiz.views.standardView(thiz.model, thiz);
     };
 
-    this.newUser = function(n, p, pp) {
+    this.eventUserNew = function(n, p, pp) {
+    	var uin = _readUserInputs();
+    	var n = uin.create.username;
+        var p = uin.create.password1;
+        var pp = uin.create.password2;
         if (n && n.length && p && p.length && pp && pp.length && p === pp) {
             createUser(n, p, function(err) {
                 if (err) {
@@ -160,9 +148,13 @@ function Controller(model, views) {
         }
     };
 
-    this.deleteUser function() {alert('FUNCTION NOT WRITTEN YET');};
+    this.eventUserDeleteuser = function() {alert('FUNCTION NOT WRITTEN YET');};
 
-    this.changePassword = function(oldPw, newPw1, newPw2) {
+    this.eventUserChangepw = function() {
+    	var uin = _readUserInputs();
+    	var oldPw = uin.changepw.old;
+    	var newPw1 = ui.changepw.new1;
+    	var newPw2 = ui.changepw.new2;
         if (!(oldPw && newPw1 && newPw2 && oldPw.length && newPw1.length && newPw2.length)) {
             alert('All three fields are required.');
             return;//no need to redraw
@@ -183,6 +175,33 @@ function Controller(model, views) {
         });
     };
 
+    this.eventUserChangepwCancel = function() {
+        $("#user-state-loggedin").show();
+        $("#user-state-changingpw").hide();
+        $("#user-state-notloggedin").hide();
+        $("#user-state-createnew").hide();
+
+    };
+
+    this.eventUserCreatenew = function() {
+        $("#user-state-loggedin").hide();
+        $("#user-state-changingpw").hide();
+        $("#user-state-notloggedin").hide();
+        $("#user-state-createnew").show();
+    }
+
+    this.eventUserCreatenewCancel = function() {
+        $("#user-state-changingpw").hide();
+        $("#user-state-createnew").hide();
+        if (model.user.loggedIn) {
+            $("#user-state-loggedin").show();
+            $("#user-state-notloggedin").hide();
+        } else {
+            $("#user-state-loggedin").hide();
+            $("#user-state-notloggedin").show();
+        }
+    }
+
     this.selectCampaign = function(campMeta) {
         loadCampaign(campMeta.username, campMeta.campaignId, function(err, camp) {
             if (err) {
@@ -194,36 +213,32 @@ function Controller(model, views) {
         });
     };
 
-    this.saveCampaign = function(inputElementVaues) {
+    this.eventCampaignSave = function() {
 
-        // UPDATE THE MODEL WITH inputElementVaues
-        // THESE ARE THE VALUES OF SIMPLE FIELDS, AND POTENTIAL LAST ADDITIONS TO ARRAY FIELDS
+        //Update the model with data from input's and textarea's
+        var inputs = _readCampaignInputs();
 
-    	thiz.model.campaign = newCampaignState;
-    	if (!thiz.model.user.loggedIn) {
-    		thiz.views.printView(thiz.model, thiz);
+    	if (!tmodel.user.loggedIn) {
+    		thiz.views.printView(model, thiz);
     	} else {
-            thiz.model.campaignMessage = "Saving.....";
-            newCampaignState.username = thiz.model.user.username;
-            newCampaignState.campaignId = thiz.model.campaign.campaignId;
-            thiz.campaign = newCampaignState;
-            storeCampaign(thiz.model.user.username, thiz.model.user.password, thiz.campaign, function(err) {
+            model.campaignMessage = "Saving.....";
+            storeCampaign(model.user.username, model.user.password, model.campaign, function(err) {
                 //Clear "Saving..." message. But make sure it lasts at least half a second.
                 if (err) {
                     alert(JSON.stringify(err));
-                    thiz.views.standardView(thiz.model, thiz);
+                    views.standardView(model, thiz);
                 } else {
                     findCampaignsMetadata({}, function(err, campsMeta) {
                 	    if (err) {
                             alert(JSON>stringify(err));
-                            thiz.model.campaignMessage = "";
-                	        thiz.views.standardView(thiz.model, thiz);
+                            model.campaignMessage = "";
+                	        views.standardView(model, thiz);
                         } else {
-                    	    thiz.model.campaignList = campsMeta;----------------------
-                            thiz.views.standardView(thiz.model, thiz);
+                    	    model.campaignList = campsMeta;----------------------
+                            views.standardView(thiz.model, thiz);
                             setTimeout(function() {
-                	            thiz.model.campaignMessage = "";
-                	            thiz.views.standardView(thiz.model, thiz);
+                	            model.campaignMessage = "";
+                	            views.standardView(thiz.model, thiz);
                             }, 500);
                         }
                     });
@@ -244,12 +259,12 @@ function Controller(model, views) {
 
     };
 
-    this.newCampaign = function() {
-        thiz.model.campaign = {};
-        thiz.model.campaign.campaignId = "ID" + Math.random();
-        thiz.model.campaign.username = thiz.model.user.username;
+    this.eventCampaignNew = function() {
+        model.campaign = {};
+        model.campaign.campaignId = "ID" + Math.random();
+        model.campaign.username = model.user.username;
         //No point in saving an empty campaign
-        thiz.views.standardView(thiz.model, thiz);
+        views.standardView(model, thiz);
     };
     
     this.deleteCampaign = function() {

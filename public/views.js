@@ -9,40 +9,7 @@
 
 function Views() {
 
-
-
-
-
-
         _drawCampaignList(model, controller);
-	    
-	    //Set up buttons in the campaign area
-        $("#campaign-save").on('click', function() {
-            controller.saveInputs(_collectInputs());
-        });
-        $("#campaign-new").on('click', function() {
-            controller.newCampaign();
-        });
-        $("#campaign-import").on('click', function() {
-        	controller.importCampaign();
-        });
-        $("#campaign-clone").on('click', function() {
-        	controller.cloneCampaign();
-        });
-        $("#campaign-delete").on('click', function() {
-        	controller.deleteCampaign();
-        });
-        $("#campaign-new").show();
-        $("#campaign-save").hide();
-        $("#campaign-import").hide();
-        $("#campaign-clone").hide();
-        $("#campaign-delete").hide();
-    
-        //No campaign displayed at init. 
-        //  So nothing to do about that.
-
-        $("#hintbox-close").on('click', _hideHint);
-    };
 
 
     this.standardView = function(model, controller) {
@@ -55,7 +22,6 @@ function Views() {
         } else {
  	        _showNotLoggedIn() {
         }
-
         _drawCampaignList(model, controller);
 
         // SHOW CORRECT BUTTONS
@@ -95,32 +61,6 @@ function Views() {
     };
 
 
-    //Functions to swap what's shown in user area. 
-    //Used by some buttons, and after login, logout, etc.
-    function _showNotLoggedIn() {
-        $("#user-state-loggedin").hide();
-        $("#user-state-changingpw").hide();
-        $("#user-state-notloggedin").show();
-        $("#user-state-createnew").hide();
-    }
-    function _showLoggedIn() {
-        $("#user-state-notloggedin").hide();
-        $("#user-state-changingpw").hide();
-        $("#user-state-loggedin").show();
-        $("#user-state-createnew").hide();
-    }
-    function _showChangingPw() {
-        $("#user-state-notloggedin").hide();
-        $("#user-state-loggedin").hide();
-        $("#user-state-changingpw").show();
-        $("#user-state-createnew").hide();
-    }
-    function _showCreateNew() {
-        $("#user-state-createnew").show();
-        $("#user-state-notloggedin").hide();
-        $("#user-state-loggedin").hide();
-        $("#user-state-changingpw").hide();
-    }
 
 
 
