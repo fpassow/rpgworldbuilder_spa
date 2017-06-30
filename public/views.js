@@ -167,12 +167,7 @@ function Views() {
         $("#hintbox-content").html(hintcontent);
         $("#hintbox").css("display", "block");
     }
-    function _hideHint() {
-        $("#hintbox").css("display", "none");
-    }
-
-
-
+ 
 
 function _drawCampaignEditor(rwbDef, model, controller) {
     var data = model.campaign;
@@ -214,7 +209,7 @@ function _drawCampaignEditor(rwbDef, model, controller) {
         target.append('<div class="rwb-field-label">' + def.label + '</div>');
         var instructoid = $('<div class="rwb-field-docblock"></div>');
         instructoid.append('<div class="rwb-field-docblock-instructions">' + def.instructions + '</div>');
-        instructoid.append(_createHints(this.hints));
+        instructoid.append(_createHints(def.hints));
         target.append(instructoid);
         var dataDiv = $('<div class="rwb-field-data"></div>');
         if (arr.length) {

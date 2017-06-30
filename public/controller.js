@@ -14,7 +14,7 @@ function Controller(model, views) {
 
     //Wire events from the static html
 
-    $("#user-loginbutton").on('click',eventUserLogin); //  <<<<<<==============
+    $("#user-login-button").on('click',eventUserLogin); 
 	$("#user-password").on('keyup', function(e) {
 	    if (e.keyCode === 13) {//return key
 	        eventUserLogin();
@@ -30,11 +30,11 @@ function Controller(model, views) {
 	$("#user-createnew-cancel").on('click', eventUserCreatenewCancel);
 	$("#campaign-new").on('click', eventCampaignNew);
 	$("#campaign-save").on('click', eventCampaignSave);
-	$("#campaign-import").on('click', eventCampaignImport);//
-	$("#campaign-clone").on('click', eventCampaignClone);//
-	$("#campaign-delete").on('click', eventCampaignDelete);//
-	$("#savebox-print").on('click', eventSaveboxPrint);//
-	$("#savebox-close").on('click', eventSaveboxClose);//
+	$("#campaign-import").on('click', eventCampaignImport);// TODO <<<------------<<<<<<
+	$("#campaign-clone").on('click', eventCampaignClone);
+	$("#campaign-delete").on('click', eventCampaignDelete);
+	$("#savebox-print").on('click', eventSaveboxPrint);
+	$("#savebox-close").on('click', eventSaveboxClose);
 	$("#hintbox-close").on('click', eventHintboxClose);//
 
     //Events from dynamically generated HTML:
@@ -79,7 +79,6 @@ function Controller(model, views) {
             		model.campaign[field.name] = val;
             	}
             }
-        }
     }
 
     //END OF UI INTERCONNECTION CODE.
@@ -100,7 +99,10 @@ function Controller(model, views) {
         $("#user-state-createnew").hide();
     };
 
-    this.login = function(n, p) {
+    this.eventUserLogin = function() {
+    	var uin = _readUserInputs();
+    	var n = uin.username;
+    	var p = uin.password;
         checkUser($(n, p, function(err) {
             if (err) {
                 thiz.user.username = n;
@@ -108,24 +110,24 @@ function Controller(model, views) {
                 thiz.user.loggedIn = false;
                 thiz.userMessage = "Login failed:" + JSON.stringify(err));
             } else {
-                thiz.username = n;
-                thiz.password = p;
-                thiz.loggedIn = true;
-                thiz.userMessage = "Logged in as <b>" + u + "</b>";
+                model.model.username = n;
+                model.password = p;
+                model.loggedIn = true;
+                model.userMessage = "Logged in as <b>" + u + "</b>";
             }
-            thiz.views.standardView(thiz.model, thiz);
+            views.standardView(thiz.model, thiz);
         });
     };
 
     this.eventUserLogout = function() {
     	//The server has no concept of "logged in". So we're just dropping local state.
-    	thiz.model.user.username = null;
-        thiz.model.user.password = null;
-        thiz.model.user.loggedIn = false;
-        thiz.views.standardView(thiz.model, thiz);
+    	.user.username = null;
+        model.user.password = null;
+        model.user.loggedIn = false;
+        views.standardView(thiz.model, thiz);
     };
 
-    this.eventUserNew = function(n, p, pp) {
+    this.eventUserNew = function() {
     	var uin = _readUserInputs();
     	var n = uin.create.username;
         var p = uin.create.password1;
@@ -135,11 +137,11 @@ function Controller(model, views) {
                 if (err) {
                     alert(JSON.stringify(err));
                 } else {
-                    thiz.model.user.username = n;
-                    thiz.model.user.password = p;
-                    thiz.model.loggedIn = true;
-                    thiz.model.usermessage = "Logged in as <b>" + n + "</b>";
-                    thiz.views.standardView(thiz.model, thiz);
+                    model.user.username = n;
+                    model.user.password = p;
+                    model.loggedIn = true;
+                    model.usermessage = "Logged in as <b>" + n + "</b>";
+                    views.standardView(thiz.model, thiz);
                 }
             });
         } else {
@@ -207,27 +209,32 @@ function Controller(model, views) {
             if (err) {
                 alert(JSON.stringify(err));
             } else {
-                thiz.model.campaign = camp;
-                thiz.views.standardView(thiz.model, thiz);
+                model.campaign = camp;
+                views.standardView(thiz.model, thiz);
             }
         });
     };
 
     this.eventCampaignSave = function() {
-
-        //Update the model with data from input's and textarea's
         var inputs = _readCampaignInputs();
-
-    	if (!tmodel.user.loggedIn) {
-    		thiz.views.printView(model, thiz);
+    	if (!model.user.loggedIn) {
+    		views.printView(model, thiz);
     	} else {
-            model.campaignMessage = "Saving.....";
+            _saveCampaignToServer();
+            views.standardView(thiz.model, thiz);
+        }
+    }
+
+    function _saveCampaignToServer() {
+            _writeCampaignMessage("Saving.....");
             storeCampaign(model.user.username, model.user.password, model.campaign, function(err) {
                 //Clear "Saving..." message. But make sure it lasts at least half a second.
                 if (err) {
                     alert(JSON.stringify(err));
+                    model.campaignMessage = "";
                     views.standardView(model, thiz);
                 } else {
+                	//Refresh the campaign list
                     findCampaignsMetadata({}, function(err, campsMeta) {
                 	    if (err) {
                             alert(JSON>stringify(err));
@@ -235,10 +242,9 @@ function Controller(model, views) {
                 	        views.standardView(model, thiz);
                         } else {
                     	    model.campaignList = campsMeta;----------------------
-                            views.standardView(thiz.model, thiz);
                             setTimeout(function() {
                 	            model.campaignMessage = "";
-                	            views.standardView(thiz.model, thiz);
+                	            views.standardView(model, thiz);
                             }, 500);
                         }
                     });
@@ -246,17 +252,19 @@ function Controller(model, views) {
             });            
         }
     };
+    function _writeCampaignMessage(msg) {
+    	$("#campaign-message").html(msg);
+    }
 
-    this.cloneCampaign = function() {
-        if (thiz.model.campaign) {
-            thiz.model.campaign.username = thiz.model.user.username;
-            thiz.model.campaign.campaignId = "ID" + Math.random();
-            //No new data here. Don't save until told to.
+    this.eventCampaignClone = function() {
+        if (model.campaign) {
+            model.campaign.username = model.user.username;
+            model.campaign.campaignId = "ID" + Math.random();
+            _saveCampaignToServer();//Also displays a view
         } else {
             alert('Nothing to clone');
-            thiz.views.standardView(thiz.model, thiz);
+            views.standardView(model, thiz);
         }
-
     };
 
     this.eventCampaignNew = function() {
@@ -267,20 +275,24 @@ function Controller(model, views) {
         views.standardView(model, thiz);
     };
     
-    this.deleteCampaign = function() {
+    this.eventCampaignDelete = function() {
         if (confirm('Delete this campaign?')) {
-            deleteCampaign(thiz.model.user.username, thiz.model.user.password, thiz.model.campaign.campaignId, function(err) {
+            deleteCampaign(model.user.username, model.user.password, model.campaign.campaignId, function(err) {
                 if (err) {
                     alert(JSON.stringify(err));
                 } else {
-                	thiz.model.campaign = null;
+                	model.campaign = null;
                     findCampaignsMetadata({}, function(err, campsMeta) {
                 	    if (err) {
                             alert(JSON>stringify(err));
-                	        thiz.views.standardView(thiz.model, thiz);
+                            model.campaignMessage = "";
+                	        views.standardView(model, thiz);
                         } else {
-                    	    thiz.model.campaignList = campsMeta;----------------------
-                            thiz.views.standardView(thiz.model, thiz);
+                    	    model.campaignList = campsMeta;----------------------
+                            setTimeout(function() {
+                	            model.campaignMessage = "";
+                	            views.standardView(model, thiz);
+                            }, 500);
                         }
                     });
                 }
@@ -289,5 +301,20 @@ function Controller(model, views) {
     };
 
     this.importCampaign = 'TODO';
+
+    this.eventSaveboxPrint = function() {
+        window.print();
+        eventSaveboxClose();
+    }
+
+    this.eventSaveboxClose = function() {
+    	$("#savebox").hide();
+    }
+
+    this.eventHintboxClose = function() {
+    	$("#hintbox").hide();
+    }
+
+
 
 }
