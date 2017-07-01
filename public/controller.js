@@ -14,7 +14,7 @@ function Controller(model, views) {
 
     //Wire events from the static html
 
-    $("#user-login-button").on('click',eventUserLogin); 
+    $("#user-login-button").on('click', eventUserLogin); 
 	$("#user-password").on('keyup', function(e) {
 	    if (e.keyCode === 13) {//return key
 	        eventUserLogin();
@@ -71,7 +71,7 @@ function Controller(model, views) {
             val = $("#campedit-" + name + "-input").val();
             if (val && val.trim().length) {
             	if (field.isarrayfield) {
-                    if (!model.campaign[field.name[]) {
+                    if (!model.campaign[field.name]) {
                     	model.campaign[field.name] = [];
                     }
                     model.campaign[field.name].push(val);
@@ -90,18 +90,18 @@ function Controller(model, views) {
         $("#campaign-delete").hide();
         */
 
-    this.eventUserGotochangepw = function() {
+    function eventUserGotochangepw () {
         $("#user-state-notloggedin").hide();
         $("#user-state-loggedin").hide();
         $("#user-state-changingpw").show();
         $("#user-state-createnew").hide();
     };
 
-    this.eventUserLogin = function() {
+    function eventUserLogin() {
     	var uin = _readUserInputs();
     	var n = uin.username;
     	var p = uin.password;
-        checkUser($(n, p, function(err) {
+        checkUser(n, p, function(err) {
             if (err) {
                 model.user.username = n;
                 model.user.password = null;
@@ -117,7 +117,7 @@ function Controller(model, views) {
         });
     };
 
-    this.eventUserLogout = function() {
+    function eventUserLogout() {
     	//The server has no concept of "logged in". So we're just dropping local state.
     	model.user.username = null;
         model.user.password = null;
@@ -125,7 +125,7 @@ function Controller(model, views) {
         views.standardView(model, thiz);
     };
 
-    this.eventUserNew = function() {
+    function eventUserNew() {
     	var uin = _readUserInputs();
     	var n = uin.create.username;
         var p = uin.create.password1;
@@ -148,9 +148,9 @@ function Controller(model, views) {
         }
     };
 
-    this.eventUserDeleteuser = function() {alert('FUNCTION NOT WRITTEN YET');};
+    function eventUserDeleteuser() {alert('FUNCTION NOT WRITTEN YET');};
 
-    this.eventUserChangepw = function() {
+    function eventUserChangepw() {
     	var uin = _readUserInputs();
     	var oldPw = uin.changepw.old;
     	var newPw1 = ui.changepw.new1;
@@ -175,7 +175,7 @@ function Controller(model, views) {
         });
     };
 
-    this.eventUserChangepwCancel = function() {
+    function eventUserChangepwCancel() {
         $("#user-state-loggedin").show();
         $("#user-state-changingpw").hide();
         $("#user-state-notloggedin").hide();
@@ -183,14 +183,14 @@ function Controller(model, views) {
 
     };
 
-    this.eventUserCreatenew = function() {
+    function eventUserCreatenew() {
         $("#user-state-loggedin").hide();
         $("#user-state-changingpw").hide();
         $("#user-state-notloggedin").hide();
         $("#user-state-createnew").show();
     }
 
-    this.eventUserCreatenewCancel = function() {
+    function eventUserCreatenewCancel() {
         $("#user-state-changingpw").hide();
         $("#user-state-createnew").hide();
         if (model.user.loggedIn) {
@@ -202,7 +202,7 @@ function Controller(model, views) {
         }
     }
 
-    this.selectCampaign = function(campMeta) {
+    function selectCampaign(campMeta) {
         loadCampaign(campMeta.username, campMeta.campaignId, function(err, camp) {
             if (err) {
                 alert(JSON.stringify(err));
@@ -213,7 +213,7 @@ function Controller(model, views) {
         });
     };
 
-    this.eventCampaignSave = function() {
+    function eventCampaignSave() {
         var inputs = _readCampaignInputs();
     	if (!model.user.loggedIn) {
     		views.printView(model, thiz);
@@ -239,7 +239,7 @@ function Controller(model, views) {
                             model.campaignMessage = "";
                 	        views.standardView(model, thiz);
                         } else {
-                    	    model.campaignList = campsMeta;----------------------
+                    	    model.campaignList = campsMeta;
                             setTimeout(function() {
                 	            model.campaignMessage = "";
                 	            views.standardView(model, thiz);
@@ -254,7 +254,7 @@ function Controller(model, views) {
     	$("#campaign-message").html(msg);
     }
 
-    this.eventCampaignClone = function() {
+    function eventCampaignClone() {
         if (model.campaign) {
             model.campaign.username = model.user.username;
             model.campaign.campaignId = "ID" + Math.random();
@@ -265,7 +265,7 @@ function Controller(model, views) {
         }
     };
 
-    this.eventCampaignNew = function() {
+    function eventCampaignNew() {
         model.campaign = {};
         model.campaign.campaignId = "ID" + Math.random();
         model.campaign.username = model.user.username;
@@ -273,7 +273,7 @@ function Controller(model, views) {
         views.standardView(model, thiz);
     };
     
-    this.eventCampaignDelete = function() {
+    function eventCampaignDelete() {
         if (confirm('Delete this campaign?')) {
             deleteCampaign(model.user.username, model.user.password, model.campaign.campaignId, function(err) {
                 if (err) {
@@ -286,7 +286,7 @@ function Controller(model, views) {
                             model.campaignMessage = "";
                 	        views.standardView(model, thiz);
                         } else {
-                    	    model.campaignList = campsMeta;----------------------
+                    	    model.campaignList = campsMeta;
                             setTimeout(function() {
                 	            model.campaignMessage = "";
                 	            views.standardView(model, thiz);
@@ -298,20 +298,39 @@ function Controller(model, views) {
         }
     };
 
-    this.importCampaign = 'TODO';
+    function importCampaign() {alert('TODO')};
 
-    this.eventSaveboxPrint = function() {
+    function eventSaveboxPrint() {
         window.print();
     }
 
-    this.eventSaveboxClose = function() {
+    function eventSaveboxClose() {
     	$("#savebox").hide();
     }
 
-    this.eventHintboxClose = function() {
+    function eventHintboxClose() {
     	$("#hintbox").hide();
     }
 
+// Make these visible on this object
+    this.eventUserLogin = eventUserLogin;
+    this.eventUserNew = eventUserNew;
+    this.eventUserLogout = eventUserLogout;
+    this.eventUserGotochangepw = eventUserGotochangepw;
+	this.eventUserDeleteuser = eventUserDeleteuser;
+	this.eventUserChangepw = eventUserChangepw;
+	this.eventUserChangepwCancel = eventUserChangepwCancel;
+	this.eventUserCreatenew = eventUserCreatenew;
+	this.eventUserCreatenewCancel = eventUserCreatenewCancel;
+	this.eventCampaignNew = eventCampaignNew;
+	this.eventCampaignSave = eventCampaignSave;
+	this.eventCampaignImport = eventCampaignImport;
+	this.eventCampaignClone = eventCampaignClone;
+    this.eventCampaignDelete = eventCampaignDelete;
+	this.eventSaveboxPrint = eventSaveboxPrint;
+	this.eventSaveboxClose = eventSaveboxClose;
+	this.eventHintboxClose = eventHintboxClose;
 
+	this.selectCampaign = selectCampaign;
 
 }
