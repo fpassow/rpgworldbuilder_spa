@@ -39,14 +39,15 @@ function Views() {
             if (campIsMine) {
             	_drawCampaignEditor(model, controller)
             } else {
-            	_drawStaticCampaignView(model);
+            	_drawStaticCampaignView("campaign-thecampaign", model);
             }
         }
     };
 
 
     this.printView = function(model, controller) {
-
+        $("#savebox").show();
+        _drawStaticCampaignView("savebox-content", model);
     };
 
     this.importView = function(model, controller) {
@@ -81,10 +82,10 @@ function Views() {
 	    });
     }
 
-    function _drawStaticCampaignView(model) {
+    function _drawStaticCampaignView(targetId, model) {
     	var data = model.campaign;
     	rwbDef = model.def;
-        var parent = $("#campaign-thecampaign");
+        var parent = $("#" + targetId);
         var titleElement = $("<h2></h2>");
         titleElement.html(escapeHtml(data['title']));
         parent.append(titleElement);
