@@ -1,16 +1,13 @@
 /*
- * Stateless bag of functions. Each takes the model controller, draws a different sort of view, 
- *   and wires the controller's public "action" methods into the view's events.
+ * Stateless bag of functions. Each takes the model and controller, draws a different sort of view, 
+ * These functions NEVER change the model. And they never communicate with the server.
+ * They (mostly) use references to zero-argument functions off the controller to dynamically
+ *   set event handlers when necessary.
  *
- * initUI(model, controller)
- * standardView(model, controller)
- * importView(model, controller)
+ * Internal utility functions are prefixed with _anUnerbar.
  */
 
 function Views() {
-
-        _drawCampaignList(model, controller);
-
 
     this.standardView = function(model, controller) {
     	if (model.creatingUser) {
@@ -24,30 +21,27 @@ function Views() {
         }
         _drawCampaignList(model, controller);
 
-        // SHOW CORRECT BUTTONS
+        //Some useful logic for deciding what to show
+        var loggedIn = model.loggedIn;
+        var haveCampaign = !!model.campaign;
+        //Note: If I am not logged in and create a new campaign (with no user name), it's mine.
+        var campIsMine = haveCampaign && model.user.username === model.campaign.username;
 
-        //cases from X of loggedIn, haveCampaign, campaignIsMine
-        
-        ??????????????????????
- NEXT::  ??? Write out the logic <<<===========<<<<
-        if (model.campaign) {
-        	$("#campaign-save").hide();
-            $("#campaign-clone").hide();
-        } else {
+        $("#campaign-new").toggle(true):
+        $("#campaign-save").toggle(campIsMine;
+        $("#campaign-import").toggle(campIsMine);
+        $("#campaign-clone").toggle(loggedIn && haveCampaign);
+        $("#campaign-delete").toggle(loggedIn && campIsMine);
 
-
+        //Populate the campaign editing/display area
+        $("#campaign-thecampaign").empty();
+        if (haveCampaign) {
+            if (campIsMine) {
+            	_drawCampaignEditor(model, controller)
+            } else {
+            	_drawStaticCampaignView(model);
+            }
         }
-
-        // IF CAMPAIGN AND USER CAN EDIT IT
-
-            // SHOW EDITOR
-
-        // ELSE
-
-            _drawStaticCampaignView(model);
-
-
-
     };
 
 
@@ -59,9 +53,6 @@ function Views() {
 
 
     };
-
-
-
 
 
     function _drawCampaignList(model, controller) {
@@ -121,10 +112,6 @@ function Views() {
     }
 
 
-
-
-
-
     //Build and return a hints table as a jQuery element. (Don't dispay it in this function.)
     function _createHints(hints) {
         var element = $('<div class="rwb-field-docblock-hints"></div>');
@@ -169,7 +156,8 @@ function Views() {
     }
  
 
-function _drawCampaignEditor(rwbDef, model, controller) {
+function _drawCampaignEditor(model, controller) {
+	var rwbDef = model.def;
     var data = model.campaign;
     var parent = $("#campaign-thecampaign");
     parent.append('<h2 class="rwb-title">' + rwbDef.label + '</h2>');

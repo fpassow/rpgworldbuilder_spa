@@ -3,14 +3,9 @@ TODO
 
 SHOULD THE CONTROLLER BE ABLE TO JUST READ STUFF WITH JQUERY?????
 
-* NEXT: VIEW.JS LINE 105. DOC THE CASES OUTSIDE OF CODE!
 
-* standard()
-* newuser()
-* changepw()
-
+* Show owner with campaign
 * Make changes of focus friendly
-
 * Save before new, iff logged and and editing.
 * IMPORT
 
