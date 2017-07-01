@@ -35,7 +35,7 @@ function Controller(model, views) {
 	$("#campaign-delete").on('click', eventCampaignDelete);
 	$("#savebox-print").on('click', eventSaveboxPrint);
 	$("#savebox-close").on('click', eventSaveboxClose);
-	$("#hintbox-close").on('click', eventHintboxClose);//
+	$("#hintbox-close").on('click', eventHintboxClose);
 
     //Events from dynamically generated HTML:
     //  Clicking delete on an array field item callscontroller.deleteArrayFieldItem(fieldName, arrayIndex)
@@ -61,7 +61,7 @@ function Controller(model, views) {
     }
 
     //Utility function to pull data from the user section INPUT elements
-    //  **and** add them to model.campaign, because we always want to.
+    //  **and** add them to model.campaign
     function _readCampaignInputs() {
         //INPUT fields have ID's campedit-<name>-input
         var fields = model.def.fields;
@@ -80,8 +80,6 @@ function Controller(model, views) {
             	}
             }
     }
-
-    //END OF UI INTERCONNECTION CODE.
 
 
 /* USEFUL FOR CAMAPIGN AREA BUTTON CONTROL
@@ -105,26 +103,26 @@ function Controller(model, views) {
     	var p = uin.password;
         checkUser($(n, p, function(err) {
             if (err) {
-                thiz.user.username = n;
-                thiz.user.password = null;
-                thiz.user.loggedIn = false;
-                thiz.userMessage = "Login failed:" + JSON.stringify(err));
+                model.user.username = n;
+                model.user.password = null;
+                model.user.loggedIn = false;
+                model.userMessage = "Login failed:" + JSON.stringify(err);
             } else {
                 model.model.username = n;
                 model.password = p;
                 model.loggedIn = true;
                 model.userMessage = "Logged in as <b>" + u + "</b>";
             }
-            views.standardView(thiz.model, thiz);
+            views.standardView(model, thiz);
         });
     };
 
     this.eventUserLogout = function() {
     	//The server has no concept of "logged in". So we're just dropping local state.
-    	.user.username = null;
+    	model.user.username = null;
         model.user.password = null;
         model.user.loggedIn = false;
-        views.standardView(thiz.model, thiz);
+        views.standardView(model, thiz);
     };
 
     this.eventUserNew = function() {
@@ -141,7 +139,7 @@ function Controller(model, views) {
                     model.user.password = p;
                     model.loggedIn = true;
                     model.usermessage = "Logged in as <b>" + n + "</b>";
-                    views.standardView(thiz.model, thiz);
+                    views.standardView(model, thiz);
                 }
             });
         } else {
@@ -172,7 +170,7 @@ function Controller(model, views) {
             } else {
                 thiz.model.user.password = newPw1;
                 alert('Password changed.');
-                thiz.views.standardView(thiz.model, thiz);
+                thiz.views.standardView(model, thiz);
             }
         });
     };
@@ -210,7 +208,7 @@ function Controller(model, views) {
                 alert(JSON.stringify(err));
             } else {
                 model.campaign = camp;
-                views.standardView(thiz.model, thiz);
+                views.standardView(model, thiz);
             }
         });
     };
@@ -221,7 +219,7 @@ function Controller(model, views) {
     		views.printView(model, thiz);
     	} else {
             _saveCampaignToServer();
-            views.standardView(thiz.model, thiz);
+            views.standardView(model, thiz);
         }
     }
 
@@ -304,7 +302,6 @@ function Controller(model, views) {
 
     this.eventSaveboxPrint = function() {
         window.print();
-        eventSaveboxClose();
     }
 
     this.eventSaveboxClose = function() {
