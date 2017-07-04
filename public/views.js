@@ -44,7 +44,7 @@ function Views() {
         _drawCampaignList(model, controller);
 
         //Some useful logic for deciding what to show
-        var loggedIn = model.loggedIn;
+        var loggedIn = model.user.loggedIn;
         var haveCampaign = !!model.campaign;
         //Note: If I am not logged in and create a new campaign (with no user name), it's mine.
         var campIsMine = haveCampaign && model.user.username === model.campaign.username;

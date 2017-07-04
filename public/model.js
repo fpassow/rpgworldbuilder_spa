@@ -1,7 +1,7 @@
 
 
 /*
- * 
+ * Includes data shared with the back end AND state of the UI.
  */
 function Model(campaignList, def) {
 	this.def = def;
