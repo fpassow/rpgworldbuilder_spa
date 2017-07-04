@@ -11,13 +11,25 @@ function Views() {
 
     this.standardView = function(model, controller) {
     	if (model.creatingUser) {
-    		_showCreateNew();
+    		$("#user-state-notloggedin").hide();
+    		$("#user-state-loggedin").hide();
+    		$("#user-state-changingpw").hide();
+    		$("#user-state-createnew").show();
         } else if (model.changingPassword) {
-            _showChangingPw();
-        } else if (modle.loggedIn) {
-            _showLoggedIn(); 
+            $("#user-state-notloggedin").hide();
+    		$("#user-state-loggedin").hide();
+    		$("#user-state-changingpw").show();
+    		$("#user-state-createnew").hide();
+        } else if (model.loggedIn) {
+    		$("#user-state-notloggedin").hide();
+    		$("#user-state-loggedin").show();
+    		$("#user-state-changingpw").hide();
+    		$("#user-state-createnew").hide();
         } else {
- 	        _showNotLoggedIn();
+    		$("#user-state-notloggedin").show();
+    		$("#user-state-loggedin").hide();
+    		$("#user-state-changingpw").hide();
+    		$("#user-state-createnew").hide();
         }
         _drawCampaignList(model, controller);
 
@@ -58,7 +70,7 @@ function Views() {
 
     function _drawCampaignList(model, controller) {
         var parent = $("#camplist-container");
-	    var camps = model.campaigns;
+	    var camps = model.campaignList;
 	    parent.empty();
 	    parent.append('<h2>Campaigns</h2>');
 	    var currentUsername = null;

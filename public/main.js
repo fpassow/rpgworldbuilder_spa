@@ -20,7 +20,7 @@ $(document).ready(function() {
                     //But it only gets the definitions object and data for a campaignList on startup
                     model = new Model(campsMeta, def);
                     controller = new Controller(model, views);
-                    controller.initUI();
+                    views.standardView(model, controller);
                 }
             });
         }
