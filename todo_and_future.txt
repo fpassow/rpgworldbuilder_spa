@@ -1,7 +1,9 @@
 TODO
 ----
+* "Logged in as" not displayed
+* No mesage after failed login
 
-SHOULD THE CONTROLLER BE ABLE TO JUST READ STUFF WITH JQUERY?????
+* Extra campaign buttons appear after failed login
 
 
 * Show owner with campaign

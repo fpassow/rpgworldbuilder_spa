@@ -10,6 +10,7 @@
 function Views() {
 
     this.standardView = function(model, controller) {
+        $("#user-message").html(model.userMessage);
     	if (model.creatingUser) {
     		$("#user-state-notloggedin").hide();
     		$("#user-state-loggedin").hide();

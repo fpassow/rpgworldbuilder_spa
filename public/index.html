@@ -13,15 +13,14 @@
     <div id="controls-container">
     
         <div id="user-container">
+            <div id="user-message">   </div>
             <div id="user-state-notloggedin">
-                <div id="user-notloggedin-message">   </div>
                 Username:<input id="user-username">
                 Password:<input id="user-password" type="password">
                 <button id="user-login-button" class="user-button-primary">Log In</button>
                 <button id="user-new-button">Create new user</button>
             </div>
             <div id="user-state-loggedin">
-                <div id="user-loggedin-message"></div>
                 <button id="user-logout-button">Logout</button>
                 <button id="user-gotochangepw-button">Change password</button>
                 <a href="#" id="user-deleteuser">delete user</a>
@@ -34,7 +33,6 @@
                 <button id="user-changepw-cancel">Cancel</button>
             </div>
             <div id="user-state-createnew">
-                <div id="user-createnew-message1">Create new user:</div>
                 Username:<input id="user-createnew-username">
                 Password:<input id="user-createnew-password1" type="password">
                 Confirm password:<input id="user-createnew-password2" type="password">

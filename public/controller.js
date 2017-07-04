@@ -73,8 +73,8 @@ function Controller(model, views) {
 
     this.eventUserLogin = function() {
     	var uin = _readUserInputs();
-    	var n = uin.username;
-    	var p = uin.password;
+    	var n = uin.login.username;
+    	var p = uin.login.password;
         checkUser(n, p, function(err) {
             if (err) {
                 model.user.username = n;
@@ -82,10 +82,10 @@ function Controller(model, views) {
                 model.user.loggedIn = false;
                 model.userMessage = "Login failed:" + JSON.stringify(err);
             } else {
-                model.model.username = n;
-                model.password = p;
+                model.user.username = n;
+                model.user.password = p;
                 model.loggedIn = true;
-                model.userMessage = "Logged in as <b>" + u + "</b>";
+                model.userMessage = "Logged in as <b>" + n + "</b>";
             }
             views.standardView(model, thiz);
         });
