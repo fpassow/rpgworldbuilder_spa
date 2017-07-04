@@ -4,7 +4,7 @@ log.level = 'debug';
 
 require('./store')(function(err, store) {
 	if (err) {
-		log.error('', err);
+		log.error('Error connecting to database ', err);
 	} else {
 		log.info('Connected to database');
 		serveSomeWebs(store);
@@ -89,7 +89,7 @@ function serveSomeWebs(store) {
     
     /*
      * Include HTTP basic auth. Campaign is json body. Create or update. 
-     * The campaign must already include a username and a campaignId unquire for that username.
+     * The campaign must already include a username and a campaignId which is unquire for that username.
      *
      */
     app.post('/api/campaign', function(req, res) {
@@ -98,6 +98,8 @@ function serveSomeWebs(store) {
             if (postedCampaign && postedCampaign.username === authUser.username) {
                 store.storeCampaign(postedCampaign, function(err, camp) {
                     if (err) {
+                        console.log('====================================================');
+                        log.error('Error writing campaign', err);
                         res.status(500).json(err);//SECURITY????????
                     } else {
                         res.json(camp);

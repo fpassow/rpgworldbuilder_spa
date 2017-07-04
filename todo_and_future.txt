@@ -1,12 +1,10 @@
 TODO
 ----
 
-* create new user button actually tried to do it, instead of switching user view.
+* Saving and adding generally borked
+* Retest clone
+* Retest first campaign of new user scenario
 
-* Extra campaign buttons appear after failed login
-
-
-* Show owner with campaign
 * Make changes of focus friendly
 * Save before new, iff logged and and editing.
 * IMPORT

@@ -286,6 +286,11 @@ function Controller(model, views) {
     	$("#hintbox").hide();
     };
 
+    //Collect inputs from the campaign editor and add them to the model
+    this.saveInputs = function() {
+
+    };
+
   
     //Wire events from the static html
 
@@ -313,8 +318,7 @@ function Controller(model, views) {
 	$("#hintbox-close").on('click', this.eventHintboxClose);
 
 	//Events from dynamically generated HTML:
-    //  Clicking delete on an array field item callscontroller.deleteArrayFieldItem(fieldName, arrayIndex)
-    //  Clicking [Add] or hitting return on the input for an array field calls controller.saveInputs();
+    //  Clicking delete on an array field item calls controller.deleteArrayFieldItem(fieldName, arrayIndex)
     //  Clicking a campaign in the CamplaignList calls controller.selectCampaign(campMeta);
 
 

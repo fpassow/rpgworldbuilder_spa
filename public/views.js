@@ -247,7 +247,7 @@ function Views() {
 	        //You can add an item by hitting return in the input.
 	        field.on('keyup', function(e) {
 	            if (e.keyCode === 13) {
-	                controller.saveInputs();
+	                controller.eventCampaignSave();
 	            }
 	        });
 	        dataDiv.append(butt);

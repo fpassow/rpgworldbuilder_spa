@@ -102,6 +102,9 @@ function listUsers(callback) {
  * callback(err, campaign)
  */
 function storeCampaign(campaign, callback) {
+    //We identify campaigns by username and campaignId, only. So strip mongo's _id
+    delete campaign._id;
+
     if (!campaign.username || !campaign.username.length || !campaign.campaignId || !campaign.campaignId.length) {
         callback("store.storeCampaign: Missing username or campaignId on campaign", null);
     } else {
