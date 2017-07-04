@@ -10,7 +10,16 @@
 function Views() {
 
     this.standardView = function(model, controller) {
-        $("#user-message").html(model.userMessage);
+    	$("#user-message").html(model.userMessage);
+        $("#user-username").val(model.user.username);
+        $("#user-password").val('');
+    	$("#user-createnew-username").val(model.user.username);
+        $("#user-createnew-password1").val('');
+        $("#user-createnew-password2").val('');
+        $("#user-changepw-old").val('');
+        $("#user-changepw-new1").val('');
+        $("#user-changepw-new2").val('')
+
     	if (model.creatingUser) {
     		$("#user-state-notloggedin").hide();
     		$("#user-state-loggedin").hide();
@@ -21,7 +30,7 @@ function Views() {
     		$("#user-state-loggedin").hide();
     		$("#user-state-changingpw").show();
     		$("#user-state-createnew").hide();
-        } else if (model.loggedIn) {
+        } else if (model.user.loggedIn) {
     		$("#user-state-notloggedin").hide();
     		$("#user-state-loggedin").show();
     		$("#user-state-changingpw").hide();

@@ -10,6 +10,8 @@ function Model(campaignList, def) {
 	this.user = {username:null, password:null, loggedIn:false}
 	this.userMessage = null;
 	this.campaignMessage = null;
+	this.creatingUser = false;
+	this.changingPassword = false;
 
 	//userState can be 'notloggedin', 'loggedin', 'changingpw', or 'createnew'.
 	// These match it IDs on the 'user-state-' <div>s.

@@ -84,7 +84,7 @@ function Controller(model, views) {
             } else {
                 model.user.username = n;
                 model.user.password = p;
-                model.loggedIn = true;
+                model.user.loggedIn = true;
                 model.userMessage = "Logged in as <b>" + n + "</b>";
             }
             views.standardView(model, thiz);
@@ -96,6 +96,7 @@ function Controller(model, views) {
     	model.user.username = null;
         model.user.password = null;
         model.user.loggedIn = false;
+        model.userMessage = '';
         views.standardView(model, thiz);
     };
 
@@ -127,8 +128,8 @@ function Controller(model, views) {
     this.eventUserChangepw = function() {
     	var uin = _readUserInputs();
     	var oldPw = uin.changepw.old;
-    	var newPw1 = ui.changepw.new1;
-    	var newPw2 = ui.changepw.new2;
+    	var newPw1 = uin.changepw.new1;
+    	var newPw2 = uin.changepw.new2;
         if (!(oldPw && newPw1 && newPw2 && oldPw.length && newPw1.length && newPw2.length)) {
             alert('All three fields are required.');
             return;//no need to redraw

@@ -1,6 +1,6 @@
 TODO
 ----
-* "Logged in as" not displayed
+
 * No mesage after failed login
 
 * Extra campaign buttons appear after failed login
