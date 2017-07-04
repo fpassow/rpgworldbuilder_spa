@@ -100,7 +100,7 @@ function Controller(model, views) {
         views.standardView(model, thiz);
     };
 
-    this.eventUserNew = function() {
+    this.eventUserCreateNew = function() {
     	var uin = _readUserInputs();
     	var n = uin.create.username;
         var p = uin.create.password1;
@@ -112,8 +112,8 @@ function Controller(model, views) {
                 } else {
                     model.user.username = n;
                     model.user.password = p;
-                    model.loggedIn = true;
-                    model.usermessage = "Logged in as <b>" + n + "</b>";
+                    model.user.loggedIn = true;
+                    model.userMessage = "Logged in as <b>" + n + "</b>";
                     views.standardView(model, thiz);
                 }
             });
@@ -157,7 +157,7 @@ function Controller(model, views) {
         $("#user-state-createnew").hide();
     };
 
-    this.eventUserCreatenew = function() {
+    this.eventUserNew = function() {
         $("#user-state-loggedin").hide();
         $("#user-state-changingpw").hide();
         $("#user-state-notloggedin").hide();
@@ -301,7 +301,7 @@ function Controller(model, views) {
 	$("#user-deleteuser").on('click', this.eventUserDeleteuser);
 	$("#user-changepw-button").on('click', this.eventUserChangepw);
 	$("#user-changepw-cancel").on('click', this.eventUserChangepwCancel);
-	$("#user-createnew-button").on('click', this.eventUserCreatenew);
+	$("#user-createnew-button").on('click', this.eventUserCreateNew);
 	$("#user-createnew-cancel").on('click', this.eventUserCreatenewCancel);
 	$("#campaign-new").on('click', this.eventCampaignNew);
 	$("#campaign-save").on('click', this.eventCampaignSave);
