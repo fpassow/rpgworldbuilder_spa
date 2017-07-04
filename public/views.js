@@ -111,6 +111,9 @@ function Views() {
         var titleElement = $("<h2></h2>");
         titleElement.html(escapeHtml(data['title']));
         parent.append(titleElement);
+        var authorCredit = $('<div class="campaign-author-credit"></div>');
+        authorCredit.html('By ' + escapeHtml(data.username));
+        parent.append(authorCredit);
     
         var field, i;
         var div;
