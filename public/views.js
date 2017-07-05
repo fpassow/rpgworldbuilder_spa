@@ -124,7 +124,7 @@ function Views() {
             parent.append('<h3>' + rwbDef.fields[i].label + '</h3>');
             if (rwbDef.fields[i].isarrayfield) {
                 var arr = data[rwbDef.fields[i].name];
-                if (arr.length) {
+                if (arr && arr.length) {
                     arr.forEach(function(x, index) {
                         div = $("<div></div>");
                         div.html(escapeHtml(x));
@@ -227,7 +227,7 @@ function Views() {
 	        instructoid.append(_createHints(def.hints));
 	        target.append(instructoid);
 	        var dataDiv = $('<div class="rwb-field-data"></div>');
-	        if (arr.length) {
+	        if (arr && arr.length) {
 	            arr.forEach(function(x, index) {
 	                var item = $('<div></div>').addClass('rwb-field-data-arrayitem').html(escapeHtml(x));
 	                var deleteItem = $("<span></span>");
