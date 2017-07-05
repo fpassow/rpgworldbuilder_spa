@@ -6,7 +6,7 @@
 function Model(campaignList, def) {
 	this.def = def;
 	this.campaignList = campaignList; //An array of campaignMetadata's
-	this.campaign = null
+	this.campaign = null //Will have username, campaignId, and one property named after each fieldname.
 	this.user = {username:null, password:null, loggedIn:false}
 	this.userMessage = null;
 	this.campaignMessage = null;

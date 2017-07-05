@@ -41,8 +41,8 @@ function Controller(model, views) {
         var field, val;
         for (var i = 0; i < fields.length; i++) {
             field = fields[i];
-            val = $("#campedit-" + name + "-input").val();
-            if (val && val.trim().length) {
+            val = $("#campedit-" + field.name + "-input").val();
+            if (val) {
             	if (field.isarrayfield) {
                     if (!model.campaign[field.name]) {
                     	model.campaign[field.name] = [];
@@ -188,7 +188,8 @@ function Controller(model, views) {
     };
 
     this.eventCampaignSave = function() {
-        var inputs = _readCampaignInputs();
+    	//Update model from INPUTs
+        _readCampaignInputs();
     	if (!model.user.loggedIn) {
     		views.printView(model, thiz);
     	} else {
@@ -286,10 +287,15 @@ function Controller(model, views) {
     	$("#hintbox").hide();
     };
 
-    //Collect inputs from the campaign editor and add them to the model
-    this.saveInputs = function() {
-
+    this.deleteArrayFieldItem = function(fieldName, arrayIndex) {
+        model.campaign[fieldName].splice(arrayIndex, 1);
+        views.standardView(model, thiz);
     };
+
+    //Collect inputs from the campaign editor and add them to the model
+    /*this.saveInputs = function() {
+DONE ELSEWHERE
+    };*/
 
   
     //Wire events from the static html

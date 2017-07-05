@@ -55,6 +55,8 @@ function Views() {
         $("#campaign-clone").toggle(loggedIn && haveCampaign);
         $("#campaign-delete").toggle(loggedIn && campIsMine);
 
+        $("#campaign-message").html(model.campaignMessage);
+
         //Populate the campaign editing/display area
         $("#campaign-thecampaign").empty();
         if (haveCampaign) {
@@ -181,7 +183,6 @@ function Views() {
         $("#hintbox").css("display", "block");
     }
  
-
 	function _drawCampaignEditor(model, controller) {
 		var rwbDef = model.def;
 	    var data = model.campaign;
@@ -208,7 +209,7 @@ function Views() {
 	        var thingData = $('<div class="rwb-field-data"></div>');
 	        var item;
 	        if (def.longtext) {
-	            item = $('<textarea></textarea>').attr('id', 'campedit-' + name + '-field');
+	            item = $('<textarea></textarea>').attr('id', 'campedit-' + name + '-input');
 	        } else {
 	            item = $('<input>').attr('id', 'campedit-' + name + '-input');
 	        }
@@ -242,7 +243,7 @@ function Views() {
 	        dataDiv.append(field);
 	        var butt = $('<button type="button">Add</button>');
 	        butt.on('click', function() {
-	            controller.saveInputs();
+	            controller.eventCampaignSave();
 	        });
 	        //You can add an item by hitting return in the input.
 	        field.on('keyup', function(e) {

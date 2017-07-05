@@ -1,7 +1,12 @@
 TODO
 ----
 
+* deleteArrayFieldItem(fieldName, arrayIndex) NOT WRITTEN YET
+
+* Work through a simple save of an existing campaign
+
 * Saving and adding generally borked
+* "Saving..." not working.
 * Retest clone
 * Retest first campaign of new user scenario
 
