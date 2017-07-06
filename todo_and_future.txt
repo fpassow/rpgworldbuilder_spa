@@ -1,16 +1,7 @@
 TODO
 ----
 
-* Add anonymousEditing to view
-* Where should anonymousEditing be unset???
-    Account Creation?
-    When the new user is set?
 
-
-
-* Work through a simple save of an existing campaign
-
-* Saving and adding generally borked
 * "Saving..." not working.
 * Retest clone
 * Retest first campaign of new user scenario

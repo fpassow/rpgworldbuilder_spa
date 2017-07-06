@@ -97,6 +97,11 @@ function Controller(model, views) {
         });
     };
 
+    this.eventCampaignArrayItemSave = function() {
+        _readCampaignInputs();
+        views.standardView(model, thiz);
+    }
+
     this.eventUserLogout = function() {
     	//The server has no concept of "logged in". So we're just dropping local state.
     	model.user.username = null;

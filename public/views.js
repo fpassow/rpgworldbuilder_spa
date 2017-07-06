@@ -242,12 +242,12 @@ function Views() {
 	        dataDiv.append(field);
 	        var butt = $('<button type="button">Add</button>');
 	        butt.on('click', function() {
-	            controller.eventCampaignSave();
+	            controller.eventCampaignArrayItemSave();
 	        });
 	        //You can add an item by hitting return in the input.
 	        field.on('keyup', function(e) {
 	            if (e.keyCode === 13) {
-	                controller.eventCampaignSave();
+	                controller.eventCampaignArrayItemSave();
 	            }
 	        });
 	        dataDiv.append(butt);
