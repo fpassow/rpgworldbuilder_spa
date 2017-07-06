@@ -50,7 +50,7 @@ function Views() {
         var campIsMine = haveCampaign && model.user.username === model.campaign.username;
 
         $("#campaign-new").toggle(true);
-        $("#campaign-save").toggle(campIsMine);
+        $("#campaign-save").toggle(campIsMine || model.anonymousEditing);
         $("#campaign-import").toggle(campIsMine);
         $("#campaign-clone").toggle(loggedIn && haveCampaign);
         $("#campaign-delete").toggle(loggedIn && campIsMine);
@@ -60,14 +60,13 @@ function Views() {
         //Populate the campaign editing/display area
         $("#campaign-thecampaign").empty();
         if (haveCampaign) {
-            if (campIsMine) {
+            if (campIsMine || model.anonymousEditing) {
             	_drawCampaignEditor(model, controller)
             } else {
             	_drawStaticCampaignView("campaign-thecampaign", model);
             }
         }
     };
-
 
     this.printView = function(model, controller) {
         $("#savebox").show();

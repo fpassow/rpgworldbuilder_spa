@@ -12,6 +12,11 @@ function Model(campaignList, def) {
 	this.campaignMessage = null;
 	this.creatingUser = false;
 	this.changingPassword = false;
+	this.anonymousEditing = false; //A new campaign may be created even if the user is not
+	                               //logged in. This allows someone to try the tool without
+	                               //creating an account. If the user then creates an account
+	                               //(or logs in), they take ownership of the campaign they
+	                               //had been editing anonymously.
 
 	//userState can be 'notloggedin', 'loggedin', 'changingpw', or 'createnew'.
 	// These match it IDs on the 'user-state-' <div>s.

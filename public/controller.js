@@ -86,6 +86,12 @@ function Controller(model, views) {
                 model.user.password = p;
                 model.user.loggedIn = true;
                 model.userMessage = "Logged in as <b>" + n + "</b>";
+                //If I was anonymousEditing a campaign, make it my own.
+                if (model.anonymousEditing && model.campaign) {
+                	_readCampaignInputs();
+                    model.campaign.username = n;
+                	model.anonymousEditing = false;
+                }
             }
             views.standardView(model, thiz);
         });
@@ -114,6 +120,12 @@ function Controller(model, views) {
                     model.user.password = p;
                     model.user.loggedIn = true;
                     model.userMessage = "Logged in as <b>" + n + "</b>";
+                    //If I was anonymousEditing a campaign, make it my own.
+                    if (model.anonymousEditing && model.campaign) {
+                    	_readCampaignInputs();
+                        model.campaign.username = n;
+                	    model.anonymousEditing = false;
+                    }
                     views.standardView(model, thiz);
                 }
             });
@@ -176,6 +188,7 @@ function Controller(model, views) {
         }
     };
 
+    // Called when user clicks a campaign in the campaign list.
     this.selectCampaign = function(campMeta) {
         loadCampaign(campMeta.username, campMeta.campaignId, function(err, camp) {
             if (err) {
@@ -243,7 +256,11 @@ function Controller(model, views) {
     this.eventCampaignNew = function() {
         model.campaign = {};
         model.campaign.campaignId = "ID" + Math.random();
-        model.campaign.username = model.user.username;
+        if (model.user.loggedIn) {
+        	model.campaign.username = model.user.username;
+        } else {
+        	model.anonymousEditing = true;
+        }
         //No point in saving an empty campaign
         views.standardView(model, thiz);
     };

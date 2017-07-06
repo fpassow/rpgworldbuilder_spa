@@ -1,7 +1,12 @@
 TODO
 ----
 
-* deleteArrayFieldItem(fieldName, arrayIndex) NOT WRITTEN YET
+* Add anonymousEditing to view
+* Where should anonymousEditing be unset???
+    Account Creation?
+    When the new user is set?
+
+
 
 * Work through a simple save of an existing campaign
 
@@ -13,6 +18,9 @@ TODO
 * Make changes of focus friendly
 * Save before new, iff logged and and editing.
 * IMPORT
+
+* Move my campaigns to top, or scroll to them
+* Collapsable camp-list sections
 
 * Tighten up the Campaign List
 * Nicer format for Array Field Items
