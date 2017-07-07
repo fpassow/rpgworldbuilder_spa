@@ -44,47 +44,6 @@
             "hints": []            
         }, 
         {
-            "name": "action",
-            "label": "Some action...",
-            "instructions": "Describe people in this world doing some of the things below. We're still in the wild creativity phase. So don't over-think it.",
-            "longtext": false,
-            "isarrayfield": true,
-            "hints": [
-                {"label": "Explore", "description": ""},
-                {"label": "Investigate", "description": ""},
-                {"label": "Hunt", "description": ""},
-                {"label": "Discover", "description": ""},
-                {"label": "Solve", "description": ""},
-                {"label": "Attack", "description": ""},
-                {"label": "Defend", "description": ""},
-                {"label": "Search", "description": ""},
-                {"label": "Escape", "description": ""},
-                {"label": "Capture", "description": ""},
-                {"label": "Flee", "description": ""},
-                {"label": "Trick", "description": ""},
-                {"label": "Hide", "description": ""},
-                {"label": "Negotiate", "description": ""},
-                {"label": "Infiltrate", "description": ""},
-                {"label": "Compete", "description": ""},
-                {"label": "Stop", "description": ""},
-                {"label": "Start", "description": ""},
-                {"label": "Recruite", "description": ""},
-                {"label": "Colonize", "description": ""},
-                {"label": "Earn", "description": ""},
-                {"label": "Learn", "description": ""},
-                {"label": "Teach", "description": ""},
-                {"label": "Ambush", "description": ""},
-                {"label": "Steal", "description": ""},
-                {"label": "Protect", "description": ""},
-                {"label": "Survive", "description": ""},
-                {"label": "Expel", "description": ""},
-                {"label": "Liberate", "description": ""},
-                {"label": "Build", "description": ""},
-                {"label": "Destroy", "description": ""},
-                {"label": "Rescue", "description": ""}
-            ] 
-        },
-        {
             "name": "scope",
             "label": "Scope",
             "instructions": "A city, a wasteland, a war, etc.",
@@ -338,7 +297,40 @@
                 {
                     "label": "Con",
                     "description": ""
-                }
+                },
+
+                {"label": "Explore", "description": ""},
+                {"label": "Investigate", "description": ""},
+                {"label": "Hunt", "description": ""},
+                {"label": "Discover", "description": ""},
+                {"label": "Solve", "description": ""},
+                {"label": "Attack", "description": ""},
+                {"label": "Defend", "description": ""},
+                {"label": "Search", "description": ""},
+                {"label": "Escape", "description": ""},
+                {"label": "Capture", "description": ""},
+                {"label": "Flee", "description": ""},
+                {"label": "Trick", "description": ""},
+                {"label": "Hide", "description": ""},
+                {"label": "Negotiate", "description": ""},
+                {"label": "Infiltrate", "description": ""},
+                {"label": "Compete", "description": ""},
+                {"label": "Stop", "description": ""},
+                {"label": "Start", "description": ""},
+                {"label": "Recruite", "description": ""},
+                {"label": "Colonize", "description": ""},
+                {"label": "Earn", "description": ""},
+                {"label": "Learn", "description": ""},
+                {"label": "Teach", "description": ""},
+                {"label": "Ambush", "description": ""},
+                {"label": "Steal", "description": ""},
+                {"label": "Protect", "description": ""},
+                {"label": "Survive", "description": ""},
+                {"label": "Expel", "description": ""},
+                {"label": "Liberate", "description": ""},
+                {"label": "Build", "description": ""},
+                {"label": "Destroy", "description": ""},
+                {"label": "Rescue", "description": ""}
             ]            
         },
         {
@@ -372,7 +364,23 @@
             "longtext": true,
             "isarrayfield": true,
             "hints": []            
-        }       
+        },
+                {
+            "name": "parts_i_love",
+            "label": "Parts I love",
+            "instructions": "",
+            "longtext": false,
+            "isarrayfield": true,
+            "hints": []            
+        },
+                {
+            "name": "parts_players_love",
+            "label": "Parts the players will love",
+            "instructions": "",
+            "longtext": false,
+            "isarrayfield": true,
+            "hints": []            
+        }      
     ]
 }
     
