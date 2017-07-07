@@ -3,8 +3,7 @@ TODO
 
 
 * "Saving..." not working.
-* Retest clone
-* Retest first campaign of new user scenario
+
 
 * Make changes of focus friendly
 * Save before new, iff logged and and editing.
