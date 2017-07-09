@@ -190,7 +190,7 @@ function Views() {
 		var rwbDef = model.def;
 	    var data = model.campaign;
 	    var parent = $("#campaign-thecampaign");
-	    parent.append('<h2 class="rwb-title">' + rwbDef.label + '</h2>');
+	    parent.append('<h2 class="campaign-def-label">' + rwbDef.label + '</h2>');
 	    parent.append('<div class="rwb-top-instructions">' + rwbDef.instructions + '</div>');
 	    
 	    //Loop over the def's fields array, creating and populating our field objects
@@ -259,5 +259,18 @@ function Views() {
 	        target.append(dataDiv);
 	    }
 	}
+
+    //UTILS
+    function escapeHtml(unsafe) {
+        if (!unsafe) {
+            return "";
+        }
+        return unsafe
+             .replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/"/g, "&quot;")
+             .replace(/'/g, "&#039;");
+     }
 
 }
