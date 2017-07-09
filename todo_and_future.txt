@@ -6,6 +6,8 @@ TODO
 
 * "Saving..." not working.
 
+* Visually separate multiline campaign titles on camps list
+
 
 * Save before new, iff logged and and editing.
 * IMPORT

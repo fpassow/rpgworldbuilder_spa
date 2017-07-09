@@ -97,7 +97,8 @@ function Controller(model, views) {
         });
     };
 
-    this.eventCampaignArrayItemSave = function() {
+    this.eventCampaignArrayItemSave = function(nextFocusId) {
+    	model.nextFocusId = nextFocusId;
         _readCampaignInputs();
         views.standardView(model, thiz);
     }

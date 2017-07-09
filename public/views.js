@@ -63,7 +63,7 @@ function Views() {
             if (campIsMine || model.anonymousEditing) {
             	_drawCampaignEditor(model, controller);
             	if (model.nextFocusId) {
-            		$("#" + nextFocusId).focus();
+            		$("#" + model.nextFocusId).focus();
             	}
             } else {
             	_drawStaticCampaignView("campaign-thecampaign", model);
