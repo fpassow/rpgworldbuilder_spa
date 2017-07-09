@@ -1,11 +1,12 @@
 TODO
 ----
 
+* nextFocusId borked [Add]
+
 
 * "Saving..." not working.
 
 
-* Make changes of focus friendly
 * Save before new, iff logged and and editing.
 * IMPORT
 

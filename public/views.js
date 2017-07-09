@@ -61,11 +61,15 @@ function Views() {
         $("#campaign-thecampaign").empty();
         if (haveCampaign) {
             if (campIsMine || model.anonymousEditing) {
-            	_drawCampaignEditor(model, controller)
+            	_drawCampaignEditor(model, controller);
+            	if (model.nextFocusId) {
+            		$("#" + nextFocusId).focus();
+            	}
             } else {
             	_drawStaticCampaignView("campaign-thecampaign", model);
             }
         }
+        nextFocusId = null; //nextFocusId is only good for one cycle.
     };
 
     this.printView = function(model, controller) {
@@ -238,16 +242,17 @@ function Views() {
 	                dataDiv.append(item);
 	            });
 	        }
-	        var field = $('<input>').attr('id', 'campedit-' + def.name + '-input');;
+	        var nextFocusId = 'campedit-' + def.name + '-input';
+	        var field = $('<input>').attr('id', nextFocusId);
 	        dataDiv.append(field);
 	        var butt = $('<button type="button">Add</button>');
 	        butt.on('click', function() {
-	            controller.eventCampaignArrayItemSave();
+	            controller.eventCampaignArrayItemSave(nextFocusId);
 	        });
 	        //You can add an item by hitting return in the input.
 	        field.on('keyup', function(e) {
 	            if (e.keyCode === 13) {
-	                controller.eventCampaignArrayItemSave();
+	                controller.eventCampaignArrayItemSave(nextFocusId);
 	            }
 	        });
 	        dataDiv.append(butt);
