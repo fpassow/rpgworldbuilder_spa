@@ -190,8 +190,8 @@ function Views() {
 		var rwbDef = model.def;
 	    var data = model.campaign;
 	    var parent = $("#campaign-thecampaign");
-	    parent.append('<h2 class="campaign-def-label">' + rwbDef.label + '</h2>');
-	    parent.append('<div class="rwb-top-instructions">' + rwbDef.instructions + '</div>');
+	    parent.append('<h2>' + rwbDef.label + '</h2>');
+	    parent.append('<span>' + rwbDef.instructions + '</span>');
 	    
 	    //Loop over the def's fields array, creating and populating our field objects
 	    for (i = 0; i < rwbDef.fields.length; i++) {
@@ -205,11 +205,11 @@ function Views() {
 	    //Text inputs and textarea's
 	    function drawSimpleField(parentElement, def, data) {
 	        var name = def.name;
-	        var target = $('<div class="rwb-field"></div>');
+	        var target = $('<div class="campaign-field"></div>');
 	        parentElement.append(target);
-	        target.append('<div class="rwb-field-label">' + def.label + '</div>');
-	        target.append('<div class="rwb-field-docblock"><div class="rwb-field-docblock-instructions">' + def.instructions + '</div></div>');
-	        var thingData = $('<div class="rwb-field-data"></div>');
+	        target.append('<h3>' + def.label + '</h3>');
+	        target.append('<span>' + def.instructions + '</span>');
+	        var thingData = $('<div></div>');
 	        var item;
 	        if (def.longtext) {
 	            item = $('<textarea></textarea>').attr('id', 'campedit-' + name + '-input');
@@ -222,19 +222,19 @@ function Views() {
 	    }
 
 	    function drawArrayField(parentElement, def, arr) {
-	        var target = $('<div class="rwb-arrayfield"></div>');
+	        var target = $('<div class="campaign-arrayfield"></div>');
 	        parentElement.append(target);
-	        target.append('<div class="rwb-field-label">' + def.label + '</div>');
-	        var instructoid = $('<div class="rwb-field-docblock"></div>');
-	        instructoid.append('<div class="rwb-field-docblock-instructions">' + def.instructions + '</div>');
+	        target.append('<h3>' + def.label + '</h3>');
+	        var instructoid = $('<div></div>');
+	        instructoid.append('<div>' + def.instructions + '</div>');
 	        instructoid.append(_createHints(def.hints));
 	        target.append(instructoid);
-	        var dataDiv = $('<div class="rwb-field-data"></div>');
+	        var dataDiv = $('<div></div>');
 	        if (arr && arr.length) {
 	            arr.forEach(function(x, index) {
-	                var item = $('<div></div>').addClass('rwb-field-data-arrayitem').html(escapeHtml(x));
+	                var item = $('<div></div>').addClass('campaign-arrayfield-item').html(escapeHtml(x));
 	                var deleteItem = $("<span></span>");
-	                deleteItem.addClass('rwb-field-data-arrayitem-delete').html('[x]');
+	                deleteItem.addClass('campaign-arrayfield-item-delete').html('[x]');
 	                deleteItem.on('click',function() {
 	                    controller.deleteArrayFieldItem(def.name, index);
 	                });

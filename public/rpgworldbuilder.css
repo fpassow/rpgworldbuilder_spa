@@ -27,6 +27,8 @@ h2 {
     border: 1px solid #00f;
     padding: 10px;
 }
+
+
 .campaign-author-credit {
     text-align: right;
 }
@@ -36,13 +38,13 @@ h2 {
     border-bottom: 1px solid blue;
 }
 
-/*******************/
-.rwb-field-data-arrayitem {
+/************** From Campaign Editor*****/
+.campaign-arrayfield-item {
     margin: 5px;
     padding: 5px;
     border: 1px solid #555;
 }
-.rwb-field-data-arrayitem-delete {
+.campaign-arrayfield-item-delete {
     text-align: right;
     color:red;
     display:inline-block;
