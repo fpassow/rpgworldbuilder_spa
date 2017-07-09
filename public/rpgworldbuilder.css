@@ -30,6 +30,34 @@ h2 {
 .campaign-author-credit {
     text-align: right;
 }
+.camps-camp {
+    font-weight:bold;
+    color: blue;
+    border-bottom: 1px solid blue;
+}
+
+/*******************/
+.rwb-field-data-arrayitem {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #555;
+}
+.rwb-field-data-arrayitem-delete {
+    text-align: right;
+    color:red;
+    display:inline-block;
+    float:right;
+}
+.hintlink {
+    color: blue;
+}
+input {
+    width: 100%;
+}
+textarea {
+    width: 100%;
+}
+/****************************/
 
 #hintbox {
     border:3px solid blue;
