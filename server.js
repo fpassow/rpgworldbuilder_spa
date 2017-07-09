@@ -1,7 +1,12 @@
+/*
+ * REST API for rpgworldbuilder spa.
+ * Also serves static files.
+ */
 
 var log = require('winston');
 log.level = 'debug';
 
+//Connect to the db
 require('./store')(function(err, store) {
 	if (err) {
 		log.error('Error connecting to database ', err);
@@ -23,10 +28,6 @@ function serveSomeWebs(store) {
     var morgan = require('morgan');
     app.use(morgan('dev'));
 
-
-    //Serve all the static files
-    app.use('/public', express.static('public'));
-    
     /* Utility function.
      * Calls ifAuth(userObjectFromDatabase) if credentials are good.
      * Sends a status 401 if credentials are bad.
@@ -174,7 +175,9 @@ function serveSomeWebs(store) {
         });
     });
 
-
+    //Serve the static files
+    app.use('/', express.static('public'));
+    
     app.listen(80);
 }
 

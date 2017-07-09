@@ -1,6 +1,6 @@
 //callback(err, campaignDefObject)
 function getCampaignDef(callback) {
-    $.getJSON('/public/campaign_form_def.json', function(campDef) {
+    $.getJSON('/campaign_form_def.json', function(campDef) {
         callback(null, campDef);
     });
 }
@@ -141,7 +141,7 @@ function deleteCampaign(username, password, campaignId, callback) {
     });
 }
 
-//for testing
+//Stub callback for testing
 function cb(err, data) {
     console.log(JSON.stringify(err));
     console.log(JSON.stringify(data));

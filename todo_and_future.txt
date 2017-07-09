@@ -1,29 +1,30 @@
 TODO
 ----
 
+* rename html to rpgworldbuilder.html
 
-* consolodate css
+* favicon, because I'm sick of looking at the 404.
+* create a real introductory index.html
 
-* clean out unused js
-
+* remember login when switching to and from index.html
 
 * Save before new, iff logged and and editing.
+
 * IMPORT
 
-* Move my campaigns to top, or scroll to them
-* Collapsable camp-list sections
-
-* Tighten up the Campaign List
 * Nicer format for Array Field Items
 * Use it, and make some notes
 * Improve text all over def
-* Include interesting request bits in logs
+* Review what I'm logging
 * Mongodb security
 * Review security of returning err objects to browser
-* Add "focus()" method to ArrayField.
+
 
 WANTTHIS
 --------
+
+* Collapsable camp-list sections
+* Move my campaigns to top, or scroll to them
 
 * Game-ish visual style
 * Adjustable darkness
