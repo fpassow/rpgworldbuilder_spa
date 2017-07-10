@@ -1,12 +1,9 @@
 TODO
 ----
 
-* rename html to rpgworldbuilder.html
-
-* favicon, because I'm sick of looking at the 404.
 * create a real introductory index.html
 
-* remember login when switching to and from index.html
+* open spa in its own tab
 
 * Save before new, iff logged and and editing.
 
