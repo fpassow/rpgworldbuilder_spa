@@ -214,7 +214,7 @@ function Controller(model, views) {
     //Save latest edits when editor is about to go away.
     //Called from an event processor which will draw a *new* view.
     function _preserveCampaignEdits() {
-    	if (model.user.loggedIn && model.campaign) {
+    	if (model.user.loggedIn && model.campaign && model.user.username == model.campaign.username) {
     		_readCampaignInputs();
     		_saveCampaignToServer();
     	}
