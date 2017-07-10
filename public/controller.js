@@ -196,6 +196,11 @@ function Controller(model, views) {
 
     // Called when user clicks a campaign in the campaign list.
     this.selectCampaign = function(campMeta) {
+    	//You can only anonymously edit your own new campaign
+    	model.anonymousEditing = false;
+    	//If user is logged in, save their work when they switch campaigns
+    	_preserveCampaignEdits();
+    	//Load and display the new campaign.
         loadCampaign(campMeta.username, campMeta.campaignId, function(err, camp) {
             if (err) {
                 alert(JSON.stringify(err));
@@ -205,6 +210,15 @@ function Controller(model, views) {
             }
         });
     };
+
+    //Save latest edits when editor is about to go away.
+    //Called from an event processor which will draw a *new* view.
+    function _preserveCampaignEdits() {
+    	if (model.user.loggedIn && model.campaign) {
+    		_readCampaignInputs();
+    		_saveCampaignToServer();
+    	}
+    }
 
     this.eventCampaignSave = function() {
     	//Update model from INPUTs
@@ -260,6 +274,7 @@ function Controller(model, views) {
     };
 
     this.eventCampaignNew = function() {
+    	_preserveCampaignEdits();
         model.campaign = {};
         model.campaign.campaignId = "ID" + Math.random();
         if (model.user.loggedIn) {

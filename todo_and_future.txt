@@ -1,15 +1,16 @@
 TODO
 ----
 
+* _preserveCampaignEdits  <---<<< TEST IT!!!!!
+
+
 * create a real introductory index.html
 
-* open spa in its own tab
-
-* Save before new, iff logged and and editing.
 
 * IMPORT
 
 * Nicer format for Array Field Items
+* Nicer format for hint popup
 * Use it, and make some notes
 * Improve text all over def
 * Review what I'm logging
