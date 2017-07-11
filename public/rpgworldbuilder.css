@@ -34,6 +34,11 @@ h2 {
     padding: 10px;
 }
 
+#campaign-addto-container {
+    display:inline-block;
+    border: 1px solid #00f;
+}
+
 
 .campaign-author-credit {
     text-align: right;

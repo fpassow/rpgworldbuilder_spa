@@ -53,9 +53,23 @@ function Views() {
         $("#campaign-save").toggle(campIsMine || model.anonymousEditing);
         $("#campaign-import").toggle(campIsMine);
         $("#campaign-clone").toggle(loggedIn && haveCampaign);
+        $("#campaign-addto-container").toggle(loggedIn && haveCampaign);
         $("#campaign-delete").toggle(loggedIn && campIsMine);
 
         $("#campaign-message").html(model.campaignMessage);
+
+        //Populate the Add-to dropdown with a logged-in users campaigns
+        if (loggedIn && haveCampaign) {
+            var select = $("#campaign-addto-list");
+            select.empty();
+            model.campaignList.forEach(function(campMeta) {
+                if (campMeta.username == model.user.username) {
+                    select.append('<option value="'+campMeta.campaignId+'">'+campMeta.title+'</option>');
+                }
+            });
+        }
+
+
 
         //Populate the campaign editing/display area
         $("#campaign-thecampaign").empty();

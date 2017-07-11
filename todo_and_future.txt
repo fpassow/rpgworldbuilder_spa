@@ -1,8 +1,6 @@
 TODO
 ----
 
-* _preserveCampaignEdits  <---<<< TEST IT!!!!!
-
 
 * create a real introductory index.html
 

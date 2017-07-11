@@ -1,4 +1,4 @@
-
+//DOCUMENT DEF HERE TOO!!!!!
 
 /*
  * Includes data shared with the back end AND state of the UI.
@@ -22,4 +22,6 @@ function Model(campaignList, def) {
 	// These match it IDs on the 'user-state-' <div>s.
 	this.userState = 'notloggedin';
 	this.nextFocusId = null; //If set, focus on this element when displaying the standard view
+	this.addToCampaignId = null; //Value of [Add to] dropdown
 }
+

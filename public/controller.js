@@ -53,6 +53,7 @@ function Controller(model, views) {
             	}
             }
         }
+        model.addToCampaignId = $("#campaign-addto-list").val();
     }
 
 
@@ -311,7 +312,50 @@ function Controller(model, views) {
         }
     };
 
-    this.importCampaign = function() {alert('TODO')};
+    //Add the fields of the current campaign to the fields of
+    //a campaign which belongs to the current user
+    this.eventCampaignAddTo = function() {
+    	_readCampaignInputs();//Updates model.addToCampaignId with the setting of the [Add to] dropdown
+    	var camp; //camp will be the campaign selected for adding to. model.compaign is "added from".
+        for (var i = 0; i < model.campaignList.length; i++) {
+        	camp = model.campaignList[i];
+        	if (camp.username == model.user.username && camp.campaignId == model.addToCampaignId) {
+        		//camp is the selected campaign
+        		//Load it and add all the current campaign's fields to its fields.
+        		loadCampaign(camp.username, camp.campaignId, function(err, campy) {
+        			if (err) {
+        				alert(err);
+        			} else {
+        		        model.def.fields.forEach(function(fieldDef) {
+        			        var name = fieldDef.name;
+        			        if (model.campaign[name]) {
+                                if (fieldDef.isarrayfield) {
+                    	            if (!campy[name]) {
+                    		            campy[name] = [];
+                    	            }
+                    	            model.campaign[name].forEach(function(z) {
+                                        campy[name].push(z);
+                                    });
+                                } else {
+                                	if (campy[name]) {
+                                		campy[name] = campy[name] + ' ' + model.campaign[name];
+                                	} else {
+                                        campy[name] =  model.campaign[name];
+                                    }
+                                }
+                            }
+        		        });
+        		        //And switch to editing the campaign we just added to.
+                        model.campaign = campy;
+                        views.standardView(model, thiz);
+        		    }
+        		});
+                break;
+        	}
+
+        }
+
+    };
 
     this.eventSaveboxPrint = function() {
         window.print();
@@ -330,11 +374,7 @@ function Controller(model, views) {
         views.standardView(model, thiz);
     };
 
-    //Collect inputs from the campaign editor and add them to the model
-    /*this.saveInputs = function() {
-DONE ELSEWHERE
-    };*/
-
+    
   
     //Wire events from the static html
 
@@ -354,7 +394,7 @@ DONE ELSEWHERE
 	$("#user-createnew-cancel").on('click', this.eventUserCreatenewCancel);
 	$("#campaign-new").on('click', this.eventCampaignNew);
 	$("#campaign-save").on('click', this.eventCampaignSave);
-	$("#campaign-import").on('click', this.eventCampaignImport);// TODO <<<------------<<<<<<
+	$("#campaign-addto-button").on('click', this.eventCampaignAddTo);
 	$("#campaign-clone").on('click', this.eventCampaignClone);
 	$("#campaign-delete").on('click', this.eventCampaignDelete);
 	$("#savebox-print").on('click', this.eventSaveboxPrint);
