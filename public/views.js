@@ -111,7 +111,7 @@ function Views() {
 	            parent.append(userHead);
 	            currentUsername = aCamp.username;
 	        }
-	        var campy = $('<div class="camps-camp"></div>');
+	        var campy = $('<button class="camps-camp"></button>');
 	        if (!aCamp.title) {
 	            aCamp.title = '[nameless]';
 	        }

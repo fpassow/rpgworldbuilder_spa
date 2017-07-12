@@ -1,7 +1,7 @@
 {
     "name": "Campaign",
     "label": "Campaign Builder",
-    "instructions": "Use this form to expand an idea or inspiration into a playable RPG campaign.",
+    "instructions": "Use this form to expand an idea into a playable RPG campaign.",
     "fields": [
         {
             "name": "title",

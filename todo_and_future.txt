@@ -1,6 +1,7 @@
 TODO
 ----
 
+* Campaigns as buttons?
 
 * create a real introductory index.html
 

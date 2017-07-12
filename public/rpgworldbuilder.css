@@ -1,12 +1,25 @@
 body {
     font-family: sans-serif;
+    background: black;
+    color: #ddd;
 }
-#pagewrap {
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+button {
+    color: #ddd;
+    background: #421;
+    border: 1px solid #877;
+    font-size: 18px;
+}
+input, textarea{
+    background: #333;
+    color: white;
+    padding: 5px;
+    font-size: 20px;
+}
+textarea {
+    font-size: 16px;
+    height: 70px;
+}
 
-}
 h2 {
     margin: 0px;
 }
@@ -16,44 +29,55 @@ h2 {
     margin: 0px;
     padding: 0px;
 }
+
+/****************** User ****************/
 #user-container {
-    border: 1px solid #00f;
     padding: 10px;
     margin: 0 10px 10px 10px;
 }
+
+
+
+/****************** Campaign List ****************/
 #camplist-container {
-    border: 1px solid #00f;
     padding: 10px;
     margin: 10px;
 }
+.camps-camp {
+    display:block;
+    width: 100%;
+}
+
+
+/****************** Campaign ****************/
+
 #campaign-container {
     margin-left: 250px;
    /* margin-right:100px;*/
     margin-top: 30px;
-    border: 1px solid #00f;
     padding: 10px;
+    max-width: 800px;
 }
 
 #campaign-addto-container {
     display:inline-block;
-    border: 1px solid #00f;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 
 .campaign-author-credit {
     text-align: right;
 }
-.camps-camp {
-    font-weight:bold;
-    color: blue;
-    border-bottom: 1px solid blue;
-}
+
 
 /************** From Campaign Editor*****/
 .campaign-arrayfield-item {
     margin: 5px;
     padding: 5px;
     border: 1px solid #555;
+    color: white;
+    font-size:18px;
 }
 .campaign-arrayfield-item-delete {
     text-align: right;
