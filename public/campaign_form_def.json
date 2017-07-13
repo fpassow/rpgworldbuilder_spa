@@ -101,62 +101,19 @@
             "longtext": false,
             "isarrayfield": true,
             "hints": [
-                {
-                    "label": "Weapons",
-                    "description": ""
-                },
-                {
-                    "label": "Tools",
-                    "description": ""
-                },
-                {
-                    "label": "Spells",
-                    "description": ""
-                },
-                {
-                    "label": "Magic Items",
-                    "description": ""
-                },
-                {
-                    "label": "Vehicles",
-                    "description": ""
-                },
-                {
-                    "label": "Animals",
-                    "description": ""
-                },
-                {
-                    "label": "Magic Powers",
-                    "description": ""
-                },
-                {
-                    "label": "Species Powers",
-                    "description": ""
-                },
-                {
-                    "label": "Cyber Powers",
-                    "description": ""
-                },
-                {
-                    "label": "Skills",
-                    "description": ""
-                },
-                {
-                    "label": "Abilities",
-                    "description": ""
-                },
-                {
-                    "label": "Extraordinary skills and abilities",
-                    "description": ""
-                },
-                {
-                    "label": "Social status",
-                    "description": ""
-                },
-                {
-                    "label": "Authority",
-                    "description": ""
-                }
+                {"label": "Weapons", "description": ""},
+                {"label": "Defenses", "description": ""},
+                {"label": "Tools", "description": ""},
+                {"label": "Spells", "description": ""},
+                {"label": "Magic Items", "description": ""},
+                {"label": "Vehicles", "description": ""},
+                {"label": "Animals", "description": ""},
+                {"label": "Magic Powers", "description": ""},
+                {"label": "Natural abilities", "description": ""},
+                {"label": "Cyber Powers", "description": ""},
+                {"label": "Skills", "description": ""},
+                {"label": "Social status", "description": ""},
+                {"label": "Authority", "description": ""}
             ]            
         },
         {
