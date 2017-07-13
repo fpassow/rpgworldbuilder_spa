@@ -9,6 +9,12 @@ button {
     border: 1px solid #877;
     font-size: 18px;
 }
+select {
+    color: #ddd;
+    background: #333;
+    border: 1px solid #877;
+    font-size: 18px;
+}
 input, textarea{
     background: #333;
     color: white;

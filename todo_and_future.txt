@@ -1,15 +1,11 @@
 TODO
 ----
 
-* Campaigns as buttons?
+* WHEN I DELETE AN ARRAY ITEM, FOCUS ON THAT FIELD'S INPUT
 
 * create a real introductory index.html
 
 
-* IMPORT
-
-* Nicer format for Array Field Items
-* Nicer format for hint popup
 * Use it, and make some notes
 * Improve text all over def
 * Review what I'm logging
@@ -22,8 +18,6 @@ WANTTHIS
 
 * Collapsable camp-list sections
 * Move my campaigns to top, or scroll to them
-
-* Game-ish visual style
 * Adjustable darkness
 * Sort case-insensitive in CampaignList
 * Import from

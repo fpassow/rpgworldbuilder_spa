@@ -119,7 +119,7 @@
         {
             "name": "place",
             "label": "Places",
-            "instructions": "Describe some places where the action happens. Anything from a cockpit to a continent.",
+            "instructions": "Describe some places where the action happens.",
             "longtext": false,
             "isarrayfield": true,
             "hints": []            

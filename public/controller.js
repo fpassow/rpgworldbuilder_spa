@@ -56,15 +56,6 @@ function Controller(model, views) {
         model.addToCampaignId = $("#campaign-addto-list").val();
     }
 
-
-/* USEFUL FOR CAMAPIGN AREA BUTTON CONTROL
-        $("#campaign-new").show();
-        $("#campaign-save").hide();
-        $("#campaign-import").hide();
-        $("#campaign-clone").hide();
-        $("#campaign-delete").hide();
-        */
-
     this.eventUserGotochangepw = function() {
         $("#user-state-notloggedin").hide();
         $("#user-state-loggedin").hide();
@@ -255,6 +246,7 @@ function Controller(model, views) {
                         }, 500);
                     }
                 });
+                alert('Saved.');
             }
         });            
     };
