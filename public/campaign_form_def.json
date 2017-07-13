@@ -46,7 +46,7 @@
         {
             "name": "scope",
             "label": "Scope",
-            "instructions": "A city, a wasteland, a war, etc.",
+            "instructions": "A city, a planet, a war, a subculture, etc.",
             "longtext": false,
             "isarrayfield": false,
             "hints": []            
@@ -62,44 +62,42 @@
         {
             "name": "driver",
             "label": "Drivers",
-            "instructions": "These are pattens for writing playable adventures. Pick some and describe their parts and how they work in this case.",
+            "instructions": "These are pattens for writing playable adventures. Pick some and describe how they work in this case.",
             "longtext": false,
             "isarrayfield": true,
             "hints": [
                 {"label": "Job with Missions", "description": "<p>PCs work for someone who sends them on adventures. James Bond works for MI6. Rebels work for the Rebel Alliance. Captain Jack Harkness works for Torchwood. Brave knights work for their king. Torchwood works for the Queen. And the Agents of Shield work for… you guessed it.</p><p>And vast powers can still have small and obscure jobs. Lots of normal agents work for the FBI. But Fox Mulder does too.</p><p>But the varieties of jobs are endless. Consider space rescue, robot repair, planetary survey, and animal control officer in a fantasy city.</p><p>And there are dozens of variations on \"police\": regular police, frontier sherrif, time police, magic police, and space police. Whenever a group has rules, they can have police to enforce them.</p>"},
                 {"label": "Secret War", "description": "<p>The secret part allows the setting to look like our everyday world. (Or the everyday medieval world, etc.)</p><p>Secret War is often combined with Job With Missions. But it can also work without the chain of command. Vampires vs Werewolves. Magical threats vs Magical Defenders.</p>"},
-                {"label": "War", "description": "<p>A full-blown war gives soldiers (and others) an unlimited supply of missions and other excitement.</p>"},
+                {"label": "War", "description": "<p>A full-blown war gives everyone an unlimited supply of missions and other excitement.</p>"},
                 {"label": "Freelancers", "description": "<p>Paid freelancers include Ghostbusters(tm), private detectives, mercenaries, etc. PCs can be guns for hire, swords for hire, spells for hire, cyberdecks for hire, or have fast ships (or other vehicles or transport methods, for hire.</p><p>The PCs are contacted by their customers, and paid to go on adventures.</p>"},
                 {"label": "Treasure Hunters", "description": "<p>Treasure hunters seek valuables that have no current owner. They are popular in fiction. And raiding a dangerous tomb is a straightforward adventure. This it a very simple driver, which is both its greatest strength and its greatest weakness.</p><p>Also, treasure hunters who are after the Big Score will either get tired of failing, or succeed and retire. So consider mixing this with at least on other driver. Or start with it and transition to something else.</p>"},
                 {"label": "Privateers", "description": "<p>Privateers were like pirates who operated during a war. They had permission from their side to attack and rob ships belonging to the other side.</p><p>In traditional fantasy RPGs, parties of humans, elves, and dwarves are free to invade the homes of orcs, trolls, and goblins, dragons., and take their stuff.</p><p>Robin Hood robbed the rich with the approval of the poor. And the thieves of fantasy cities are accepted back on their side of town when the return with loot lifted from the fat nobles and merchants.</p>"},
                 {"label": "Quest", "description": "<p>A long process, usually a journey, to get a single thing. Works best for short campaigns or as a nested driver. The advantage is a single crystal clear goal. The disadvantage is that it can be hard to stack a large number of adventures in front of that goal.</p><p>A quest can be nested inside a longer campaign.</p><p>Or the PCs might go about the business of the other driver, always alert for any clue that might allow them to advance their quest.</p>"},
                 {"label": "Colony", "description": "<p>PCs are part of a group trying to make a new life in a new world. Use as the setting for one or more other drivers.</p>"},
                 {"label": "Castaways", "description": "<p>PCs are lost or marooned away from their own kind. They explore, survive, and look for a way to get back home. (A large group of castaways might turn into a colony.)"},
-                {"label": "Journey Home", "description": "<p>A classic Quest.</p>"},
-                {"label": "Quest for a New Home", "description": "<p>Another kind of Quest. It’s a standard quest if they know where they’re going. If they don’t know where they’re going, I recommend mixing in another driver."},
+                {"label": "Journey", "description": "<p>A quest to get from point A to point B.</p>"},
                 {"label": "Defenders of…", "description": "<p>…the world, their own group, their species, anyone weaker than them, normal people who don’t know The Secret, normal people without special powers, an oppressed/hated/hunted group, The King, the nation, the nation and it’s allies, an outpost, a castle, a nomadic band, etc…"},
                 {"label": "Defenders Against…", "description": "<p>…a supernatural threat, a sinister conspiracy, the other side of any of the above.</p>"},
                 {"label": "Resistance", "description": "<p>…to invaders and oppressors.</p>"},
                 {"label": "Revolution", "description": "<p>…against invaders and oppressors.</p>"},
                 {"label": "Personal Mission", "description": "<p>Or &quot;personal quest&quot;. The PCs are doing something because they just really want to do it, or because they deeply believe it should be done.</p><p>They are driven to become the worlds greatest swordsman, to advance science, prove the Hollow Earth is real, or bring back Atalntis.</p><p>A PC with a personal quest and a personal fortune could employ like-minded PCs in Jobs With Missions.</p>"},
-                {"label": "World-Changing Disaster", "description": "<p>War, plague, asteroid, invasion, bacteria that eats plastic or computer chips, sudden climate change, AI take-over, etc. Best when combined with another driver.</p>"},
-                {"label": "World Change", "description": "<p>Spread of magic or superpowers. Alien arrival. Contact with another plane. Also best when combined with other drivers.</p>"},
-                {"label": "Survival (Wilderness)", "description": "<p>Fire, food, shelter, dangerous animals. Often combined with Castaway. It’s a great component but hard to make a whole campaign out of it.</p>"},
-                {"label": "Survival (Hunted)", "description": "<p>The PCs are running and/or hiding from something. Kind of a downer by itself. But popular in fiction.</p>"},
-                {"label": "Survival (Other)", "description": "<p>Also works best with something else mixed in.</p>"},
+                {"label": "Disaster", "description": "<p>War, plague, asteroid, invasion, bacteria that eats plastic or computer chips, sudden climate change, AI take-over, etc. Best when combined with another driver.</p>"},
+                {"label": "Survival", "description": "<p>Fire, food, shelter, dangerous animals. Often combined with Castaway. It’s a great component but hard to make a whole campaign out of it.</p>"},
+                {"label": "Hunted", "description": "<p>The PCs are running and/or hiding from something. Kind of a downer by itself. But popular in fiction.</p>"},
+                {"label": "Need", "description": "<p>The PCs have a dire need, which might or might not be shared with the rest of the world. Vampires need blood. Everyone needs water on a desert planet. Drasitic action is taken to find, obtain, and protect the vital resource.</p>"},
                 {"label": "Escape", "description": "<p>A kind of Quest. A desperate journey to Anywhere Else. Powerful, but hard to run very long by itself.</p>"},
                 {"label": "Merchants", "description": "<p>Merchant adventurers exist when great dangers and difficulties separate supply and demand. Think of the early spice traders in Earth’s Age of Exploration, the caravans along the Silk Road, or maybe the fur traders of the American frontier.</p><p>An adventurous trading life could form the backdrop for other adventures. This is the classic “fast ship” scenario.</p><p>And an actual green eyeshade, counting the gold pieces kind of campaign really appeals to some players (and is totally boring to others).</p>"},
                 {"label": "Smugglers", "description": "<p>Independent smugglers, who buy low on one side of a border and sell high on the other are a classic kind of merchant adventurers. Smugglers might also work for a gang or a rich buyer (or seller) who sends them on missions. Either way, it’s a model with a built in opposition.</p><p>However, smugglers are trying their hardest to avoid excitement and conflict. So maybe mix this one with another driver, either by adding some smuggling within another driver, or by making the smugglers open to other kinds of jobs. (They have a fast ship…)</p>"},
                 {"label": "Build Power and Resources", "description": "<p>A core component of many successful RPGs. And it works great with all the other drivers.</p><p>Note that I didn’t say “build wealth”. That by itself leads to the treasure hunter’s dilemma. Either it goes slowly and is too much like a normal job, or it goes quickly and the PCs retire.</p><p>But players’ appetite for power seems to be endless. And it’s extra-motivating when the resources are needed for some other driver’s goal.</p>"},
                 {"label": "Keys Quest", "description": "<p>A classic… The Great Magic Thing was divided into parts. The parts were scattered and hidden in dangerous places. And the PCs have a reason to find them.</p><p>Like all quests, it has a final end. But it has a bunch of intermediate ends, too. Twelve parts automatically gives you twelve adventures. Stretch it to a few adventures per part and you can get a whole year of play.</p><p>It’s over-used. But it’s over-used because it works.</p>"},
-                {"label": "Keys Quest", "description": "<p>The PCs are some of the most powerful and important people in their world. So the world's problems become their problems."},
+                {"label": "Power and Responsibility", "description": "<p>The PCs are some of the most powerful and important people in their world. So the world's problems become their problems."},
                 {"label": "Wandering Heros", "description": "<p>PCs have explicitly signed up to fight evil and help those in need. Examples: Knights of the Round Table, Dr. Who, The A-Team.</p><p>This is popular and a classic. But you should make sure the players explicitly agree to it, because it requires the PCs to do dangerous things without any other rational motivation."}
             ]            
         },
         {
             "name": "toy",
             "label": "Toys and Treasures",
-            "instructions": "List a few specific things in this world which the players will love using. Common categories include...",
+            "instructions": "Things the players will love using. Common categories include...",
             "longtext": false,
             "isarrayfield": true,
             "hints": [
@@ -246,97 +244,28 @@
             "longtext": false,
             "isarrayfield": true,
             "hints": [
-                {
-                    "label": "Assault",
-                    "description": "Attack a place to achieve a goal."
-                },
-                {
-                    "label": "Siege",
-                    "description": "Defend a place"
-                },
-                {
-                    "label": "Recon",
-                    "description": ""
-                },
-                {
-                    "label": "Rescue",
-                    "description": ""
-                },
-                {
-                    "label": "Theft",
-                    "description": ""
-                },
-                {
-                    "label": "Escape",
-                    "description": ""
-                },
-                {
-                    "label": "Gauntlet",
-                    "description": ""
-                },
-                {
-                    "label": "Hunt",
-                    "description": ""
-                },
-                {
-                    "label": "Treasure hunt",
-                    "description": ""
-                },
-                {
-                    "label": "Monster Mystery",
-                    "description": ""
-                },
-                {
-                    "label": "Rescue",
-                    "description": ""
-                },
-                {
-                    "label": "Mystery",
-                    "description": ""
-                },
-                {
-                    "label": "Con",
-                    "description": ""
-                },
-
-                {"label": "Explore", "description": ""},
-                {"label": "Investigate", "description": ""},
-                {"label": "Hunt", "description": ""},
-                {"label": "Discover", "description": ""},
-                {"label": "Solve", "description": ""},
-                {"label": "Attack", "description": ""},
-                {"label": "Defend", "description": ""},
-                {"label": "Search", "description": ""},
+                {"label": "Assault", "description": "Attack a place to achieve a goal."},
+                {"label": "Siege", "description": "Defend a place"},
+                {"label": "Recon", "description": ""},
+                {"label": "Rescue", "description": ""},
+                {"label": "Theft", "description": ""},
                 {"label": "Escape", "description": ""},
+                {"label": "Gauntlet", "description": ""},
+                {"label": "Hunt", "description": ""},
+                {"label": "Monster Mystery", "description": ""},
+                {"label": "Mystery", "description": ""},
+                {"label": "Explore", "description": ""},
                 {"label": "Capture", "description": ""},
-                {"label": "Flee", "description": ""},
                 {"label": "Trick", "description": ""},
-                {"label": "Hide", "description": ""},
                 {"label": "Negotiate", "description": ""},
-                {"label": "Infiltrate", "description": ""},
                 {"label": "Compete", "description": ""},
-                {"label": "Stop", "description": ""},
-                {"label": "Start", "description": ""},
-                {"label": "Recruite", "description": ""},
-                {"label": "Colonize", "description": ""},
-                {"label": "Earn", "description": ""},
-                {"label": "Learn", "description": ""},
-                {"label": "Teach", "description": ""},
-                {"label": "Ambush", "description": ""},
-                {"label": "Steal", "description": ""},
-                {"label": "Protect", "description": ""},
-                {"label": "Survive", "description": ""},
-                {"label": "Expel", "description": ""},
-                {"label": "Liberate", "description": ""},
-                {"label": "Build", "description": ""},
-                {"label": "Destroy", "description": ""},
-                {"label": "Rescue", "description": ""}
+                {"label": "Destroy", "description": ""}
             ]            
         },
         {
             "name": "character_class",
             "label": "Character Classes",
-            "instructions": "Types of people, who they are, and what they do. (This is about the world. It's fine if they are not actually part of the rules.",
+            "instructions": "Types of people in this world, who they are, and what they do. The rules don't have to be class based. Classes are just an awesome way to tell players about a world.",
             "longtext": false,
             "isarrayfield": true,
             "hints": []            
@@ -367,7 +296,7 @@
         },
                 {
             "name": "parts_i_love",
-            "label": "Parts I love",
+            "label": "Parts you love",
             "instructions": "",
             "longtext": false,
             "isarrayfield": true,
