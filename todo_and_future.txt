@@ -1,7 +1,6 @@
 TODO
 ----
 
-* Set font in text area to match font for rest of page
 
 * Not-mine clone didn't appear on camp list until I saved again.
 

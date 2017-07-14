@@ -144,13 +144,13 @@ function Views() {
                 var arr = data[rwbDef.fields[i].name];
                 if (arr && arr.length) {
                     arr.forEach(function(x, index) {
-                        div = $("<div></div>");
+                        div = $('<div class="campaign-static-view-item"></div>');
                         div.html(escapeHtml(x));
                         parent.append(div)
                     });
                 }
             } else {
-                div = $("<div></div>");
+                div = $('<div class="campaign-static-view-item"></div>');
                 div.html(escapeHtml(data[rwbDef.fields[i].name]));
                 parent.append(div);
             }

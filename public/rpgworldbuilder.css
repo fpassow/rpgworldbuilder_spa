@@ -27,6 +27,9 @@ h2 {
 .campaign-arrayfield-item-delete {
     color:red;
 }
+.campaign-static-view-item {
+    color: #ec0;
+}
 .hintlink {
     color: #88f;
 }
