@@ -1,7 +1,11 @@
 TODO
 ----
 
-* Make colors section at start of css
+* Not-mine clone didn't appear on camp list until I saved again.
+* Don't show "Saved" alert on automatic saves. Only when I hit the button.
+* Location of focus issues when jumping between campaigns
+* Put the gold on static views
+* Camp list layout
 * Sort the drivers by usability/power
 * create a real introductory index.html
 

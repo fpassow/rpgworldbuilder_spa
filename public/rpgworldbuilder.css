@@ -13,12 +13,25 @@ select {
     border: 1px solid #877;
 }
 input, textarea{
-    background: #333;
-    color: white;
+    background: #222;
+    color: #fe0;
 }
 textarea {
 }
 h2 {
+}
+.campaign-arrayfield-item {
+    border: 1px solid #555;
+    color: #ec0;
+}
+.campaign-arrayfield-item-delete {
+    color:red;
+}
+.hintlink {
+    color: #88f;
+}
+.hintlink:hover {
+    color: white;
 }
 #controls-container {
 }
@@ -35,19 +48,8 @@ h2 {
 }
 .campaign-author-credit {
 }
-.campaign-arrayfield-item {
-    border: 1px solid #555;
-    color: white;
-}
-.campaign-arrayfield-item-delete {
-    color:red;
-}
-.hintlink {
-    color: #88f;
-}
-.hintlink:hover {
-    color: white;
-}
+
+
 input {
 }
 textarea {
@@ -82,7 +84,7 @@ input, textarea{
     font-size: 20px;
 }
 textarea {
-    font-size: 16px;
+    font-size: 20px;
     height: 70px;
 }
 h2 {
