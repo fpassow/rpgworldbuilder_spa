@@ -1,7 +1,7 @@
 TODO
 ----
 
-* WHEN I DELETE AN ARRAY ITEM, FOCUS ON THAT FIELD'S INPUT
+* DONE. TEST IT. >>>>> WHEN I DELETE AN ARRAY ITEM, FOCUS ON THAT FIELD'S INPUT
 
 * create a real introductory index.html
 

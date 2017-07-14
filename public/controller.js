@@ -363,6 +363,7 @@ function Controller(model, views) {
 
     this.deleteArrayFieldItem = function(fieldName, arrayIndex) {
         model.campaign[fieldName].splice(arrayIndex, 1);
+        model.nextFocusId = 'campedit-' + fieldName + '-input';
         views.standardView(model, thiz);
     };
 
