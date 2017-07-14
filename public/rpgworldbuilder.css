@@ -20,6 +20,12 @@ textarea {
 }
 h2 {
 }
+.camps-userhead {
+    border-top: 1px solid #aaa;
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+    background: #222;
+}
 .campaign-arrayfield-item {
     border: 1px solid #555;
     color: #ec0;
@@ -118,12 +124,16 @@ h2 {
     display:block;
     width: 100%;
 }
+.camps-userhead {
+    margin-bottom: 3px;
+    padding:3px 3px 3px 10px;
+}
 
 
 /****************** Campaign ****************/
 
 #campaign-container {
-    margin-left: 250px;
+    margin-left: 260px;
    /* margin-right:100px;*/
     margin-top: 30px;
     padding: 10px;

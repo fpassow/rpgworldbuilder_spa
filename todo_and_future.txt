@@ -4,7 +4,6 @@ TODO
 
 * Not-mine clone didn't appear on camp list until I saved again.
 
-* Put the gold on static views
 * Camp list layout
 * Sort the drivers by usability/power
 * create a real introductory index.html
