@@ -1,8 +1,8 @@
 TODO
 ----
 
-* DONE. TEST IT. >>>>> WHEN I DELETE AN ARRAY ITEM, FOCUS ON THAT FIELD'S INPUT
-
+* Make colors section at start of css
+* Sort the drivers by usability/power
 * create a real introductory index.html
 
 

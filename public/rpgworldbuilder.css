@@ -1,5 +1,4 @@
 body {
-    font-family: sans-serif;
     background: black;
     color: #ddd;
 }
@@ -7,17 +6,78 @@ button {
     color: #ddd;
     background: #333;
     border: 1px solid #877;
-    font-size: 18px;
 }
 select {
     color: #ddd;
     background: #333;
     border: 1px solid #877;
-    font-size: 18px;
 }
 input, textarea{
     background: #333;
     color: white;
+}
+textarea {
+}
+h2 {
+}
+#controls-container {
+}
+
+#user-container {
+}
+#camplist-container {
+}
+.camps-camp {
+}
+#campaign-container {
+}
+#campaign-addto-container {
+}
+.campaign-author-credit {
+}
+.campaign-arrayfield-item {
+    border: 1px solid #555;
+    color: white;
+}
+.campaign-arrayfield-item-delete {
+    color:red;
+}
+.hintlink {
+    color: #88f;
+}
+.hintlink:hover {
+    color: white;
+}
+input {
+}
+textarea {
+}
+#hintbox {
+    border:4px solid #bbf;
+    background:white;
+    color: black;
+}
+#savebox {
+    background:white;
+}
+#savebox-controls {
+}
+#savebox-content {
+}
+
+
+/****************************End of safely editable colors section ***************************/
+
+body {
+    font-family: sans-serif;
+}
+button {
+    font-size: 18px;
+}
+select {
+    font-size: 18px;
+}
+input, textarea{
     padding: 5px;
     font-size: 20px;
 }
@@ -25,7 +85,6 @@ textarea {
     font-size: 16px;
     height: 70px;
 }
-
 h2 {
     margin: 0px;
 }
@@ -82,20 +141,16 @@ h2 {
     margin: 5px;
     padding: 5px;
     border: 1px solid #555;
-    color: white;
     font-size:18px;
 }
 .campaign-arrayfield-item-delete {
     text-align: right;
-    color:red;
     display:inline-block;
     float:right;
 }
 .hintlink {
-    color: #88f;
 }
 .hintlink:hover {
-    color: white;
 }
 input {
     width: 100%;
@@ -110,8 +165,6 @@ textarea {
     width:50%;
     padding: 20%px;
     z-index:10;
-    background:white;
-    color: black;
     position:fixed;
     left:100px;
     top:100px;
@@ -126,7 +179,6 @@ textarea {
     width:95%;
     margin: 0px;
     padding: 30px;
-    background:white;
     display:none;
 }
 #savebox-controls {
