@@ -1,9 +1,10 @@
 TODO
 ----
 
+* Set font in text area to match font for rest of page
+
 * Not-mine clone didn't appear on camp list until I saved again.
-* Don't show "Saved" alert on automatic saves. Only when I hit the button.
-* Location of focus issues when jumping between campaigns
+
 * Put the gold on static views
 * Camp list layout
 * Sort the drivers by usability/power

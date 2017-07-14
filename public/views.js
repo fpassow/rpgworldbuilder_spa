@@ -78,6 +78,7 @@ function Views() {
             	_drawCampaignEditor(model, controller);
             	if (model.nextFocusId) {
             		$("#" + model.nextFocusId).focus();
+                    model.nextFocusId = null;
             	}
             } else {
             	_drawStaticCampaignView("campaign-thecampaign", model);

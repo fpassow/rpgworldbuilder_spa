@@ -208,7 +208,7 @@ function Controller(model, views) {
     function _preserveCampaignEdits() {
     	if (model.user.loggedIn && model.campaign && model.user.username == model.campaign.username) {
     		_readCampaignInputs();
-    		_saveCampaignToServer();
+    		_saveCampaignToServer(null);
     	}
     }
 
@@ -218,12 +218,14 @@ function Controller(model, views) {
     	if (!model.user.loggedIn) {
     		views.printView(model, thiz);
     	} else {
-            _saveCampaignToServer();
+            _saveCampaignToServer(function() {
+            	alert("Campaign has been saved.");
+            });
             views.standardView(model, thiz);
         }
     };
 
-    function _saveCampaignToServer() {
+    function _saveCampaignToServer(done) {
         _writeCampaignMessage("Saving.....");
         storeCampaign(model.user.username, model.user.password, model.campaign, function(err) {
             //Clear "Saving..." message. But make sure it lasts at least half a second.
@@ -246,7 +248,9 @@ function Controller(model, views) {
                         }, 500);
                     }
                 });
-                alert('Saved.');
+                if (done) {
+                	done();
+                }
             }
         });            
     };
@@ -259,7 +263,7 @@ function Controller(model, views) {
         if (model.campaign) {
             model.campaign.username = model.user.username;
             model.campaign.campaignId = "ID" + Math.random();
-            _saveCampaignToServer();//Also displays a view
+            _saveCampaignToServer(null);//Also displays a view
         } else {
             alert('Nothing to clone');
             views.standardView(model, thiz);
@@ -368,7 +372,6 @@ function Controller(model, views) {
     };
 
     
-  
     //Wire events from the static html
 
     $("#user-login-button").on('click', this.eventUserLogin); 
