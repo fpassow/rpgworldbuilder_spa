@@ -1,6 +1,8 @@
 /*
  * REST API for rpgworldbuilder spa.
  * Also serves static files.
+ *
+ * Expects MongoDB connection string in environement variable RPGWORLDBUILDER_DB
  */
 
 var log = require('winston');
@@ -125,22 +127,6 @@ function serveSomeWebs(store) {
             res.status(400).send("Expected id in path");
         }
     });
-    
-    //To search, POST a mongodb search object.
-/*    app.post('/api/search', function(req, res) {
-        if (req.body) {
-            store.findCampaigns(req.body, function(err, campaigns) {
-                if (err) {
-                    log.error('err from findCampaigns', err);
-                } else {
-                    res.json(campaigns);
-                }
-            });
-        } else {
-            res.status(400).send("No search criteria.");
-        }
-    });
-    */
     
     //To search, POST a mongodb search object.
     //Returns only campaignId, title, and username

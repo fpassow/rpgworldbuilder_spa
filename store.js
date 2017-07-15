@@ -1,6 +1,8 @@
+//Expects MongoDB connection string in environement variable RPGWORLDBUILDER_DB
+
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-var mongoUrl = 'mongodb://127.0.0.1:27017/rpgworldbuilder';
+var mongoUrl = process.env.RPGWORLDBUILDER_DB;
 
 /*
  * callback(err, storeObjectWithConnectionsAndMethods)
