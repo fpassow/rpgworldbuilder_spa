@@ -1,32 +1,48 @@
 TODO
 ----
 
-* Game or strong media examples for ALL drivers
+* Move delete button to left side
 
-* Not-mine clone didn't appear on camp list until I saved again.
+* spa listing users & camps by reverse age
+* delete
+* set admin creds
 
-* Sort the drivers by usability/power
-* create a real introductory index.html
+  *      type: 'DELETE',
+         url: '/api/admin/campaign/' + campaignUsername + '/' + campaignId,
+ 
+
 
 * design an admin UI
-*   Separate page
-*   
+*   Separate page. admin.html  is its own spa
+*   admin collection w object w password
+*   use rest services from main app to get data
+*   Functions:
+*       Delete any campaign
+*       Delete users
+*       Change users password
+*   admin_controller.js
+*   admin_view.js
+*   separate /rpgworldbuilder/admin services... will be better later
+
 
 * clean the db
+
+* create a real introductory index.html
 
 * understand  --dbpath /data/db1
 
 
 * Use it, and make some notes
-* Improve text all over def
 * Review what I'm logging
 * Review security of returning err objects to browser
 
-* Data backup 
+
 
 
 WANTTHIS
 --------
+
+* Data backup 
 
 * Collapsable camp-list sections
 * Move my campaigns to top, or scroll to them

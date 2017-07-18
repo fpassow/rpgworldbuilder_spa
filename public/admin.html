@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>RPG World Builder: Admin</title>
+        <link rel="stylesheet" href="admin.css">
+    </head>
+    <body>
+
+        <div id="admin">
+            <input id="admin1"></input>
+            <input id="admin2" type="password"></input>
+        </div>
+
+        <div id="admin-uselist">
+        </div>
+
+        <div id="admin-camplist">
+        </div>
+      
+	    <script src="jquery-3.1.1.min.js" charset="utf-8"></script>
+	    <script src="admin_controller.js" charset="utf-8"></script>
+	    <script src="admin_views.js" charset="utf-8"></script>
+	    <script src="clientlib.js" charset="utf-8"></script>
+        <script>
+	        $(document).ready(function() {    
+                new AdminController(new AdminViews()).eventInit();
+            });
+        </script>
+	    
+</body>
+</html>
+

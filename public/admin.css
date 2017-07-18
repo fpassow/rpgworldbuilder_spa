@@ -1,0 +1,16 @@
+body {
+    background: black;
+    color: #ddd;
+}
+button {
+    color: #ddd;
+    background: #333;
+    border: 1px solid #877;
+}
+
+
+.camp {
+    border: 1px solid #aaa;
+    background: #222;
+    margin: 10px;
+}

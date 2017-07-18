@@ -54,7 +54,7 @@ function changePassword(username, oldPassword, newPassword, callback) {
 }
 
 
-//callback(err, useList)  If no error, then credentials are good.
+//callback(err, useerList) 
 function listUsers(callback) {
   $.ajax({
         type: 'GET',
@@ -137,6 +137,38 @@ function deleteCampaign(username, password, campaignId, callback) {
         dataType: 'json',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'Basic ' + btoa(username + ':' + password));  
+        }
+    });
+}
+
+//Deletes any campaign, as long as the admin creds are valid
+//callback(err)
+function adminDeleteCampaign(adminUsername, adminPassword, campaignUsername, campaignId, callback) {
+  $.ajax({
+        type: 'DELETE',
+        url: '/api/admin/campaign/' + campaignUsername + '/' + campaignId,
+        success: function(data) {if (callback) {callback(null);}},
+        error:function(jqXHR ) {if (callback) {callback(jqXHR.responseText);}},
+        contentType: "application/json",
+        dataType: 'json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Basic ' + btoa(adminUsername + ':' + adminPassword));  
+        }
+    });
+}
+
+//Deletes a user. On the server side, all their campaigns are deleted, too.
+//callback(err)
+function adminDeleteUser(adminUsername, adminPassword, campaignUsername, campaignId, callback) {
+  $.ajax({
+        type: 'DELETE',
+        url: '/api/admin/user/' + username,
+        success: function(data) {if (callback) {callback(null);}},
+        error:function(jqXHR ) {if (callback) {callback(jqXHR.responseText);}},
+        contentType: "application/json",
+        dataType: 'json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Basic ' + btoa(adminUsername + ':' + adminPassword));  
         }
     });
 }
