@@ -1,29 +1,25 @@
 TODO
 ----
 
-* Move delete button to left side
+* server.js /api/admin/campaign DELETE
 
-* spa listing users & camps by reverse age
-* delete
-* set admin creds
+* store.js loadAdminUser() from loadUser(...)
 
-  *      type: 'DELETE',
+* Delete campaign functionality all the way through
+* Delete user button
+* Delete user functionality
+
+* Admin client lib functions
+* Admin services in server.js
+*       delete campaign
+*       delete user and their campaigns
+
+*      type: 'DELETE',
          url: '/api/admin/campaign/' + campaignUsername + '/' + campaignId,
  
+* Admins collection in MongoDB
 
-
-* design an admin UI
-*   Separate page. admin.html  is its own spa
-*   admin collection w object w password
-*   use rest services from main app to get data
-*   Functions:
-*       Delete any campaign
-*       Delete users
 *       Change users password
-*   admin_controller.js
-*   admin_view.js
-*   separate /rpgworldbuilder/admin services... will be better later
-
 
 * clean the db
 
@@ -32,7 +28,6 @@ TODO
 * understand  --dbpath /data/db1
 
 
-* Use it, and make some notes
 * Review what I'm logging
 * Review security of returning err objects to browser
 

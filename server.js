@@ -8,7 +8,7 @@
 var log = require('winston');
 log.level = 'debug';
 
-//Connect to the db
+//Require my db access module
 require('./store')(function(err, store) {
 	if (err) {
 		log.error('Error connecting to database ', err);
@@ -160,6 +160,30 @@ function serveSomeWebs(store) {
             }
         });
     });
+
+
+    ////////////////////// Admin ///////////////////////
+
+
+    /* Utility function.
+     * Calls ifAuth(userObjectFromDatabase) if credentials are good.
+     * Sends a status 401 if credentials are bad.
+     */
+    function adminAuthCheck(req, res, ifAuth) {
+        var authUser = basicAuth(req);//has name and pass 
+        if (authUser && authUser.name && authUser.pass) {
+            store.loadAdminUser(authUser.name, function (err, storedUser) {
+                if (storedUser && (authUser.pass === storedUser.password)) {
+                    ifAuth(storedUser);
+                } else {
+                    res.status(401).send("Bad username/password");
+                }
+            });
+        } else {
+            res.status(401).send("Missing username/password");
+        }
+    }
+        
 
     //Serve the static files
     app.use('/', express.static('public'));
