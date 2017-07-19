@@ -7,27 +7,37 @@
     </head>
     <body>
 
-        <div id="admin">
-            <input id="admin1"></input>
-            <input id="admin2" type="password"></input>
+    <div id="controls-container">
+    
+        <div id="user-container">
+            <div id="user-message">   </div>
+            <div id="user-state-notloggedin">
+                Username:<input id="user-username"></input>
+                Password:<input id="user-password" type="password"></input>
+                <button id="user-login-button" class="user-button-primary">Log In</button>
+            </div>
+            <div id="user-state-loggedin">
+                <button id="user-logout-button">Logout</button>
+            </div>
         </div>
-
-        <div id="admin-uselist">
+        
+        <div id="camplist-container">
         </div>
-
-        <div id="admin-camplist">
-        </div>
-      
-	    <script src="jquery-3.1.1.min.js" charset="utf-8"></script>
-	    <script src="admin_controller.js" charset="utf-8"></script>
-	    <script src="admin_views.js" charset="utf-8"></script>
-	    <script src="clientlib.js" charset="utf-8"></script>
-        <script>
-	        $(document).ready(function() {    
-                new AdminController(new AdminViews()).eventInit();
-            });
-        </script>
-	    
+    </div>
+    
+    <div id="campaign-container">
+        <button id="campaign-delete">Delete</button>
+        <div id="campaign-thecampaign"></div>
+    </div>
+    
+    <script src="jquery-3.1.1.min.js" charset="utf-8"></script>
+    <script src="model.js" charset="utf-8"></script>
+    <script src="admin_controller.js" charset="utf-8"></script>
+    <script src="admin_views.js" charset="utf-8"></script>
+    <script src="admin_main.js" charset="utf-8"></script>
+    <script src="clientlib.js" charset="utf-8"></script>
+    <script src="admin_clientlib.js" charset="utf-8"></script>
+    
 </body>
 </html>
 

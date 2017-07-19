@@ -1,5 +1,5 @@
 body {
-    background: black;
+    background: #800;
     color: #ddd;
 }
 button {
@@ -7,10 +7,74 @@ button {
     background: #333;
     border: 1px solid #877;
 }
-
-
-.camp {
-    border: 1px solid #aaa;
+h2 {
+    font-size: 12px;
+}
+h3 {
+    font-size: 10px;
+}
+.camps-userhead {
+    border-top: 1px solid #aaa;
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #aaa;
     background: #222;
+}
+.campaign-static-view-item {
+    color: #ec0;
+}
+
+/****************************End of safely editable colors section ***************************/
+
+body {
+    font-family: sans-serif;
+}
+button {
+    font-size: 18px;
+}
+h2 {
+    margin: 0px;
+}
+#controls-container {
+    width:230px;
+    float:left;
+    margin: 0px;
+    padding: 0px;
+}
+
+/****************** User ****************/
+#user-container {
+    padding: 10px;
+    margin: 0 10px 10px 10px;
+}
+
+
+
+/****************** Campaign List ****************/
+#camplist-container {
+    padding: 10px;
     margin: 10px;
+}
+.camps-camp {
+    display:block;
+    width: 100%;
+}
+.camps-userhead {
+    margin-bottom: 3px;
+    padding:3px 3px 3px 10px;
+    font-size:24px;
+}
+
+
+/****************** Campaign ****************/
+
+#campaign-container {
+    margin-left: 260px;
+   /* margin-right:100px;*/
+    margin-top: 30px;
+    padding: 10px;
+    max-width: 800px;
+}
+
+.campaign-author-credit {
+    font-size: 24px;
 }

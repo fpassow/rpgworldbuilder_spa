@@ -1,42 +1,90 @@
 /*
-     Public methods:
-         eventUserDelete(username)
-         eventCampaignDelete(username, campaignId)
-         eventInit //loads data and draws the starndard view
+  This admin controller has references to the model and the views, but keeps no other state of its own,
+  and the model is just data. (And server access details are hidden in clientlib.sj.)
 
-     model has adminUser, adminPassword, userList, campaignList
- */
+  The admin controller receives very simple UI events, basically just clicks. The event processing code
+  has utility methods to pull user inputs from the UI, and clientlib.js functions to talk to the server.
 
-function AdminController(views) {
+  views argument should be an AdminViews.
 
-	this.model = {};
-	this.views = views;
+  Admin users are managed directly in the database.
+
+  No admin functionality is included in any file in the primary spa. So the admin spa also has an 
+  extra set of functions in admin_clientlib.js
+*/
+
+function AdminController(model, views) {
+
+	this.model = model;
+	this.views = views
 	thiz = this;
 
-    this.eventInit = function() {
-        _updateFromServer(function() {
-            views.standardView(thiz.model, thiz);
+    //Utility function to pull data from the user section INPUT elements
+    function _readUserInputs() {
+    	var uin = {};
+    	uin.login = {};
+        uin.login.username = $("#user-username").val();
+        uin.login.password = $("#user-password").val( );
+        return uin;
+    }
+
+    this.eventUserLogin = function() {
+    	var uin = _readUserInputs();
+    	var n = uin.login.username;
+    	var p = uin.login.password;
+        checkAdminUser(n, p, function(err) {
+            if (err) {
+                model.user.username = n;
+                model.user.password = null;
+                model.user.loggedIn = false;
+                model.userMessage = "Login failed:" + JSON.stringify(err);
+            } else {
+                model.user.username = n;
+                model.user.password = p;
+                model.user.loggedIn = true;
+                model.userMessage = "Logged in as <b>" + n + "</b>";
+            }
+            views.standardView(model, thiz);
         });
     };
 
-
-    this.eventUserDelete = function(username) {
-
+    this.eventUserLogout = function() {
+    	//The server has no concept of "logged in". So we're just dropping local state.
+    	model.user.username = null;
+        model.user.password = null;
+        model.user.loggedIn = false;
+        views.standardView(model, thiz);
     };
 
-    this.eventCampaignDelete = function(username, campaignId) {
-        if (confirm('Delete a campaign?')) {
-            adminDeleteCampaign(thiz.model.adminUser, thiz.model.adminPassword, username, campaignId, function(err) {
+    this.eventDeleteuser = function() {alert('FUNCTION NOT WRITTEN YET');};
+
+
+    // Called when user clicks a campaign in the campaign list.
+    this.selectCampaign = function(campMeta) {
+        loadCampaign(campMeta.username, campMeta.campaignId, function(err, camp) {
+            if (err) {
+                alert(JSON.stringify(err));
+            } else {
+                model.campaign = camp;
+                views.standardView(model, thiz);
+            }
+        });
+    };
+    
+    this.eventCampaignDelete = function() {
+        if (confirm('Delete this campaign?')) {
+            adminDeleteCampaign(model.user.username, model.user.password, USERNAME, model.campaign.campaignId, function(err) {
                 if (err) {
                     alert(JSON.stringify(err));
                 } else {
+                	model.campaign = null;
                     findCampaignsMetadata({}, function(err, campsMeta) {
-                        if (err) {
+                	    if (err) {
                             alert(JSON>stringify(err));
-                            views.standardView(model, thiz);
+                	        views.standardView(model, thiz);
                         } else {
-                            model.campaignList = campsMeta;
-                            views.standardView(model, thiz);
+                    	    model.campaignList = campsMeta;
+                	        views.standardView(model, thiz);
                         }
                     });
                 }
@@ -44,58 +92,19 @@ function AdminController(views) {
         }
     };
 
-    //Utility function to pull data from the user section INPUT elements
-    function _readUI() {
-        thiz.model.adminUser = $("#admin1").val();
-        thiz.model.adminPassword = $("#admin2").val();
-    }
+    
+    //Wire events from the static html
 
-    function _updateFromServer(done) {
-        findCampaignsMetadata({}, function(err, campsMeta) {
-            if (err) {
-                alert(JSON>stringify(err));
-                views.standardView(model, thiz);
-            } else {
-                thiz.model.campaignList = campsMeta;
-                listUsers(function(err, users) {
-                    if (err) {
-                        alert(JSON.stringify(err));
-                    } else {
-                        thiz.model.userList = users;
-                        done();
-                    }
+    $("#user-login-button").on('click', this.eventUserLogin); 
+	$("#user-password").on('keyup', function(e) {
+	    if (e.keyCode === 13) {//return key
+	        thiz.eventUserLogin();
+	    }
+	});
+    $("#user-logout-button").on('click', this.eventUserLogout);
+	$("#campaign-delete").on('click', this.eventCampaignDelete);
 
-                });
-            }
-        });
-    }
-
-
-/*
-    this.eventUserChangepw = function() {
-        var uin = _readUserInputs();
-        var oldPw = uin.changepw.old;
-        var newPw1 = uin.changepw.new1;
-        var newPw2 = uin.changepw.new2;
-        if (!(oldPw && newPw1 && newPw2 && oldPw.length && newPw1.length && newPw2.length)) {
-            alert('All three fields are required.');
-            return;//no need to redraw
-        }
-        if (newPw1 !== newPw2) {
-            alert('New password fields must match.');
-            return;//no need to redraw
-        }
-        changePassword(thiz.model.user.username, oldPw, newPw1, function(err) {
-            if (err) {
-                alert(JSON.stringify(err));
-                //No need to redraw
-            } else {
-                thiz.model.user.password = newPw1;
-                alert('Password changed.');
-                thiz.views.standardView(model, thiz);
-            }
-        });
-    };
-*/
-
+	//Events from dynamically generated HTML:
+    //  Clicking a campaign in the CamplaignList calls controller.selectCampaign(campMeta);
+    //  Clicking [Delete] on a user deletes the user. (User's campaigns are deleted on the server side)
 }
