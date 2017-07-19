@@ -28,24 +28,19 @@ function AdminController(model, views) {
         return uin;
     }
 
-    this.eventUserLogin = function() {
+    this.eventUserLogin = function() { alert('logging in');
     	var uin = _readUserInputs();
     	var n = uin.login.username;
     	var p = uin.login.password;
-        checkAdminUser(n, p, function(err) {
-            if (err) {
-                model.user.username = n;
-                model.user.password = null;
-                model.user.loggedIn = false;
-                model.userMessage = "Login failed:" + JSON.stringify(err);
-            } else {
-                model.user.username = n;
-                model.user.password = p;
-                model.user.loggedIn = true;
-                model.userMessage = "Logged in as <b>" + n + "</b>";
-            }
-            views.standardView(model, thiz);
-        });
+
+        model.user.username = n;
+        model.user.password = p;
+        model.user.loggedIn = true;
+        model.userMessage = "Logged in as <b>" + n + "</b>";
+
+        alert('Credentials stored.');
+
+        views.standardView(model, thiz);
     };
 
     this.eventUserLogout = function() {
@@ -73,7 +68,7 @@ function AdminController(model, views) {
     
     this.eventCampaignDelete = function() {
         if (confirm('Delete this campaign?')) {
-            adminDeleteCampaign(model.user.username, model.user.password, USERNAME, model.campaign.campaignId, function(err) {
+            adminDeleteCampaign(model.user.username, model.user.password, model.campaign.username, model.campaign.campaignId, function(err) {
                 if (err) {
                     alert(JSON.stringify(err));
                 } else {

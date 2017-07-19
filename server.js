@@ -183,6 +183,23 @@ function serveSomeWebs(store) {
             res.status(401).send("Missing username/password");
         }
     }
+
+        //Include HTTP basic auth. Campaign ID is next thing in path. Username is the authorizing user.
+    app.delete('/api/admin/campaign/:campaignUser/:id', function(req, res) {
+        adminAuthCheck(req, res, function(adminUser) {
+            if (req.params.campaignUser && req.params.id) {
+                store.deleteCampaign(req.params.campaignUser, req.params.id, function(err) {
+                    if (err) {
+                        res.status(500).json(err);//TODO  MAKE BETTER AND SAFER!!!!
+                    } else {
+                        res.end();
+                    }
+                });
+            } else {
+                res.status(400).send("Owning username and campaignId required.");
+            }
+        });
+    });
         
 
     //Serve the static files

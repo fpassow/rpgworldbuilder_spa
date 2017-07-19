@@ -23,20 +23,29 @@ function connect(callback) {
                         if (err) {
                             callback(err, null);
                         } else {
-                            //collections
-                            store.users = users;
-                            store.campaigns = campaigns;
-                            //functions
-                            store.loadUser = loadUser;
-                            store.storeUser = storeUser;
-                            store.deleteUser = deleteUser;
-                            store.listUsers = listUsers;
-                            store.loadCampaign = loadCampaign;
-                            store.storeCampaign = storeCampaign;
-                            store.deleteCampaign = deleteCampaign;
-                            store.findCampaigns = findCampaigns;
-                            store.findCampaignsMetadata = findCampaignsMetadata;
-                            callback(null, store);
+                            db.createCollection("admins", function(err, admins) {
+                                if (err) {
+                                    callback(err, null);
+                                } else {
+
+                                    //collections
+                                    store.users = users;
+                                    store.campaigns = campaigns;
+                                    store.admins = admins;
+                                    //functions
+                                    store.loadUser = loadUser;
+                                    store.storeUser = storeUser;
+                                    store.deleteUser = deleteUser;
+                                    store.listUsers = listUsers;
+                                    store.loadCampaign = loadCampaign;
+                                    store.storeCampaign = storeCampaign;
+                                    store.deleteCampaign = deleteCampaign;
+                                    store.findCampaigns = findCampaigns;
+                                    store.findCampaignsMetadata = findCampaignsMetadata;
+                                    store.loadAdminUser = loadAdminUser
+                                    callback(null, store);
+                                }
+                            });
                         }
                     });
                 }
@@ -156,6 +165,17 @@ function deleteCampaign(username, campaignId, callback) {
         });
     }
 }
+
+/*
+ * callback(err, user)
+ */
+function loadAdminUser(adminUsername, callback) {
+    var crit = {adminUsername:adminUsername};
+    this.admins.findOne(crit, function (err, storedUser) {
+        callback(err, storedUser);
+    });
+}
+
 
 module.exports = connect;
 

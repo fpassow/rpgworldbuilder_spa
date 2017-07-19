@@ -6,10 +6,10 @@ function checkAdminUser(name, password, callback) {
 }
 
 //callback(err)
-function adminDeleteCampaign(adminUsername, adminPassword, campaignUsername, campaignId) {
+function adminDeleteCampaign(adminUsername, adminPassword, campaignUsername, campaignId, callback) {
   $.ajax({
         type: 'DELETE',
-        url: '/api/admin/campaign/' + '/' + campaignUsername + '/' + campaignId,
+        url: '/api/admin/campaign/' + campaignUsername + '/' + campaignId,
         success: function(data) {if (callback) {callback(null);}},
         error:function(jqXHR ) {if (callback) {callback(jqXHR.responseText);}},
         contentType: "application/json",
