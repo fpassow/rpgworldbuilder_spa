@@ -37,7 +37,9 @@ TODO
 WANTTHIS
 --------
 
-* Data backup 
+* Data backup
+
+* So about all these "thiz".... 
 
 * Collapsable camp-list sections
 * Move my campaigns to top, or scroll to them

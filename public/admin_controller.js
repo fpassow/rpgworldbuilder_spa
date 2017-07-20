@@ -21,34 +21,22 @@ function AdminController(model, views) {
 
     //Utility function to pull data from the user section INPUT elements
     function _readUserInputs() {
-    	var uin = {};
-    	uin.login = {};
-        uin.login.username = $("#user-username").val();
-        uin.login.password = $("#user-password").val( );
-        return uin;
+        thiz.model.adminUsername = $("#user-username").val();
+        thiz.model.adminPassword = $("#user-password").val( );
     }
 
+    //Don't validate them. Don't make it easier if someone gets them wrong.
     this.eventUserLogin = function() { alert('logging in');
-    	var uin = _readUserInputs();
-    	var n = uin.login.username;
-    	var p = uin.login.password;
-
-        model.user.username = n;
-        model.user.password = p;
-        model.user.loggedIn = true;
-        model.userMessage = "Logged in as <b>" + n + "</b>";
-
+    	_readUserInputs();
         alert('Credentials stored.');
-
         views.standardView(model, thiz);
     };
 
     this.eventUserLogout = function() {
     	//The server has no concept of "logged in". So we're just dropping local state.
-    	model.user.username = null;
-        model.user.password = null;
-        model.user.loggedIn = false;
-        views.standardView(model, thiz);
+    	thiz.model.adminUsername = null;
+        thiz.model.adminPassword = null;
+        views.standardView(thiz.model, thiz);
     };
 
     this.eventDeleteuser = function() {alert('FUNCTION NOT WRITTEN YET');};
@@ -60,7 +48,7 @@ function AdminController(model, views) {
             if (err) {
                 alert(JSON.stringify(err));
             } else {
-                model.campaign = camp;
+                thiz.model.campaign = camp;
                 views.standardView(model, thiz);
             }
         });
@@ -68,18 +56,19 @@ function AdminController(model, views) {
     
     this.eventCampaignDelete = function() {
         if (confirm('Delete this campaign?')) {
-            adminDeleteCampaign(model.user.username, model.user.password, model.campaign.username, model.campaign.campaignId, function(err) {
+            adminDeleteCampaign(thiz.model.adminUsername, thiz.model.adminPassword, 
+                                thiz.model.campaign.username, thiz.model.campaign.campaignId, function(err) {
                 if (err) {
                     alert(JSON.stringify(err));
                 } else {
-                	model.campaign = null;
+                	thiz.model.campaign = null;
                     findCampaignsMetadata({}, function(err, campsMeta) {
                 	    if (err) {
                             alert(JSON>stringify(err));
-                	        views.standardView(model, thiz);
+                	        thiz.standardView(thiz.model, thiz);
                         } else {
                     	    model.campaignList = campsMeta;
-                	        views.standardView(model, thiz);
+                	        thiz.views.standardView(thiz.model, thiz);
                         }
                     });
                 }

@@ -172,11 +172,11 @@ function serveSomeWebs(store) {
     function adminAuthCheck(req, res, ifAuth) {
         var authUser = basicAuth(req);//has name and pass 
         if (authUser && authUser.name && authUser.pass) {
-            store.loadAdminUser(authUser.name, function (err, storedUser) {
-                if (storedUser && (authUser.pass === storedUser.password)) {
-                    ifAuth(storedUser);
+            store.loadAdminUser(authUser.name, function (err, storedAdminUser) {console.log(storedAdminUser);
+                if (storedAdminUser && (authUser.pass === storedAdminUser.adminPassword)) {
+                    ifAuth(storedAdminUser);
                 } else {
-                    res.status(401).send("Bad username/password");
+                    res.status(401).send("Bad username / password");
                 }
             });
         } else {
