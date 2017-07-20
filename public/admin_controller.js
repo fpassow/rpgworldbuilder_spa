@@ -28,7 +28,7 @@ function AdminController(model, views) {
     //Don't validate them. Don't make it easier if someone gets them wrong.
     this.eventUserLogin = function() {
     	_readUserInputs();
-        alert('Credentials stored.');
+        thiz.model.adminLoggedIn = true;
         views.standardView(model, thiz);
     };
 
@@ -36,6 +36,7 @@ function AdminController(model, views) {
     	//The server has no concept of "logged in". So we're just dropping local state.
     	thiz.model.adminUsername = null;
         thiz.model.adminPassword = null;
+        thiz.model.adminLoggedIn = false;
         views.standardView(thiz.model, thiz);
     };
 

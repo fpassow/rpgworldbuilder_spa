@@ -14,7 +14,7 @@ function AdminViews() {
         $("#user-username").val(model.user.username);
         $("#user-password").val('');
 
-        if (model.user.loggedIn) {
+        if (model.adminLoggedIn) {
     		$("#user-state-notloggedin").hide();
     		$("#user-state-loggedin").show();
         } else {
