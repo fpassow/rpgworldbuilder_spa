@@ -1,15 +1,12 @@
 TODO
 ----
 
-* server.js /api/admin/campaign DELETE
-
-* store.js loadAdminUser() from loadUser(...)
-
-* Delete campaign functionality all the way through
 * Delete user button
 * Delete user functionality
 
-* Admin client lib functions
+* Logout button
+
+
 * Admin services in server.js
 *       delete campaign
 *       delete user and their campaigns

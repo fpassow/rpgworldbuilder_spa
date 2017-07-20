@@ -39,9 +39,15 @@ function AdminViews() {
 	    camps.forEach(function(aCamp) {
 	        //Insert header before each user's campaigns
 	        if (aCamp.username != currentUsername) {
+                var userToDelete = aCamp.username; //used by button event
 	            var userHead = $('<h3 class="camps-userhead"></h3>');
 	            userHead.html(escapeHtml(aCamp.username));
-	            parent.append(userHead);
+                var userDeleteButt = $('<button class="del-user-butt">Delete User</button>');
+                userDeleteButt.on('click', function() {
+                    controller.eventDeleteUser(userToDelete);
+                });
+                parent.append(userHead);
+                parent.append(userDeleteButt);
 	            currentUsername = aCamp.username;
 	        }
 	        var campy = $('<button class="camps-camp"></button>');

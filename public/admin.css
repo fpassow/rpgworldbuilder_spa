@@ -19,6 +19,12 @@ h3 {
     border-right: 1px solid #aaa;
     background: #222;
 }
+.del-user-butt {
+    width:100%;
+    color: #f84;
+    text-align: left;
+    margin-bottom: 10px;
+}
 .campaign-static-view-item {
     color: #ec0;
 }

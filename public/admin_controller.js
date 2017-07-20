@@ -26,7 +26,7 @@ function AdminController(model, views) {
     }
 
     //Don't validate them. Don't make it easier if someone gets them wrong.
-    this.eventUserLogin = function() { alert('logging in');
+    this.eventUserLogin = function() {
     	_readUserInputs();
         alert('Credentials stored.');
         views.standardView(model, thiz);
@@ -39,7 +39,7 @@ function AdminController(model, views) {
         views.standardView(thiz.model, thiz);
     };
 
-    this.eventDeleteuser = function() {alert('FUNCTION NOT WRITTEN YET');};
+    this.eventDeleteUser = function(username) {alert('delete user ' + username);};
 
 
     // Called when user clicks a campaign in the campaign list.
