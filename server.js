@@ -200,6 +200,22 @@ function serveSomeWebs(store) {
             }
         });
     });
+
+    app.delete('/api/admin/user/:userToDelete', function(req, res) {
+        adminAuthCheck(req, res, function(adminUser) {
+            if (req.params.userToDelete) {
+                store.deleteUser(req.params.userToDelete, function(err) {
+                    if (err) {
+                        res.status(500).json(err);//TODO  MAKE BETTER AND SAFER!!!!
+                    } else {
+                        res.end();
+                    }
+                });
+            } else {
+                res.status(400).send("No username given.");
+            }
+        });
+    });
         
 
     //Serve the static files

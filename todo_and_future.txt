@@ -1,22 +1,27 @@
 TODO
 ----
 
-* Delete user button
-* Delete user functionality
+* DATABASE TIME!!  
+     Delete user and campaigns in server.js 
+     (getting all camps lives in server.js not store)
 
 * Logout button
 
 
 * Admin services in server.js
-*       delete campaign
 *       delete user and their campaigns
 
-*      type: 'DELETE',
-         url: '/api/admin/campaign/' + campaignUsername + '/' + campaignId,
- 
-* Admins collection in MongoDB
+* Show campaign-less users on admin page
 
 *       Change users password
+
+* Logging
+*    Timestamps
+*    IP addresses
+*    usernames
+*    campaign titles and id's or other indiction of *what* the path's action was
+*               applied to.
+
 
 * clean the db
 

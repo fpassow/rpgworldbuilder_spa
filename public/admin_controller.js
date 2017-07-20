@@ -39,7 +39,27 @@ function AdminController(model, views) {
         views.standardView(thiz.model, thiz);
     };
 
-    this.eventDeleteUser = function(username) {alert('delete user ' + username);};
+    this.eventDeleteUser = function(deleteThisUser) {
+        if (confirm('Delete user "' + deleteThisUser + '" and all their campaigns?')) {
+            adminDeleteUser(thiz.model.adminUsername, thiz.model.adminPassword, 
+                                deleteThisUser, function(err) {
+                if (err) {
+                    alert(JSON.stringify(err));
+                } else {
+                    thiz.model.campaign = null;
+                    findCampaignsMetadata({}, function(err, campsMeta) {
+                        if (err) {
+                            alert(JSON>stringify(err));
+                            thiz.standardView(thiz.model, thiz);
+                        } else {
+                            model.campaignList = campsMeta;
+                            thiz.views.standardView(thiz.model, thiz);
+                        }
+                    });
+                }
+            });
+        }
+    };
 
 
     // Called when user clicks a campaign in the campaign list.

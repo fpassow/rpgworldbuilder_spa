@@ -81,12 +81,21 @@ function loadUser(username, callback) {
     });
 }
 /*
+ * Delete the user and all their campaigns.
+ *
  * callback(err)
  */
 function deleteUser(username, callback) {
     if (username && username.length) {
+        var camps = this.campaigns;
         this.users.remove({username:username}, function(err) {
-            callback(err);
+            if (err) {
+                callback(err);
+            } else {
+                camps.remove({username:username}, function(err) {
+                    callback(err);
+                });
+            }
         });
     }
 }
