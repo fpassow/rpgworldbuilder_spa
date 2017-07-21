@@ -88,7 +88,14 @@ function AdminController(model, views) {
                             alert(JSON>stringify(err));
                 	        thiz.standardView(thiz.model, thiz);
                         } else {
-                    	    model.campaignList = campsMeta;
+                    	    thiz.model.campaignList = campsMeta;
+                            listUsers(function(err, userList){
+                                if (err) {
+                                    alert(JSON.stringify(err));
+                                } else {
+                                    thiz.model.userList = userList;
+                                }
+                            });
                 	        thiz.views.standardView(thiz.model, thiz);
                         }
                     });

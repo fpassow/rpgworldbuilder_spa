@@ -19,8 +19,15 @@ $(document).ready(function() {
                     //Model has user, currentCampaign, campaigList, campaignsCache. 
                     //But it only gets the definitions object and data for a campaignList on startup
                     model = new Model(campsMeta, def);
-                    controller = new AdminController(model, views);
-                    views.standardView(model, controller);
+                    listUsers(function(err, userList) {
+                        if (err) {
+                            alert(JSON.stringify(err));
+                        } else {
+                            model.userList = userList;
+                            controller = new AdminController(model, views);
+                            views.standardView(model, controller);
+                        }
+                    });  
                 }
             });
         }

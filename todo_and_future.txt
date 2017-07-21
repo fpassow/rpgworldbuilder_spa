@@ -1,19 +1,10 @@
 TODO
 ----
 
-* DATABASE TIME!!  
-     Delete user and campaigns in server.js 
-     (getting all camps lives in server.js not store)
 
-* Logout button
+* CAMPAIGNLESS USERS NOT APPEARING ON ADMIN
 
-
-* Admin services in server.js
-*       delete user and their campaigns
-
-* Show campaign-less users on admin page
-
-*       Change users password
+* Change a users password
 
 * Logging
 *    Timestamps
@@ -34,12 +25,13 @@ TODO
 * Review security of returning err objects to browser
 
 
-
-
 WANTTHIS
 --------
 
 * Data backup
+
+* Add creation dates to users
+* Add creation and update dates to campaigns.
 
 * So about all these "thiz".... 
 
