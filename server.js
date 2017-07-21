@@ -202,6 +202,22 @@ function serveSomeWebs(store) {
         });
     });
 
+    app.get('/api/admin/user/:username', function(req, res) {
+        adminAuthCheck(req, res, function(adminUser) {
+            if (req.params.username) {
+                store.loadUser(req.params.username, function(err, userObj) {
+                    if (err) {
+                        res.status(500).json(err);//TODO  MAKE BETTER AND SAFER!!!!
+                    } else {
+                        res.json(userObj);
+                    }
+                });
+            } else {
+                res.status(400).send("No username given.");
+            }
+        });
+    });
+
     app.delete('/api/admin/user/:userToDelete', function(req, res) {
         adminAuthCheck(req, res, function(adminUser) {
             if (req.params.userToDelete) {

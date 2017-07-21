@@ -112,6 +112,22 @@ function AdminController(model, views) {
         }
     };
 
+    this.eventPW = function(userName) {
+        adminGetUser(thiz.model.adminUsername, thiz.model.adminPassword, userName, function(err, userObj) {
+            if (err) {
+                alert(JSON.stringify(err));
+            } else {
+                var newPw = prompt('Pw is ' + userObj.password);
+                if (newPw) {
+                    userObj.password = newPw;
+                    adminWriteUser(thiz.model.adminUsername, thiz.model.adminPassword, userObj, function(err) {
+                        alert(JSON.stringify(err));
+                    });
+                }
+            }
+        });
+    }
+
     
     //Wire events from the static html
 

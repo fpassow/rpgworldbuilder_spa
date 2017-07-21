@@ -2,9 +2,9 @@ TODO
 ----
 
 
-* CAMPAIGNLESS USERS NOT APPEARING ON ADMIN
+* NEXT: WRITE NEW PASSWORD
 
-* Change a users password
+* 404 when user not found
 
 * Logging
 *    Timestamps

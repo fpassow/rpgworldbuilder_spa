@@ -43,7 +43,12 @@ function AdminViews() {
                 usernameSet.delete(aCamp.username); //Remaining users will be displayed at the end
                 var userToDelete = aCamp.username; //used by button event
 	            var userHead = $('<h3 class="camps-userhead"></h3>');
+                var pw = $("<span>&nbsp; &nbsp; [pw]</span>");
+                pw.on('click', function() {
+                    controller.eventPW(userToDelete);
+                });
 	            userHead.html(escapeHtml(aCamp.username));
+                userHead.append(pw);
                 var userDeleteButt = $('<button class="del-user-butt">Delete User</button>');
                 userDeleteButt.on('click', function() {
                     controller.eventDeleteUser(userToDelete);
@@ -64,7 +69,12 @@ function AdminViews() {
 	    });
         usernameSet.forEach(function(userToDelete) {
             var userHead = $('<h3 class="camps-userhead"></h3>');
+            var pw = $("<span>&nbsp; &nbsp; [pw]</span>");
+            pw.on('click', function() {
+                controller.eventPW(userToDelete);
+            });
             userHead.html(escapeHtml(userToDelete));
+            userHead.append(pw);
             var userDeleteButt = $('<button class="del-user-butt">Delete User</button>');
             userDeleteButt.on('click', function() {
                 controller.eventDeleteUser(userToDelete);

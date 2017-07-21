@@ -38,3 +38,22 @@ function adminDeleteUser(adminUsername, adminPassword, deleteThisUser, callback)
         }
     });
 }
+
+//callback(err, userObj)
+function adminGetUser(adminUsername, adminPassword, username, callback) {
+  $.ajax({
+        type: 'GET',
+        url: '/api/admin/user/' + username,
+        success: function(data) {if (callback) {callback(null, data);}},
+        error:function(jqXHR ) {if (callback) {callback(jqXHR.responseText);}},
+        contentType: "application/json",
+        dataType: 'json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Basic ' + btoa(adminUsername + ':' + adminPassword));  
+        }
+    });
+}
+
+function adminWriteUser(adminUsername, adminPassword, userObject, callback) {
+alert('write admin_clientlib adminGEtUser');
+}
