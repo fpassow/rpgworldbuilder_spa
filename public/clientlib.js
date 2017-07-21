@@ -53,7 +53,7 @@ function changePassword(username, oldPassword, newPassword, callback) {
     });
 }
 
-
+//Provies an array of user names (not user objects).
 //callback(err, useerList) 
 function listUsers(callback) {
   $.ajax({

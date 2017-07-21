@@ -33,15 +33,14 @@ function AdminViews() {
     function _drawCampaignList(model, controller) {
         var parent = $("#camplist-container");
 	    var camps = model.campaignList;
-        var userSet = new Set();
-        model.userList.forEach(function(u) {userSet.add(u.username);});
+        var usernameSet = new Set(model.userList);
 	    parent.empty();
 	    parent.append('<h2>Campaigns</h2>');
 	    var currentUsername = null;
 	    camps.forEach(function(aCamp) {
 	        //Insert header before each user's campaigns
 	        if (aCamp.username != currentUsername) {
-                userSet.delete(aCamp.username); //Remaining users will be displayed at the end
+                usernameSet.delete(aCamp.username); //Remaining users will be displayed at the end
                 var userToDelete = aCamp.username; //used by button event
 	            var userHead = $('<h3 class="camps-userhead"></h3>');
 	            userHead.html(escapeHtml(aCamp.username));
@@ -63,7 +62,7 @@ function AdminViews() {
 	        });
 	        parent.append(campy); 
 	    });
-        userSet.forEach(function(userToDelete) {
+        usernameSet.forEach(function(userToDelete) {
             var userHead = $('<h3 class="camps-userhead"></h3>');
             userHead.html(escapeHtml(userToDelete));
             var userDeleteButt = $('<button class="del-user-butt">Delete User</button>');

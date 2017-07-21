@@ -54,7 +54,15 @@ function AdminController(model, views) {
                             thiz.standardView(thiz.model, thiz);
                         } else {
                             model.campaignList = campsMeta;
-                            thiz.views.standardView(thiz.model, thiz);
+                            listUsers(function(err, userList) {
+                                if (err) {
+                                    alert(JSON.stringify(err));
+                                } else {
+                                    model.userList = userList;
+                                    controller = new AdminController(model, views);
+                                    views.standardView(model, controller);
+                                }
+                            });
                         }
                     });
                 }

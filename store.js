@@ -101,6 +101,8 @@ function deleteUser(username, callback) {
 }
 
 /*
+ * Returns an array of user names
+ *
  * callback(err, arrayOfUsers)
  */
 function listUsers(callback) {    

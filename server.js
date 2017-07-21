@@ -80,6 +80,7 @@ function serveSomeWebs(store) {
         });
     });
     
+    //Returns an array of usernames. (Not user objects.)
     app.get('/api/users', function(req, res) {
         store.listUsers(function(err, userNames) {
             if (err) {
