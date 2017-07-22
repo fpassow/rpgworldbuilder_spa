@@ -121,7 +121,7 @@ function AdminController(model, views) {
                 if (newPw) {
                     userObj.password = newPw;
                     adminWriteUser(thiz.model.adminUsername, thiz.model.adminPassword, userObj, function(err) {
-                        alert(JSON.stringify(err));
+                        alert('weeee'+JSON.stringify(err));
                     });
                 }
             }

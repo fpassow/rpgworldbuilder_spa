@@ -157,21 +157,7 @@ function adminDeleteCampaign(adminUsername, adminPassword, campaignUsername, cam
     });
 }
 
-//Deletes a user. On the server side, all their campaigns are deleted, too.
-//callback(err)
-function adminDeleteUser(adminUsername, adminPassword, campaignUsername, campaignId, callback) {
-  $.ajax({
-        type: 'DELETE',
-        url: '/api/admin/user/' + username,
-        success: function(data) {if (callback) {callback(null);}},
-        error:function(jqXHR ) {if (callback) {callback(jqXHR.responseText);}},
-        contentType: "application/json",
-        dataType: 'json',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'Basic ' + btoa(adminUsername + ':' + adminPassword));  
-        }
-    });
-}
+
 
 //Stub callback for testing
 function cb(err, data) {

@@ -66,6 +66,7 @@ function connect(callback) {
  * callback(err)
  */
 function storeUser(user, callback) {
+    delete user._id;
     this.users.update({username:user.username}, user, {upsert:true}, function(err, count, status) {
         callback(err);
     });

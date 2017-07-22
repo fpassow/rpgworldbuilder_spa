@@ -54,6 +54,37 @@ function adminGetUser(adminUsername, adminPassword, username, callback) {
     });
 }
 
+//callback(err)
 function adminWriteUser(adminUsername, adminPassword, userObject, callback) {
-alert('write admin_clientlib adminGEtUser');
+     $.ajax({
+        type: 'POST',
+        url: '/api/admin/user',
+        data:JSON.stringify(userObject),
+        success: function() {if (callback) {callback(null);}},
+        error:function(jqXHR ) {if (callback) {callback(jqXHR.responseText);}},
+        contentType: "application/json",
+        dataType: 'json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Basic ' + btoa(adminUsername + ':' + adminPassword));  
+        }
+    });
 }
+
+
+/*
+//Deletes a user. On the server side, all their campaigns are deleted, too.
+//callback(err)
+function adminDeleteUser(adminUsername, adminPassword, campaignUsername, campaignId, callback) {
+  $.ajax({
+        type: 'DELETE',
+        url: '/api/admin/user/' + username,
+        success: function(data) {if (callback) {callback(null);}},
+        error:function(jqXHR ) {if (callback) {callback(jqXHR.responseText);}},
+        contentType: "application/json",
+        dataType: 'json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Basic ' + btoa(adminUsername + ':' + adminPassword));  
+        }
+    });
+}
+*/

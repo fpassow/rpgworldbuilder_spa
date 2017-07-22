@@ -2,9 +2,7 @@ TODO
 ----
 
 
-* NEXT: WRITE NEW PASSWORD
-
-* 404 when user not found
+* WHAT WAS THE SILLY THING THAT MADE AJAX CALL CALL ITSELF AND ERROR????
 
 * Logging
 *    Timestamps

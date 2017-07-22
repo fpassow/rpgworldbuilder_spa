@@ -233,6 +233,24 @@ function serveSomeWebs(store) {
             }
         });
     });
+
+    //Update any user. POST the new object. No username in path
+    app.post('/api/admin/user', function(req, res) {
+        adminAuthCheck(req, res, function(adminUser) {
+            var postedUser = req.body;
+            if (postedUser) {
+                store.storeUser(postedUser, function(err) {
+                    if (err) {                   
+                        res.status(500).json(err);//TODO MAKE BETTER AND SECURE!!!!
+                    } else {
+                        res.end();
+                    }
+                });
+            } else {
+                res.status(400).send("No user object in body.");
+            }
+        });
+    });
         
 
     //Serve the static files
