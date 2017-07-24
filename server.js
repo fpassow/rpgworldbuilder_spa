@@ -44,16 +44,18 @@ function serveSomeWebs(store) {
      */
     function authCheck(req, res, ifAuth) {
         var authUser = basicAuth(req);//has name and pass 
-        log.info('Auth check: ' + authUser.name);
         if (authUser && authUser.name && authUser.pass) {
             store.loadUser(authUser.name, function (err, storedUser) {
                 if (storedUser && (authUser.pass === storedUser.password)) {
+                    log.info('authCheck passed: ' + authUser.name);
                     ifAuth(storedUser);
                 } else {
+                    log.info('authCheck failed: ' + authUser.name);
                     res.status(401).send("Bad username/password");
                 }
             });
         } else {
+            log.info('authCheck missing parameter: ' + authUser.name);
             res.status(401).send("Missing username/password");
         }
     }
@@ -64,19 +66,22 @@ function serveSomeWebs(store) {
         var authUser = basicAuth(req);//has name and pass
         var postedUser = req.body;
         if (!postedUser.username || !postedUser.password) {
+            log.info('POSTed incomplete user info.')
             res.status(400).send('POSTed incomplete user info.');
             return;
         }
         store.loadUser(postedUser.username, function (err, storedUser) {
             if (!storedUser || ((authUser && storedUser.username === authUser.name) && (storedUser.password === authUser.pass))) {
                 store.storeUser(postedUser, function(err) {
-                    if (err) {                   
+                    if (err) {      
+                        log.info(JSON.stringify(err));             
                         res.status(500).json(err);//TODO MAKE BETTER AND SECURE!!!!
                     } else {
                         res.send('{}');
                     }
                 });
             } else {
+                log.info("Failed auth while updating user " + postedUser.username);
                 res.status(401).send("Failed auth while updating user.");
             }
         });
@@ -102,7 +107,7 @@ function serveSomeWebs(store) {
     
     /*
      * Include HTTP basic auth. Campaign is json body. Create or update. 
-     * The campaign must already include a username and a campaignId which is unquire for that username.
+     * The campaign must already include a username and a campaignId which is unquie for that username.
      *
      */
     app.post('/api/campaign', function(req, res) {
@@ -111,7 +116,6 @@ function serveSomeWebs(store) {
             if (postedCampaign && postedCampaign.username === authUser.username) {
                 store.storeCampaign(postedCampaign, function(err, camp) {
                     if (err) {
-                        console.log('====================================================');
                         log.error('Error writing campaign', err);
                         res.status(500).json(err);//SECURITY????????
                     } else {
@@ -119,7 +123,9 @@ function serveSomeWebs(store) {
                     }
                 });
             } else {
-                res.status(403).send("Failed to authenticate with campaign's username");
+                res.status(403).send("Failed to authenticate with campaign's username ");
+                log.info("Failed to authenticate with campaign's username "
+                 + postedCampaign.username + " id=" + postedCampaign.id);
             }
         });
     });
@@ -141,6 +147,7 @@ function serveSomeWebs(store) {
     //To search, POST a mongodb search object.
     //Returns only campaignId, title, and username
     app.post('/api/search', function(req, res) {
+        log.info("Search for campaigns " + JSON.stringify(req.body));
         if (req.body) {
             store.findCampaignsMetadata(req.body, function(err, campaignsMeta) {
                 if (err) {
@@ -184,12 +191,15 @@ function serveSomeWebs(store) {
         if (authUser && authUser.name && authUser.pass) {
             store.loadAdminUser(authUser.name, function (err, storedAdminUser) {console.log(storedAdminUser);
                 if (storedAdminUser && (authUser.pass === storedAdminUser.adminPassword)) {
+                    log.info('adminAuthCheck passed: ' + authUser.name);
                     ifAuth(storedAdminUser);
                 } else {
+                    log.info('authCheck failed: ' + authUser.name);
                     res.status(401).send("Bad username / password");
                 }
             });
         } else {
+            log.info('authCheck missing username/password: ' + authUser.name);
             res.status(401).send("Missing username/password");
         }
     }
@@ -200,6 +210,7 @@ function serveSomeWebs(store) {
             if (req.params.campaignUser && req.params.id) {
                 store.deleteCampaign(req.params.campaignUser, req.params.id, function(err) {
                     if (err) {
+                        log.info('', err);
                         res.status(500).json(err);//TODO  MAKE BETTER AND SAFER!!!!
                     } else {
                         res.end();
@@ -216,6 +227,7 @@ function serveSomeWebs(store) {
             if (req.params.username) {
                 store.loadUser(req.params.username, function(err, userObj) {
                     if (err) {
+                        log.info('', err);
                         res.status(500).json(err);//TODO  MAKE BETTER AND SAFER!!!!
                     } else {
                         res.json(userObj);
@@ -232,6 +244,7 @@ function serveSomeWebs(store) {
             if (req.params.userToDelete) {
                 store.deleteUser(req.params.userToDelete, function(err) {
                     if (err) {
+                        log.error(JSON.stringify(err));
                         res.status(500).json(err);//TODO  MAKE BETTER AND SAFER!!!!
                     } else {
                         res.end();
@@ -247,15 +260,18 @@ function serveSomeWebs(store) {
     app.post('/api/admin/user', function(req, res) {
         adminAuthCheck(req, res, function(adminUser) {
             var postedUser = req.body;
+            log.info('Posted user ' + postedUser.username);
             if (postedUser) {
                 store.storeUser(postedUser, function(err) {
-                    if (err) {                   
+                    if (err) {  
+                        log.error(JSON.stringify(err));                 
                         res.status(500).json(err);//TODO MAKE BETTER AND SECURE!!!!
                     } else {
                         res.end();
                     }
                 });
             } else {
+                log.info('No user object in body');
                 res.status(400).send("No user object in body.");
             }
         });

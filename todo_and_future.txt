@@ -2,24 +2,18 @@ TODO
 ----
 
 
-* WHAT WAS THE SILLY THING THAT MADE AJAX CALL CALL ITSELF AND ERROR????
 
 * Logging
-*    Timestamps
-*    IP addresses
+...
 *    usernames
 *    campaign titles and id's or other indiction of *what* the path's action was
 *               applied to.
 
 
-* clean the db
-
 * create a real introductory index.html
 
 * understand  --dbpath /data/db1
 
-
-* Review what I'm logging
 * Review security of returning err objects to browser
 
 
