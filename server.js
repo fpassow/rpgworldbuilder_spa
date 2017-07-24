@@ -36,7 +36,7 @@ function serveSomeWebs(store) {
     var basicAuth = require('basic-auth');
 
     var morgan = require('morgan');
-    app.use(morgan('combined'));
+    app.use(morgan('common'));
 
     /* Utility function.
      * Calls ifAuth(userObjectFromDatabase) if credentials are good.
