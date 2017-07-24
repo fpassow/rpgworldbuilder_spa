@@ -5,8 +5,16 @@
  * Expects MongoDB connection string in environement variable RPGWORLDBUILDER_DB
  */
 
-var log = require('winston');
-log.level = 'debug';
+var winston = require('winston');
+winston.level = 'debug';
+
+var log = new (winston.Logger)({
+    transports: [
+        new ( winston.transports.Console )({ 
+            timestamp: true,
+        })
+    ]
+});
 
 //Require my db access module
 require('./store')(function(err, store) {
@@ -36,6 +44,7 @@ function serveSomeWebs(store) {
      */
     function authCheck(req, res, ifAuth) {
         var authUser = basicAuth(req);//has name and pass 
+        log.info('Auth check: ' + authUser.name);
         if (authUser && authUser.name && authUser.pass) {
             store.loadUser(authUser.name, function (err, storedUser) {
                 if (storedUser && (authUser.pass === storedUser.password)) {
