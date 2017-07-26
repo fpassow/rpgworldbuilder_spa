@@ -1,20 +1,12 @@
 TODO
 ----
 
-
-
-* Logging
-...
-*    usernames
-*    campaign titles and id's or other indiction of *what* the path's action was
-*               applied to.
-
+* hack a node def dumper (delete when done)
 
 * create a real introductory index.html
 
 * understand  --dbpath /data/db1
 
-* Review security of returning err objects to browser
 
 
 WANTTHIS
