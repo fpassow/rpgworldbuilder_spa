@@ -1,9 +1,6 @@
 TODO
 ----
 
-* hack a node def dumper (delete when done)
-
-* create a real introductory index.html
 
 * understand  --dbpath /data/db1
 
