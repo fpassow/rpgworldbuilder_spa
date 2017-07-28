@@ -77,7 +77,6 @@
                 {"label": "Merchants", "description": "<p>business isn't always boring. Think of the early spice traders in Earth’s Age of Exploration, the caravans along the Silk Road, or maybe the fur traders of the American frontier.</p></p>"},
                 {"label": "Keys Quest", "description": "<p>A classic… The Great Magic Thing was divided into parts. The parts were scattered and hidden in dangerous places. And the PCs have a reason to find them.</p><p>Like all quests, it has a final end. But it has a bunch of intermediate ends, too. Twelve parts automatically gives you twelve adventures. Stretch it to a few adventures per part and you can get a whole year of play.</p><p>It’s over-used. But it’s over-used because it works.</p>"},
                 {"label": "Wandering Heros", "description": "<p>PCs have explicitly signed up to fight evil and help those in need. Examples: Knights of the Round Table, Dr. Who, The A-Team.</p><p>This is a popular classic. But make sure the players explicitly agree to it, because it requires the PCs to do dangerous things without any other rational motivation."},
-                {"label": "Hunted", "description": "<p>Being personally hunted, or belonging to a hunted group, is kind of a downer by itself. But it's a great addition to some other drivers. PCs can be motivated by a goal up ahead and a danger behind.</p>"},
                 {"label": "Treasure Hunters", "description": "<p>Treasure hunters is popular in fiction and a straightforward source of adventures.</p><p>However, treasure hunters who are after the Big Score either get tired of failing, or succeed and retire. So don't count on treasure hunting alone for a long campaign.</p>"}
             ]            
         },
@@ -89,7 +88,9 @@
             "isarrayfield": true,
             "hints": [
                 {"label": "Weapons", "description": ""},
+                {"label": "Ammunition", "description": ""},
                 {"label": "Defenses", "description": ""},
+                {"label": "Healing", "description": ""},
                 {"label": "Tools", "description": ""},
                 {"label": "Spells", "description": ""},
                 {"label": "Magic Items", "description": ""},

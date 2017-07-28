@@ -1,6 +1,7 @@
 TODO
 ----
 
+* index page still needs more work
 
 * understand  --dbpath /data/db1
 
