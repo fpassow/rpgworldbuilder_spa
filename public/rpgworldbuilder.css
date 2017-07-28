@@ -168,6 +168,9 @@ h2 {
 }
 .hintlink:hover {
 }
+.rwb-field-docblock-hints {
+    margin-left: 20px;
+}
 input {
     width: 100%;
 }
