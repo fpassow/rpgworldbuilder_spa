@@ -100,6 +100,7 @@
                 {"label": "Natural abilities", "description": ""},
                 {"label": "Cyber Powers", "description": ""},
                 {"label": "Skills", "description": ""},
+                {"label": "Training", "description": ""},
                 {"label": "Social status", "description": ""},
                 {"label": "Authority", "description": ""}
             ]            

@@ -3,6 +3,8 @@ TODO
 
 * index page still needs more work
 
+* Button to open print/copy view in it's own tab.
+
 * understand  --dbpath /data/db1
 
 
