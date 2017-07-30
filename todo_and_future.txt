@@ -1,9 +1,12 @@
 TODO
 ----
 
+
+* I WANTED A BETTER LOCAL SAVE OPTION!!!!!!
+
 * index page still needs more work
 
-* Button to open print/copy view in it's own tab.
+
 
 * understand  --dbpath /data/db1
 
@@ -13,6 +16,9 @@ WANTTHIS
 --------
 
 * Data backup
+
+* Button to open print/copy view in it's own tab.  /blah/user/campid
+   (Server writes all the content directly into the html)
 
 * Add creation dates to users
 * Add creation and update dates to campaigns.
