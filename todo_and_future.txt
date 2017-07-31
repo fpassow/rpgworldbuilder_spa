@@ -1,12 +1,11 @@
 TODO
 ----
 
+* Expand all the adventures
 
-* I WANTED A BETTER LOCAL SAVE OPTION!!!!!!
+* On index.html, display sides and people in grids.
 
-* index page still needs more work
-
-
+* More text on people, love, love on index.html
 
 * understand  --dbpath /data/db1
 
@@ -14,6 +13,9 @@ TODO
 
 WANTTHIS
 --------
+
+
+* I WANTED A BETTER LOCAL SAVE OPTION!!!!!!
 
 * Data backup
 
