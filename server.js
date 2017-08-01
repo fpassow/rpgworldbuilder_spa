@@ -4,6 +4,7 @@
  *
  * Expects MongoDB connection string in environement variable RPGWORLDBUILDER_DB
  */
+var def = require('./public/campaign_form_def.json');
 
 var winston = require('winston');
 winston.level = 'debug';
@@ -178,7 +179,37 @@ function serveSomeWebs(store) {
         });
     });
 
-
+    //GET a campaign as html
+    app.get('/html/campaign/:username/:campaignId', function(req, res) {
+        loadCampaign(req.params.username, req.params.campaignId, function(err, campaign) {
+            if (err) {
+                res.status(500).json(err);
+            } else {
+                if (campaign) {
+                    res.send('<!DOCTYPE html><html><head><meta charset="utf-8"><title>RPG World Builder: '+escapeHtml(campaign.title)+'</title><style></style></head><body><div id="content">');
+                    res.send('<h1>' + escapeHtml(campaign['title']) + '</h1>');
+                    res.send('<div class="campaign-author-credit">By ' + escapeHtml(campaign.username) + '</div>');
+                    var field, i;
+                    for (i = 1; i < def.fields.length; i++) {
+                        res.send('<h2>' + def.fields[i].label + '</h2>');
+                        if (def.fields[i].isarrayfield) {
+                            var arr = data[def.fields[i].name];
+                            if (arr && arr.length) {
+                                arr.forEach(function(x, index) {
+                                    res.send('<div class="campaign-static-view-item">'+escapeHtml(x)+'</div>');
+                                });
+                            }
+                        } else {
+                            res.send('<div class="campaign-static-view-item">'+escapeHtml(data[rwbDef.fields[i].name])+'</div>');
+                        }
+                    }
+                    res.end('</div></body></html>');
+                } else {
+                    res.status(404).end();
+                }
+            }
+        });
+    });
     ////////////////////// Admin ///////////////////////
 
 
@@ -276,8 +307,7 @@ function serveSomeWebs(store) {
             }
         });
     });
-        
-
+    
     //Serve the static files
     app.use('/', express.static('public'));
     
@@ -285,3 +315,14 @@ function serveSomeWebs(store) {
 }
 
 
+function escapeHtml(unsafe) {
+    if (!unsafe) {
+        return "";
+    }
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }

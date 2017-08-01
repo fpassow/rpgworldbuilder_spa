@@ -1,10 +1,9 @@
 TODO
 ----
 
+* Print view (with it's own url) LINK ISN'T SHOWING!?!?!?!?
 
 * On index.html, display sides and people in grids.
-
-* Print view (with it's own url)
 
 * understand  --dbpath /data/db1
 

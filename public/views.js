@@ -69,11 +69,11 @@ function Views() {
             });
         }
 
-
-
         //Populate the campaign editing/display area
         $("#campaign-thecampaign").empty();
         if (haveCampaign) {
+        	$("#campaign-thecampaign").append('<div class="print-link"><a href="/html/campaign/'
+        		+model.campaign.username+'/'+model.campaign.campaignId+'</a></div>');
             if (campIsMine || model.anonymousEditing) {
             	_drawCampaignEditor(model, controller);
             	if (model.nextFocusId) {
@@ -91,12 +91,6 @@ function Views() {
         $("#savebox").show();
         _drawStaticCampaignView("savebox-content", model);
     };
-
-    this.importView = function(model, controller) {
-
-
-    };
-
 
     function _drawCampaignList(model, controller) {
         var parent = $("#camplist-container");
