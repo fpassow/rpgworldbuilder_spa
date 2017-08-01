@@ -1,11 +1,10 @@
 TODO
 ----
 
-* Expand all the adventures
 
 * On index.html, display sides and people in grids.
 
-* More text on people, love, love on index.html
+* Print view (with it's own url)
 
 * understand  --dbpath /data/db1
 
