@@ -181,29 +181,30 @@ function serveSomeWebs(store) {
 
     //GET a campaign as html
     app.get('/html/campaign/:username/:campaignId', function(req, res) {
-        loadCampaign(req.params.username, req.params.campaignId, function(err, campaign) {
+        store.loadCampaign(req.params.username, req.params.campaignId, function(err, campaign) {
             if (err) {
                 res.status(500).json(err);
             } else {
                 if (campaign) {
-                    res.send('<!DOCTYPE html><html><head><meta charset="utf-8"><title>RPG World Builder: '+escapeHtml(campaign.title)+'</title><style></style></head><body><div id="content">');
-                    res.send('<h1>' + escapeHtml(campaign['title']) + '</h1>');
-                    res.send('<div class="campaign-author-credit">By ' + escapeHtml(campaign.username) + '</div>');
+                    res.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>RPG World Builder: '+escapeHtml(campaign.title)+'</title><style>body{padding:30px;}</style></head><body><div id="content">');
+                    res.write('<h1>' + escapeHtml(campaign['title']) + '</h1>');
+                    res.write('<div class="campaign-author-credit">By ' + escapeHtml(campaign.username) + '</div>');
                     var field, i;
                     for (i = 1; i < def.fields.length; i++) {
-                        res.send('<h2>' + def.fields[i].label + '</h2>');
+                        res.write('<h2>' + def.fields[i].label + '</h2>');
                         if (def.fields[i].isarrayfield) {
-                            var arr = data[def.fields[i].name];
+                            var arr = campaign[def.fields[i].name];
                             if (arr && arr.length) {
                                 arr.forEach(function(x, index) {
-                                    res.send('<div class="campaign-static-view-item">'+escapeHtml(x)+'</div>');
+                                    res.write('<div class="campaign-static-view-item"><p>'+escapeHtml(x)+'</p></div>');
                                 });
                             }
                         } else {
-                            res.send('<div class="campaign-static-view-item">'+escapeHtml(data[rwbDef.fields[i].name])+'</div>');
+                            res.write('<div class="campaign-static-view-item">'+escapeHtml(campaign[def.fields[i].name])+'</div>');
                         }
                     }
-                    res.end('</div></body></html>');
+                    res.write('</div></body></html>');
+                    res.end();
                 } else {
                     res.status(404).end();
                 }

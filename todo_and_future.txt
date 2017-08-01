@@ -1,7 +1,7 @@
 TODO
 ----
 
-* Print view (with it's own url) LINK ISN'T SHOWING!?!?!?!?
+* Remove bogus not-logged-in-save
 
 * On index.html, display sides and people in grids.
 

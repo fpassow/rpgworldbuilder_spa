@@ -353,6 +353,12 @@ function Controller(model, views) {
 
     };
 
+    this.eventPrintSave = function() {
+        var printableUrl = '/html/campaign/'
+            +model.campaign.username+'/'+model.campaign.campaignId;
+        window.open(printableUrl, '_blank')
+    };
+
     this.eventSaveboxPrint = function() {
         window.print();
     };
@@ -393,6 +399,7 @@ function Controller(model, views) {
 	$("#campaign-addto-button").on('click', this.eventCampaignAddTo);
 	$("#campaign-clone").on('click', this.eventCampaignClone);
 	$("#campaign-delete").on('click', this.eventCampaignDelete);
+    $("#print-link").on('click',this.eventPrintSave);
 	$("#savebox-print").on('click', this.eventSaveboxPrint);
 	$("#savebox-close").on('click', this.eventSaveboxClose);
 	$("#hintbox-close").on('click', this.eventHintboxClose);

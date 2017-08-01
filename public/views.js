@@ -68,12 +68,11 @@ function Views() {
                 }
             });
         }
+        $("#print-link").toggle(haveCampaign);
 
         //Populate the campaign editing/display area
         $("#campaign-thecampaign").empty();
         if (haveCampaign) {
-        	$("#campaign-thecampaign").append('<div class="print-link"><a href="/html/campaign/'
-        		+model.campaign.username+'/'+model.campaign.campaignId+'</a></div>');
             if (campIsMine || model.anonymousEditing) {
             	_drawCampaignEditor(model, controller);
             	if (model.nextFocusId) {
