@@ -28,11 +28,21 @@ body {
 }
 
 .short-hint {
-    float:left;
+    display: inline-block;
+    vertical-align: top;
     width:200px;
-    height:300px;
-    border:1px solid #666;
+    height:200px;
+    /* border:1px solid #666; */
     padding: 10px;
     margin: 10px;
+}
+
+.empty-hint {
+    display: inline-block;
+    vertical-align: top;
+    width:200px;
+    padding: 0px 10px 0px 10px;
+    margin: 0px 10px 0px 10px;
+    font-size: 12px;
 }
 

@@ -146,7 +146,7 @@
         {
             "name": "person",
             "label": "People",
-            "instructions": "",
+            "instructions": "List some NPCs which you would enjoy playing. Use the categories below for inspiration.",
             "longtext": false,
             "isarrayfield": true,
             "hints": [

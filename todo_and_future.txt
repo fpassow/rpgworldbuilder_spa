@@ -2,17 +2,12 @@ TODO
 ----
 
 
-* On index.html, display sides and people in grids.
-
-* understand  --dbpath /data/db1
+* Look at vert spacing in editor
 
 
 
 WANTTHIS
 --------
-
-
-* I WANTED A BETTER LOCAL SAVE OPTION!!!!!!
 
 * Data backup
 
