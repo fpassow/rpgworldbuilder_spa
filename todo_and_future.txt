@@ -1,7 +1,6 @@
 TODO
 ----
 
-* Remove bogus not-logged-in-save
 
 * On index.html, display sides and people in grids.
 

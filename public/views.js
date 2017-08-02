@@ -86,11 +86,6 @@ function Views() {
         nextFocusId = null; //nextFocusId is only good for one cycle.
     };
 
-    this.printView = function(model, controller) {
-        $("#savebox").show();
-        _drawStaticCampaignView("savebox-content", model);
-    };
-
     function _drawCampaignList(model, controller) {
         var parent = $("#camplist-container");
 	    var camps = model.campaignList;

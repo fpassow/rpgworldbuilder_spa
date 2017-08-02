@@ -215,14 +215,10 @@ function Controller(model, views) {
     this.eventCampaignSave = function() {
     	//Update model from INPUTs
         _readCampaignInputs();
-    	if (!model.user.loggedIn) {
-    		views.printView(model, thiz);
-    	} else {
-            _saveCampaignToServer(function() {
-            	alert("Campaign has been saved.");
-            });
-            views.standardView(model, thiz);
-        }
+        _saveCampaignToServer(function() {
+            alert("Campaign has been saved.");
+        });
+        views.standardView(model, thiz);
     };
 
     function _saveCampaignToServer(done) {
@@ -359,14 +355,6 @@ function Controller(model, views) {
         window.open(printableUrl, '_blank')
     };
 
-    this.eventSaveboxPrint = function() {
-        window.print();
-    };
-
-    this.eventSaveboxClose = function() {
-    	$("#savebox").hide();
-    };
-
     this.eventHintboxClose = function() {
     	$("#hintbox").hide();
     };
@@ -400,8 +388,6 @@ function Controller(model, views) {
 	$("#campaign-clone").on('click', this.eventCampaignClone);
 	$("#campaign-delete").on('click', this.eventCampaignDelete);
     $("#print-link").on('click',this.eventPrintSave);
-	$("#savebox-print").on('click', this.eventSaveboxPrint);
-	$("#savebox-close").on('click', this.eventSaveboxClose);
 	$("#hintbox-close").on('click', this.eventHintboxClose);
 
 	//Events from dynamically generated HTML:
