@@ -186,7 +186,9 @@ function serveSomeWebs(store) {
                 res.status(500).json(err);
             } else {
                 if (campaign) {
-                    res.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>RPG World Builder: '+escapeHtml(campaign.title)+'</title><style>body{padding:30px;}</style></head><body><div id="content">');
+                    res.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>RPG World Builder: '
+                        +escapeHtml(campaign.title)+'</title><style>body{padding:60px;} .print-div{text-align:right;}</style></head><body><div id="content">');
+                    res.write('<div class="print-div"><button onclick="window.print()">print</button></div>');
                     res.write('<h1>' + escapeHtml(campaign['title']) + '</h1>');
                     res.write('<div class="campaign-author-credit">By ' + escapeHtml(campaign.username) + '</div>');
                     var field, i;

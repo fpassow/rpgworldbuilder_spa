@@ -50,7 +50,7 @@ function Views() {
         var campIsMine = haveCampaign && model.user.username === model.campaign.username;
 
         $("#campaign-new").toggle(true);
-        $("#campaign-save").toggle(campIsMine || model.anonymousEditing);
+        $("#campaign-save").toggle(campIsMine);
         $("#campaign-import").toggle(campIsMine);
         $("#campaign-clone").toggle(loggedIn && haveCampaign);
         $("#campaign-addto-container").toggle(loggedIn && haveCampaign);
