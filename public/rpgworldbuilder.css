@@ -73,14 +73,6 @@ textarea {
     background:white;
     color: black;
 }
-#savebox {
-    background:white;
-}
-#savebox-controls {
-}
-#savebox-content {
-}
-
 
 /****************************End of safely editable colors section ***************************/
 
@@ -158,6 +150,18 @@ h2 {
 
 
 /************** From Campaign Editor*****/
+div.campaign-field h3 {
+	margin-bottom: 5px;
+}
+div.campaign-arrayfield h3 {
+	margin-bottom: 5px;
+}
+div.campaign-field p {
+    margin: 2px 0px 5px 0px;
+}
+div.campaign-arrayfield p {
+    margin: 2px 0px 5px 0px;
+}
 .campaign-arrayfield-item {
     margin: 5px;
     padding: 5px;

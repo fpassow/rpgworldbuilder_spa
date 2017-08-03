@@ -211,7 +211,7 @@ function Views() {
 	        var target = $('<div class="campaign-field"></div>');
 	        parentElement.append(target);
 	        target.append('<h3>' + def.label + '</h3>');
-	        target.append('<span>' + def.instructions + '</span>');
+	        target.append('<p>' + def.instructions + '</p>');
 	        var thingData = $('<div></div>');
 	        var item;
 	        if (def.longtext) {
@@ -229,7 +229,7 @@ function Views() {
 	        parentElement.append(target);
 	        target.append('<h3>' + def.label + '</h3>');
 	        var instructoid = $('<div></div>');
-	        instructoid.append('<div>' + def.instructions + '</div>');
+	        instructoid.append('<p>' + def.instructions + '</p>');
 	        instructoid.append(_createHints(def.hints));
 	        target.append(instructoid);
 	        var dataDiv = $('<div></div>');
