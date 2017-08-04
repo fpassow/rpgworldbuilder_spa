@@ -314,6 +314,7 @@ function serveSomeWebs(store) {
     //Serve the static files
     app.use('/', express.static('public'));
     
+    var port = process.env.PORT || 80;
     app.listen(80);
 }
 

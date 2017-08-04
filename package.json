@@ -2,7 +2,7 @@
   "name": "rpgworldbuilder",
   "version": "1.0.0",
   "description": "Turn ideas into runnable RPG campaigns",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "start mongod",
@@ -17,5 +17,8 @@
     "mongodb": "^2.2.26",
     "morgan": "^1.8.2",
     "winston": "^2.3.1"
+  },
+  "engines": {
+    "node": "6.10.2"
   }
 }
